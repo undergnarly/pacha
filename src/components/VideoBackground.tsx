@@ -32,6 +32,7 @@ export default function VideoBackground({
     if (!el) return;
 
     if (isActive) {
+      el.currentTime = 0;
       el.play().catch(() => {});
     } else {
       el.pause();
