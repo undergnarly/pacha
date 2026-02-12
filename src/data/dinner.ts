@@ -34,15 +34,4 @@ export const dinnerSlides: SlideData[] = [
       booking: true,
     },
   },
-  {
-    id: "dinner-mood",
-    variant: "experience",
-    headline: "An Evening to Remember",
-    subtitle:
-      "Candles, flowers, alpacas, and golden hour light. The perfect setting for anniversaries, proposals, or simply a magical night out.",
-    media: {
-      video: "/videos/dinner-mood.mp4",
-      poster: "/images/dinner-mood.webp",
-    },
-  },
 ];

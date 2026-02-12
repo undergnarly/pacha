@@ -12,7 +12,6 @@ const links = [
   { label: "AlpaCafe", href: "/alpacafe" },
   { label: "Lodges", href: "/lodges" },
   { label: "Private Dinner", href: "/dinner" },
-  { label: "Wooler Room", href: "/wooler-room" },
 ];
 
 export default function MobileMenu({ open, onClose }: MobileMenuProps) {

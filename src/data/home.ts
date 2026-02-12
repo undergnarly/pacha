@@ -91,21 +91,6 @@ export const homeSlides: SlideData[] = [
     },
   },
   {
-    id: "alpacafe",
-    variant: "experience",
-    headline: "AlpaCafe",
-    subtitle:
-      "Specialty coffee, fresh juices, and alpaca-themed treats — with the fluffiest company in Bali.",
-    media: {
-      video: "/videos/alpacafe.mp4",
-      poster: "/images/alpacafe.webp",
-    },
-    cta: {
-      label: "Discover",
-      href: "/alpacafe",
-    },
-  },
-  {
     id: "lodge",
     variant: "experience",
     headline: "Stay Overnight",
@@ -119,6 +104,21 @@ export const homeSlides: SlideData[] = [
     cta: {
       label: "View Lodges",
       href: "/lodges",
+    },
+  },
+  {
+    id: "alpacafe",
+    variant: "experience",
+    headline: "AlpaCafe",
+    subtitle:
+      "Specialty coffee, fresh juices, and alpaca-themed treats — with the fluffiest company in Bali.",
+    media: {
+      video: "/videos/alpacafe.mp4",
+      poster: "/images/alpacafe.webp",
+    },
+    cta: {
+      label: "Discover",
+      href: "/alpacafe",
     },
   },
 ];

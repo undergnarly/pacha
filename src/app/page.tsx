@@ -7,7 +7,7 @@ export default function Home() {
     <SlideShow
       slides={homeSlides}
       faqItems={homeFaq}
-      bookSlides={[]}
+      bookSlides={[2, 3, 4]}
       footerConfig={{ showMap: true, showHours: true, showContacts: true }}
     />
   );
