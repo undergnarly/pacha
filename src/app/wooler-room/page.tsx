@@ -14,7 +14,6 @@ export default function WoolerRoomPage() {
     <SlideShow
       slides={woolerSlides}
       faqItems={woolerFaq}
-      bookSlides={[]}
       footerConfig={{ showMap: false, showHours: false, showContacts: true }}
     />
   );

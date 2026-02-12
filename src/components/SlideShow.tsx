@@ -1,12 +1,11 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Slide from "./Slide";
 import FooterSlide from "./FooterSlide";
 import Header from "./Header";
 import DotNav from "./DotNav";
-import MobileBookCTA from "./MobileBookCTA";
 import BookingModal from "./BookingModal";
 import LoadingScreen from "./LoadingScreen";
 import type { SlideData, FAQItem } from "@/data/types";
@@ -14,7 +13,6 @@ import type { SlideData, FAQItem } from "@/data/types";
 interface SlideShowProps {
   slides: SlideData[];
   faqItems: FAQItem[];
-  bookSlides?: number[];
   footerConfig?: {
     showMap?: boolean;
     showHours?: boolean;
@@ -27,7 +25,6 @@ const TRANSITION_MS = 1000;
 export default function SlideShow({
   slides,
   faqItems,
-  bookSlides = [],
   footerConfig = {},
 }: SlideShowProps) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -134,13 +131,6 @@ export default function SlideShow({
     setBookingUrl(whiteLabel);
   }, []);
 
-  const handleMobileBook = useCallback(() => {
-    setBookingUrl(
-      "https://megatix.co.id/white-label/entrance-to-pacha-alpaca"
-    );
-  }, []);
-
-  const showMobileCTA = bookSlides.includes(activeIndex);
   const slideIds = [...slides.map((s) => s.id), "footer"];
 
   const getPreload = (index: number): "auto" | "metadata" | "none" => {
@@ -197,8 +187,6 @@ export default function SlideShow({
           ))}
         </motion.div>
       </div>
-
-      <MobileBookCTA visible={showMobileCTA} onBook={handleMobileBook} />
 
       <BookingModal
         open={bookingUrl !== null}

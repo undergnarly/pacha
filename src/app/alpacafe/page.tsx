@@ -14,7 +14,6 @@ export default function AlpaCafePage() {
     <SlideShow
       slides={alpacafeSlides}
       faqItems={alpacafeFaq}
-      bookSlides={[]}
       footerConfig={{ showMap: false, showHours: true, showContacts: true }}
     />
   );
