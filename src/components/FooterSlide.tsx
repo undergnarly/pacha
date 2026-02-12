@@ -21,13 +21,15 @@ export default function FooterSlide({
 }: FooterSlideProps) {
   return (
     <section className="slide relative overflow-y-auto bg-black">
-      <div className="sticky top-0 h-full w-full" style={{ marginBottom: "-100%" }}>
-        <VideoBackground
-          video="/videos/footer.mp4"
-          poster="/images/footer.webp"
-          isActive={isActive}
-        />
-        <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
+      <div className="pointer-events-none sticky top-0 z-0 h-0">
+        <div className="h-dvh">
+          <VideoBackground
+            video="/videos/footer.mp4"
+            poster="/images/footer.webp"
+            isActive={isActive}
+          />
+          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
+        </div>
       </div>
       <div className="relative z-10 mx-auto flex min-h-full max-w-3xl flex-col px-6 py-16 sm:px-12">
         {/* FAQ */}
