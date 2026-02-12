@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Slide from "./Slide";
 import FooterSlide from "./FooterSlide";
 import Header from "./Header";
@@ -21,17 +22,23 @@ interface SlideShowProps {
   };
 }
 
+const TRANSITION_MS = 700;
+
 export default function SlideShow({
   slides,
   faqItems,
   bookSlides = [],
   footerConfig = {},
 }: SlideShowProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [bookingUrl, setBookingUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [loadProgress, setLoadProgress] = useState(0);
+  const isAnimating = useRef(false);
+  const touchStartY = useRef(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const totalSlides = slides.length + 1; // +1 for footer
 
   // Simulate progress while hero video loads
   useEffect(() => {
@@ -39,7 +46,7 @@ export default function SlideShow({
     let progress = 0;
     const interval = setInterval(() => {
       progress += 0.02 + Math.random() * 0.03;
-      if (progress > 0.9) progress = 0.9; // cap at 90% until video ready
+      if (progress > 0.9) progress = 0.9;
       setLoadProgress(progress);
     }, 100);
     return () => clearInterval(interval);
@@ -47,42 +54,80 @@ export default function SlideShow({
 
   const handleHeroReady = useCallback(() => {
     setLoadProgress(1);
-    // Small delay for the bar to visually reach 100%
     setTimeout(() => setLoading(false), 300);
   }, []);
 
-  // Track active slide via Intersection Observer
+  const goTo = useCallback(
+    (index: number) => {
+      if (isAnimating.current) return;
+      const clamped = Math.max(0, Math.min(index, totalSlides - 1));
+      if (clamped === activeIndex) return;
+      isAnimating.current = true;
+      setActiveIndex(clamped);
+      setTimeout(() => {
+        isAnimating.current = false;
+      }, TRANSITION_MS);
+    },
+    [activeIndex, totalSlides]
+  );
+
+  const goNext = useCallback(() => goTo(activeIndex + 1), [activeIndex, goTo]);
+  const goPrev = useCallback(() => goTo(activeIndex - 1), [activeIndex, goTo]);
+
+  // Wheel handler — one slide per scroll
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+    const el = containerRef.current;
+    if (!el) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = Array.from(container.children).indexOf(
-              entry.target as HTMLElement
-            );
-            if (index >= 0) setActiveIndex(index);
-          }
-        });
-      },
-      {
-        root: container,
-        threshold: 0.6,
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      if (isAnimating.current) return;
+      if (e.deltaY > 30) goNext();
+      else if (e.deltaY < -30) goPrev();
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, [goNext, goPrev]);
+
+  // Touch handler — swipe up/down
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const onTouchStart = (e: TouchEvent) => {
+      touchStartY.current = e.touches[0].clientY;
+    };
+
+    const onTouchEnd = (e: TouchEvent) => {
+      if (isAnimating.current) return;
+      const delta = touchStartY.current - e.changedTouches[0].clientY;
+      if (delta > 50) goNext();
+      else if (delta < -50) goPrev();
+    };
+
+    el.addEventListener("touchstart", onTouchStart, { passive: true });
+    el.addEventListener("touchend", onTouchEnd, { passive: true });
+    return () => {
+      el.removeEventListener("touchstart", onTouchStart);
+      el.removeEventListener("touchend", onTouchEnd);
+    };
+  }, [goNext, goPrev]);
+
+  // Keyboard
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowDown" || e.key === " ") {
+        e.preventDefault();
+        goNext();
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        goPrev();
       }
-    );
-
-    Array.from(container.children).forEach((child) => observer.observe(child));
-    return () => observer.disconnect();
-  }, [slides.length]);
-
-  const scrollDown = useCallback(() => {
-    const container = containerRef.current;
-    if (!container) return;
-    const next = container.children[1] as HTMLElement;
-    next?.scrollIntoView({ behavior: "smooth" });
-  }, []);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [goNext, goPrev]);
 
   const handleBooking = useCallback((href: string) => {
     const whiteLabel = href.replace("/events/", "/white-label/");
@@ -96,17 +141,34 @@ export default function SlideShow({
   }, []);
 
   const showMobileCTA = bookSlides.includes(activeIndex);
-
-  const totalSlides = slides.length + 1;
   const slideIds = [...slides.map((s) => s.id), "footer"];
 
-  // Determine preload level: current + 2 ahead get "auto", rest "none"
   const getPreload = (index: number): "auto" | "metadata" | "none" => {
-    if (index === 0) return "auto"; // hero always loads
+    if (index === 0) return "auto";
     if (index <= activeIndex + 2 && index >= activeIndex) return "auto";
-    if (index === activeIndex + 3) return "metadata"; // next one gets metadata
+    if (index === activeIndex + 3) return "metadata";
     return "none";
   };
+
+  // Build all slides array (content slides + footer)
+  const allSlides = [
+    ...slides.map((slide, i) => ({
+      key: slide.id,
+      content: (
+        <Slide
+          slide={slide}
+          onBooking={handleBooking}
+          onScrollDown={goNext}
+          preloadLevel={getPreload(i)}
+          onVideoReady={i === 0 ? handleHeroReady : undefined}
+        />
+      ),
+    })),
+    {
+      key: "footer",
+      content: <FooterSlide faqItems={faqItems} {...footerConfig} />,
+    },
+  ];
 
   return (
     <>
@@ -118,21 +180,21 @@ export default function SlideShow({
         activeIndex={activeIndex}
         slideIds={slideIds}
         containerRef={containerRef}
+        onDotClick={goTo}
       />
 
-      <div ref={containerRef} className="slide-container">
-        {slides.map((slide, i) => (
-          <Slide
-            key={slide.id}
-            slide={slide}
-            onBooking={handleBooking}
-            onScrollDown={scrollDown}
-            preloadLevel={getPreload(i)}
-            onVideoReady={i === 0 ? handleHeroReady : undefined}
-          />
-        ))}
-
-        <FooterSlide faqItems={faqItems} {...footerConfig} />
+      <div ref={containerRef} className="slide-container relative">
+        <motion.div
+          animate={{ y: `-${activeIndex * 100}dvh` }}
+          transition={{
+            duration: TRANSITION_MS / 1000,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+        >
+          {allSlides.map((s) => (
+            <div key={s.key}>{s.content}</div>
+          ))}
+        </motion.div>
       </div>
 
       <MobileBookCTA visible={showMobileCTA} onBook={handleMobileBook} />

@@ -17,19 +17,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Scroll snap container */
+/* Scroll container — no native snap, JS controls scrolling */
 .slide-container {
   height: 100dvh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  -webkit-overflow-scrolling: touch;
+  overflow: hidden;
   overscroll-behavior: contain;
 }
 
-/* Individual slide snap */
+/* Individual slide */
 .slide {
   height: 100dvh;
-  scroll-snap-align: start;
 }
 
 /* Hide scrollbar for a cleaner look */

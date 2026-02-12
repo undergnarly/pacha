@@ -5,21 +5,15 @@ interface DotNavProps {
   activeIndex: number;
   slideIds: string[];
   containerRef: React.RefObject<HTMLDivElement | null>;
+  onDotClick?: (index: number) => void;
 }
 
 export default function DotNav({
   count,
   activeIndex,
   slideIds,
-  containerRef,
+  onDotClick,
 }: DotNavProps) {
-  const scrollTo = (index: number) => {
-    const container = containerRef.current;
-    if (!container) return;
-    const target = container.children[index] as HTMLElement;
-    target?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <nav
       className="fixed right-3 top-1/2 z-40 -translate-y-1/2 sm:right-5"
@@ -29,7 +23,7 @@ export default function DotNav({
         {Array.from({ length: count }).map((_, i) => (
           <li key={slideIds[i]}>
             <button
-              onClick={() => scrollTo(i)}
+              onClick={() => onDotClick?.(i)}
               aria-label={`Go to slide ${i + 1}`}
               aria-current={i === activeIndex ? "true" : undefined}
               className={`block h-2.5 w-2.5 rounded-full border border-white/60 transition-all ${
