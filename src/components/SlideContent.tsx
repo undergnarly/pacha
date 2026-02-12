@@ -37,11 +37,8 @@ export default function SlideContent({
         >
           {rating && (
             <motion.div custom={0} variants={fadeUp} className="mb-4 flex items-center gap-2">
+              <span className="text-yellow-400">★</span>
               <span className="text-2xl font-bold">{rating.score}</span>
-              <span className="text-yellow-400">
-                {"★".repeat(Math.floor(rating.score))}
-                {rating.score % 1 >= 0.5 ? "½" : ""}
-              </span>
               <span className="text-sm text-white/70">({rating.count} reviews on Google)</span>
             </motion.div>
           )}

@@ -21,9 +21,16 @@ body {
 .slide-container {
   height: 100dvh;
   overflow-y: scroll;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
+}
+
+/* Desktop: stricter snap */
+@media (min-width: 768px) {
+  .slide-container {
+    scroll-snap-type: y mandatory;
+  }
 }
 
 /* Individual slide snap */

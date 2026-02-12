@@ -8,6 +8,14 @@ export default function Header({ dark = false }: { dark?: boolean }) {
 
   return (
     <>
+      <div
+        className={`pointer-events-none fixed left-0 right-0 top-0 z-40 h-24 transition-opacity duration-300 ${
+          dark ? "opacity-0" : "opacity-100"
+        }`}
+        style={{
+          background: "linear-gradient(to bottom, rgba(0,0,0,0.5), transparent)",
+        }}
+      />
       <header
         className={`fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-5 py-4 transition-colors duration-300 sm:px-8 ${
           dark ? "bg-black/90 backdrop-blur-sm" : ""
@@ -15,7 +23,7 @@ export default function Header({ dark = false }: { dark?: boolean }) {
       >
         <a
           href="/"
-          className="flex items-center gap-2 font-[family-name:var(--font-golos)] text-xl font-semibold tracking-wide text-white"
+          className="flex items-end gap-2 font-[family-name:var(--font-golos)] text-xl font-semibold tracking-wide text-white"
         >
           <img src="/images/logo.png" alt="" className="h-8 w-auto" />
           Pacha Alpaca
