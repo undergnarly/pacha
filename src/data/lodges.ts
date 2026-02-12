@@ -25,8 +25,8 @@ export const lodgesSlides: SlideData[] = [
       "Charming bamboo haven on the alpaca farm. Up to 3 guests. Includes overnight stay, Alpaca Connection experience, and complimentary breakfast. Check-in 2 PM / Check-out 11 AM.",
     price: "From 1.5M IDR / night",
     media: {
-      video: "/videos/bamboo-nest.mp4",
-      poster: "/images/bamboo-nest.webp",
+      video: "/videos/alpaca-lodge.mp4",
+      poster: "/images/alpaca-lodge.webp",
     },
     cta: {
       label: "Book on Airbnb",
@@ -39,10 +39,10 @@ export const lodgesSlides: SlideData[] = [
     headline: "Bamboo Alpaca Nest",
     subtitle:
       "A cozy bamboo retreat for two. Includes overnight stay, Alpaca Connection experience, and complimentary breakfast. Check-in 2 PM / Check-out 11 AM.",
-    price: "From 1.5M IDR / night",
+    price: "From 1M IDR / night",
     media: {
-      video: "/videos/alpaca-lodge.mp4",
-      poster: "/images/alpaca-lodge.webp",
+      video: "/videos/bamboo-nest.mp4",
+      poster: "/images/bamboo-nest.webp",
     },
     cta: {
       label: "Book on Airbnb",

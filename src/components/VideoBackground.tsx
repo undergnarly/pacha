@@ -6,6 +6,7 @@ interface VideoBackgroundProps {
   video?: string;
   poster: string;
   preloadLevel?: "auto" | "metadata" | "none";
+  isActive?: boolean;
   onReady?: () => void;
 }
 
@@ -13,6 +14,7 @@ export default function VideoBackground({
   video,
   poster,
   preloadLevel = "metadata",
+  isActive = false,
   onReady,
 }: VideoBackgroundProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -24,25 +26,17 @@ export default function VideoBackground({
     onReady();
   }, [onReady]);
 
-  // Play/pause based on visibility
+  // Play/pause based on active slide
   useEffect(() => {
     const el = videoRef.current;
     if (!el) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.play().catch(() => {});
-        } else {
-          el.pause();
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+    if (isActive) {
+      el.play().catch(() => {});
+    } else {
+      el.pause();
+    }
+  }, [isActive]);
 
   // Fire onReady when video has data + fallback timeout
   useEffect(() => {

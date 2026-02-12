@@ -6,6 +6,7 @@ import type { SlideData } from "@/data/types";
 
 interface SlideProps {
   slide: SlideData;
+  isActive?: boolean;
   onBooking?: (href: string) => void;
   onScrollDown?: () => void;
   preloadLevel?: "auto" | "metadata" | "none";
@@ -14,6 +15,7 @@ interface SlideProps {
 
 export default function Slide({
   slide,
+  isActive = false,
   onBooking,
   onScrollDown,
   preloadLevel = "metadata",
@@ -25,6 +27,7 @@ export default function Slide({
         video={slide.media.video}
         poster={slide.media.poster}
         preloadLevel={preloadLevel}
+        isActive={isActive}
         onReady={onVideoReady}
       />
 

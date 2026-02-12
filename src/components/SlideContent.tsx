@@ -39,7 +39,7 @@ export default function SlideContent({
             <motion.div custom={0} variants={fadeUp} className="mb-4 flex items-center gap-2">
               <span className="text-2xl font-bold">{rating.score}</span>
               <span className="text-3xl text-yellow-400">★</span>
-              <span className="text-sm text-white/70">({rating.count} reviews on Google)</span>
+              <span className="text-sm font-semibold text-white/70">({rating.count} reviews on Google)</span>
             </motion.div>
           )}
 
@@ -47,7 +47,7 @@ export default function SlideContent({
             <motion.blockquote
               custom={1}
               variants={fadeUp}
-              className="mb-6 border-l-2 border-white/40 pl-4 text-lg italic text-white/90 sm:text-xl"
+              className="mb-6 border-l-2 border-white/40 pl-4 text-lg font-medium italic text-white/90 sm:text-xl"
             >
               &ldquo;{quote.text}&rdquo;
               <span className="mt-1 block text-sm not-italic text-white/60">

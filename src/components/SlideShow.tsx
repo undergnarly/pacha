@@ -22,7 +22,7 @@ interface SlideShowProps {
   };
 }
 
-const TRANSITION_MS = 700;
+const TRANSITION_MS = 1000;
 
 export default function SlideShow({
   slides,
@@ -157,6 +157,7 @@ export default function SlideShow({
       content: (
         <Slide
           slide={slide}
+          isActive={i === activeIndex}
           onBooking={handleBooking}
           onScrollDown={goNext}
           preloadLevel={getPreload(i)}
