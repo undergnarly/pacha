@@ -78,6 +78,7 @@ export default function SlideContent({
                   <span className="shrink-0 text-sm font-semibold text-white/80">{item.price}</span>
                 </div>
               ))}
+              <p className="mt-3 text-center text-xs text-white/40">All prices subject to 10% tax & 5% service</p>
             </motion.div>
           )}
         </motion.div>

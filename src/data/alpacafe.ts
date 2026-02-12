@@ -97,7 +97,6 @@ export const alpacafeSlides: SlideData[] = [
     id: "menu-drinks",
     variant: "menu",
     headline: "Drinks",
-    menuNote: "All prices subject to 10% tax & 5% service",
     menuItems: [
       { name: "The Only Good Coffee", description: "Vietnamese coffee, smooth & bold", price: "50K" },
       { name: "Fruit Brew", description: "Apple, orange, pineapple compote", price: "40K" },
