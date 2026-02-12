@@ -34,23 +34,12 @@ export default function Slide({
       {slide.variant === "menu" ? (
         <div className="absolute inset-0 bg-black/60" />
       ) : (
-        <>
-          {/* Top vignette: subtle darken from top for header readability */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background: "linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 10%)",
-            }}
-          />
-
-          {/* Bottom vignette: darken from 50% down for text readability */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 30%, transparent 50%)",
-            }}
-          />
-        </>
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 30%, transparent 50%)",
+          }}
+        />
       )}
 
       <SlideContent
