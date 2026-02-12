@@ -41,6 +41,12 @@ export default function LoadingScreen({ visible, progress }: LoadingScreenProps)
             ease: [0.22, 1, 0.36, 1],
           }}
         >
+          {/* Cream frame overlay */}
+          <div
+            className="pointer-events-none absolute inset-0 z-10"
+            style={{ border: "10px solid #fff8ed", borderRadius: 24 }}
+          />
+
           {/* Subtle radial glow behind logo */}
           <motion.div
             className="absolute"
