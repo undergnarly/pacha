@@ -28,17 +28,21 @@ export default function Slide({
         onReady={onVideoReady}
       />
 
-      {/* Soft blur: starts at 50%, gentle increase to bottom */}
+      {/* Top vignette: subtle darken from top for header readability */}
       <div
-        className="absolute inset-0 backdrop-blur-sm"
+        className="absolute inset-0"
         style={{
-          maskImage: "linear-gradient(to bottom, transparent 50%, black 100%)",
-          WebkitMaskImage: "linear-gradient(to bottom, transparent 50%, black 100%)",
+          background: "linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 10%)",
         }}
       />
 
-      {/* Light gradient for text readability — no heavy darkening */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+      {/* Bottom vignette: darken from 50% down for text readability */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 30%, transparent 50%)",
+        }}
+      />
 
       <SlideContent
         slide={slide}
