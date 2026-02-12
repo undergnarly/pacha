@@ -47,11 +47,11 @@ export const homeSlides: SlideData[] = [
       "Nuanu access, alpaca park entry, alpaca caf\u00e9, and alpaca snacks included.",
     price: "150K IDR",
     details: [
-      "Access to the alpaca park and Nuanu grounds",
-      "Alpaca snacks included — feed them by hand",
+      "Nuanu access included — save up to 150K at the gate",
+      "Alpaca snacks included — a cup of veggie treats for hand-feeding",
+      "Guided introduction to the alpacas with fun facts",
       "Visit the AlpaCafe for drinks & light bites",
-      "Free photos with the alpacas",
-      "Open for walk-ins, booking recommended",
+      "Open Mon 2–6 PM, Tue–Sun 10 AM–6 PM",
     ],
     media: {
       video: "/videos/entrance.mp4",
@@ -68,15 +68,15 @@ export const homeSlides: SlideData[] = [
     variant: "experience",
     headline: "Alpaca Connection",
     subtitle:
-      "Guided tour across two alpaca zones. Feed, pet, and walk with our alpacas.",
+      "30-minute guided tour through the jungle park. Feed, walk, and connect with our alpacas.",
     price: "300K IDR",
     details: [
-      "45-minute guided tour with our alpaca keeper",
-      "Walk through two alpaca zones",
-      "Feed, pet, and take photos with the alpacas",
-      "Learn about alpaca care and behavior",
+      "30-minute guided alpaca tour with educational insights",
+      "Feed and walk with alpacas in a jungle park setting",
+      "Photo opportunities against Bali\u2019s scenic backdrop",
+      "Access to AlpaCafe — crepes, drinks, and lounge music",
       "Includes park entrance and Nuanu access",
-      "Last session at 6 pm",
+      "Open Mon 2–6 PM, Tue–Sun 10 AM–6 PM",
     ],
     media: {
       video: "/videos/connection.mp4",
@@ -96,10 +96,11 @@ export const homeSlides: SlideData[] = [
       "A private candle-lit dinner surrounded by alpacas. Bouquet and special dish included.",
     price: "2.5M IDR",
     details: [
-      "Private candle-lit table in the alpaca field",
-      "1-hour intimate dinner for up to 4 guests",
-      "Bouquet and special alpaca-themed dish included",
-      "Golden hour timing for the best ambiance",
+      "Private table inside the alpaca enclosure",
+      "1-hour dinner for up to 4 guests at golden hour",
+      "Floral decorations and welcome drinks",
+      "Mixed meat & cheese platter (customizable)",
+      "Table reservation option — 990K IDR (food ordered separately)",
       "Dietary needs accommodated — message us via WhatsApp",
     ],
     media: {

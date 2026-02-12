@@ -19,7 +19,7 @@ export const homeFaq: FAQItem[] = [
   {
     question: "Is Pacha Alpaca suitable for children?",
     answer:
-      "Absolutely! Children love meeting our friendly alpacas. We offer family-friendly experiences including the Alpaca Connection family package.",
+      "Absolutely! Children love meeting our friendly alpacas. The park entrance and Alpaca Connection experiences are great for families.",
   },
   {
     question: "What should I wear?",
@@ -69,7 +69,7 @@ export const dinnerFaq: FAQItem[] = [
   {
     question: "What is included in the dinner?",
     answer:
-      "The experience includes a one-hour dinner surrounded by alpacas, a bouquet, and a special alpaca-themed dish.",
+      "The full experience (2.5M IDR) includes a private table in the alpaca enclosure, floral decorations, welcome drinks, a meat & cheese platter, and alpaca snacks. A table reservation option (990K IDR) is also available — food ordered separately from the menu.",
   },
   {
     question: "Can I request special dietary options?",
@@ -92,7 +92,7 @@ export const alpacafeFaq: FAQItem[] = [
   {
     question: "What do you serve?",
     answer:
-      "Specialty coffee, fresh juices, smoothies, light bites, and alpaca-themed treats.",
+      "Vietnamese coffee, fresh juices, all-day breakfast, mains, home-crafted crepes, sharing platters, desserts, craft beer, wine, and prosecco.",
   },
   {
     question: "Can alpacas come to my table?",
