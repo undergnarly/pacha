@@ -157,7 +157,7 @@ export default function SlideShow({
     })),
     {
       key: "footer",
-      content: <FooterSlide faqItems={faqItems} {...footerConfig} />,
+      content: <FooterSlide faqItems={faqItems} isActive={activeIndex === slides.length} {...footerConfig} />,
     },
   ];
 

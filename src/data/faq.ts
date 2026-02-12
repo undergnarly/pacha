@@ -4,7 +4,7 @@ export const homeFaq: FAQItem[] = [
   {
     question: "Where is Pacha Alpaca located?",
     answer:
-      "We are located inside Nuanu City, Bali 82121, Indonesia — about 20 minutes from Canggu. Take the free bus at Nuanu Gate to bus station #4.",
+      "We are located inside Nuanu City, Bali, Indonesia — about 20 minutes from Canggu. Take the free bus at Nuanu Gate to bus station #4.",
   },
   {
     question: "Do I need to book in advance?",
@@ -14,7 +14,7 @@ export const homeFaq: FAQItem[] = [
   {
     question: "What are the opening hours?",
     answer:
-      "Tuesday to Friday: 10 am — 6 pm. Saturday and Sunday: 10 am — 9 pm. Closed on Mondays.",
+      "Monday: 2 pm — 9 pm. Tuesday — Sunday: 10 am — 9 pm. Last Alpaca Connection at 6 pm.",
   },
   {
     question: "Is Pacha Alpaca suitable for children?",
@@ -69,7 +69,7 @@ export const dinnerFaq: FAQItem[] = [
   {
     question: "What is included in the dinner?",
     answer:
-      "The experience includes a one-hour dinner surrounded by alpacas, a bouquet, a special alpaca-themed dish, and professional photography.",
+      "The experience includes a one-hour dinner surrounded by alpacas, a bouquet, and a special alpaca-themed dish.",
   },
   {
     question: "Can I request special dietary options?",

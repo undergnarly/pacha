@@ -6,6 +6,7 @@ import type { FAQItem } from "@/data/types";
 
 interface FooterSlideProps {
   faqItems: FAQItem[];
+  isActive?: boolean;
   showMap?: boolean;
   showHours?: boolean;
   showContacts?: boolean;
@@ -13,17 +14,21 @@ interface FooterSlideProps {
 
 export default function FooterSlide({
   faqItems,
+  isActive = false,
   showMap = true,
   showHours = true,
   showContacts = true,
 }: FooterSlideProps) {
   return (
-    <section className="slide relative overflow-y-auto">
-      <VideoBackground
-        video="/videos/footer.mp4"
-        poster="/images/footer.webp"
-      />
-      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
+    <section className="slide relative overflow-y-auto bg-black">
+      <div className="sticky top-0 h-full w-full" style={{ marginBottom: "-100%" }}>
+        <VideoBackground
+          video="/videos/footer.mp4"
+          poster="/images/footer.webp"
+          isActive={isActive}
+        />
+        <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
+      </div>
       <div className="relative z-10 mx-auto flex min-h-full max-w-3xl flex-col px-6 py-16 sm:px-12">
         {/* FAQ */}
         {faqItems.length > 0 && (
