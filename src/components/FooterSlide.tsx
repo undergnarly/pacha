@@ -119,7 +119,18 @@ export default function FooterSlide({
 
         {/* Copyright */}
         <div className="mt-auto pt-8 text-center text-xs text-white/30">
-          &copy; {new Date().getFullYear()} Pacha Alpaca. All rights reserved.
+          <p>&copy; {new Date().getFullYear()} Pacha Alpaca. All rights reserved.</p>
+          <p className="mt-2">
+            Created by{" "}
+            <a
+              href="https://muvs.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/50 underline decoration-white/20 underline-offset-2 transition-colors hover:text-white/80 hover:decoration-white/50"
+            >
+              muvs.dev
+            </a>
+          </p>
         </div>
         </div>
       </div>
