@@ -22,7 +22,7 @@ export const dinnerSlides: SlideData[] = [
     variant: "experience",
     headline: "Private Dinner with Alpacas",
     subtitle:
-      "One-hour dinner for up to 4 guests. Includes a bouquet of flowers, a special alpaca-themed dish, and professional photography.",
+      "One-hour dinner for up to 4 guests. Includes a bouquet of flowers and a special alpaca-themed dish.",
     price: "2.5M IDR per table",
     media: {
       video: "/videos/dinner-exp.mp4",

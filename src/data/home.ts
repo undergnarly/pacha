@@ -78,7 +78,7 @@ export const homeSlides: SlideData[] = [
     variant: "experience",
     headline: "Dinner with Alpacas",
     subtitle:
-      "A private candle-lit dinner surrounded by alpacas. Bouquet, special dish, and photography included.",
+      "A private candle-lit dinner surrounded by alpacas. Bouquet and special dish included.",
     price: "2.5M IDR",
     media: {
       video: "/videos/dinner.mp4",

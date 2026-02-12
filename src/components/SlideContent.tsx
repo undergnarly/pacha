@@ -23,8 +23,67 @@ export default function SlideContent({
   onBooking,
   onScrollDown,
 }: SlideContentProps) {
-  const { variant, headline, subtitle, price, cta, stats, quote, rating } =
+  const { variant, headline, subtitle, price, cta, stats, quote, rating, menuItems, menuNote } =
     slide;
+
+  if (variant === "menu") {
+    return (
+      <div className="relative z-10 flex h-full flex-col justify-center px-6 sm:px-12">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mx-auto w-full max-w-lg"
+        >
+          <motion.h2
+            custom={0}
+            variants={fadeUp}
+            className="mb-2 text-center font-[family-name:var(--font-golos)] text-2xl font-semibold sm:text-3xl"
+            style={{ textShadow: "0 1px 8px rgba(0,0,0,0.5)" }}
+          >
+            {headline}
+          </motion.h2>
+
+          {subtitle && (
+            <motion.p
+              custom={0}
+              variants={fadeUp}
+              className="mb-1 text-center text-base font-medium text-white/90"
+              style={{ textShadow: "0 1px 8px rgba(0,0,0,0.5)" }}
+            >
+              {subtitle}
+            </motion.p>
+          )}
+
+          {menuNote && (
+            <motion.p
+              custom={0}
+              variants={fadeUp}
+              className="mb-4 text-center text-xs italic text-white/60"
+            >
+              {menuNote}
+            </motion.p>
+          )}
+
+          {menuItems && (
+            <motion.div custom={1} variants={fadeUp} className="space-y-1">
+              {menuItems.map((item) => (
+                <div key={item.name} className="flex items-baseline justify-between gap-2">
+                  <div className="min-w-0">
+                    <span className="text-sm font-medium text-white/90">{item.name}</span>
+                    {item.description && (
+                      <span className="ml-1 text-xs text-white/50">{item.description}</span>
+                    )}
+                  </div>
+                  <span className="shrink-0 text-sm font-semibold text-white/80">{item.price}</span>
+                </div>
+              ))}
+            </motion.div>
+          )}
+        </motion.div>
+      </div>
+    );
+  }
 
   if (variant === "hook") {
     return (

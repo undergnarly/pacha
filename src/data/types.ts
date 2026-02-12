@@ -1,6 +1,6 @@
 export interface SlideData {
   id: string;
-  variant: "hero" | "experience" | "hook" | "footer";
+  variant: "hero" | "experience" | "hook" | "footer" | "menu";
   headline: string;
   subtitle?: string;
   price?: string;
@@ -22,6 +22,10 @@ export interface SlideData {
   quote?: { text: string; author: string };
   /** Rating info */
   rating?: { score: number; count: string };
+  /** Menu items for menu variant slides */
+  menuItems?: { name: string; description?: string; price: string }[];
+  /** Menu section subtitle */
+  menuNote?: string;
   /** Footer slide data */
   footer?: {
     faqKey: string;

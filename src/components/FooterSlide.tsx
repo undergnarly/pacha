@@ -37,12 +37,12 @@ export default function FooterSlide({
 
         {/* How to find us */}
         {showMap && (
-          <div className="mb-12">
+          <div className="mb-12 text-center">
             <h3 className="mb-4 font-[family-name:var(--font-golos)] text-2xl font-semibold">
               How to Find Us
             </h3>
             <p className="mb-2 text-sm text-white/70">
-              Nuanu City, Bali, 82121, Indonesia
+              Nuanu City, Bali, Indonesia
             </p>
             <p className="mb-2 text-sm text-white/70">
               20 minutes from Canggu
@@ -63,14 +63,15 @@ export default function FooterSlide({
 
         {/* Hours */}
         {showHours && (
-          <div className="mb-12">
+          <div className="mb-12 text-center">
             <h3 className="mb-4 font-[family-name:var(--font-golos)] text-2xl font-semibold">
               Opening Hours
             </h3>
             <ul className="space-y-1 text-sm text-white/70">
-              <li>Monday: Closed</li>
-              <li>Tuesday — Friday: 10 am — 6 pm</li>
-              <li>Saturday — Sunday: 10 am — 9 pm</li>
+              <li>Monday: 2 pm — 9 pm</li>
+              <li>Tuesday — Saturday: 10 am — 9 pm</li>
+              <li>Sunday: 10 am — 9 pm</li>
+              <li className="mt-2 text-white/50 italic">Last Alpaca Connection at 6 pm</li>
             </ul>
           </div>
         )}
