@@ -23,7 +23,7 @@ export default function FooterSlide({
         video="/videos/footer.mp4"
         poster="/images/footer.webp"
       />
-      <div className="absolute inset-0 bg-black/70" />
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
       <div className="relative z-10 mx-auto flex min-h-full max-w-3xl flex-col px-6 py-16 sm:px-12">
         {/* FAQ */}
         {faqItems.length > 0 && (
