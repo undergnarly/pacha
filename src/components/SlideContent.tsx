@@ -88,7 +88,7 @@ export default function SlideContent({
 
   if (variant === "hook") {
     return (
-      <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 sm:px-12" style={{ textShadow: "0 1px 8px rgba(0,0,0,0.5)" }}>
+      <div className="relative z-10 flex h-full flex-col items-center justify-end px-6 pb-16 sm:px-12" style={{ textShadow: "0 1px 8px rgba(0,0,0,0.5)" }}>
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -107,7 +107,7 @@ export default function SlideContent({
             <motion.blockquote
               custom={1}
               variants={fadeUp}
-              className="mb-6 rounded-2xl bg-white/10 px-5 py-4 text-lg font-medium italic text-white/90 backdrop-blur-md sm:text-xl"
+              className="mb-6 rounded-2xl bg-white/10 px-5 py-4 text-lg font-medium italic text-white/90 backdrop-blur-[4px] sm:text-xl"
             >
               &ldquo;{quote.text}&rdquo;
               <span className="mt-1 block text-sm not-italic text-white/60">
