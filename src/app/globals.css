@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-golos);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overscroll-behavior: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scroll snap container */
+.slide-container {
+  height: 100dvh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Individual slide snap */
+.slide {
+  height: 100dvh;
+  scroll-snap-align: start;
+}
+
+/* Hide scrollbar for a cleaner look */
+.slide-container::-webkit-scrollbar {
+  display: none;
+}
+.slide-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Reduced motion: disable animations and use posters */
+@media (prefers-reduced-motion: reduce) {
+  .slide-container {
+    scroll-snap-type: none;
+  }
+  video {
+    display: none !important;
+  }
+}
