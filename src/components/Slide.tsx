@@ -8,14 +8,27 @@ interface SlideProps {
   slide: SlideData;
   onBooking?: (href: string) => void;
   onScrollDown?: () => void;
+  preloadLevel?: "auto" | "metadata" | "none";
+  onVideoReady?: () => void;
 }
 
-export default function Slide({ slide, onBooking, onScrollDown }: SlideProps) {
+export default function Slide({
+  slide,
+  onBooking,
+  onScrollDown,
+  preloadLevel = "metadata",
+  onVideoReady,
+}: SlideProps) {
   return (
     <section id={slide.id} className="slide relative overflow-hidden">
-      <VideoBackground video={slide.media.video} poster={slide.media.poster} />
+      <VideoBackground
+        video={slide.media.video}
+        poster={slide.media.poster}
+        preloadLevel={preloadLevel}
+        onReady={onVideoReady}
+      />
 
-      {/* Blur overlay: starts at 50% and increases toward bottom */}
+      {/* Blur overlay: starts at 40% and increases toward bottom */}
       <div
         className="absolute inset-0 backdrop-blur-md"
         style={{

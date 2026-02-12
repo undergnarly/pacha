@@ -7,14 +7,13 @@ import Header from "./Header";
 import DotNav from "./DotNav";
 import MobileBookCTA from "./MobileBookCTA";
 import BookingModal from "./BookingModal";
+import LoadingScreen from "./LoadingScreen";
 import type { SlideData, FAQItem } from "@/data/types";
 
 interface SlideShowProps {
   slides: SlideData[];
   faqItems: FAQItem[];
-  /** Indices of product slides (0-based) to show mobile book CTA */
   bookSlides?: number[];
-  /** Footer slide config */
   footerConfig?: {
     showMap?: boolean;
     showHours?: boolean;
@@ -31,6 +30,26 @@ export default function SlideShow({
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [bookingUrl, setBookingUrl] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [loadProgress, setLoadProgress] = useState(0);
+
+  // Simulate progress while hero video loads
+  useEffect(() => {
+    if (!loading) return;
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += 0.02 + Math.random() * 0.03;
+      if (progress > 0.9) progress = 0.9; // cap at 90% until video ready
+      setLoadProgress(progress);
+    }, 100);
+    return () => clearInterval(interval);
+  }, [loading]);
+
+  const handleHeroReady = useCallback(() => {
+    setLoadProgress(1);
+    // Small delay for the bar to visually reach 100%
+    setTimeout(() => setLoading(false), 300);
+  }, []);
 
   // Track active slide via Intersection Observer
   useEffect(() => {
@@ -66,13 +85,11 @@ export default function SlideShow({
   }, []);
 
   const handleBooking = useCallback((href: string) => {
-    // Convert event URL to white-label URL for iframe
     const whiteLabel = href.replace("/events/", "/white-label/");
     setBookingUrl(whiteLabel);
   }, []);
 
   const handleMobileBook = useCallback(() => {
-    // Default to entrance ticket
     setBookingUrl(
       "https://megatix.co.id/white-label/entrance-to-pacha-alpaca"
     );
@@ -80,15 +97,21 @@ export default function SlideShow({
 
   const showMobileCTA = bookSlides.includes(activeIndex);
 
-  // Total slides including footer
   const totalSlides = slides.length + 1;
-  const slideIds = [
-    ...slides.map((s) => s.id),
-    "footer",
-  ];
+  const slideIds = [...slides.map((s) => s.id), "footer"];
+
+  // Determine preload level: current + 2 ahead get "auto", rest "none"
+  const getPreload = (index: number): "auto" | "metadata" | "none" => {
+    if (index === 0) return "auto"; // hero always loads
+    if (index <= activeIndex + 2 && index >= activeIndex) return "auto";
+    if (index === activeIndex + 3) return "metadata"; // next one gets metadata
+    return "none";
+  };
 
   return (
     <>
+      <LoadingScreen visible={loading} progress={loadProgress} />
+
       <Header dark={activeIndex === slides.length} />
       <DotNav
         count={totalSlides}
@@ -98,12 +121,14 @@ export default function SlideShow({
       />
 
       <div ref={containerRef} className="slide-container">
-        {slides.map((slide) => (
+        {slides.map((slide, i) => (
           <Slide
             key={slide.id}
             slide={slide}
             onBooking={handleBooking}
             onScrollDown={scrollDown}
+            preloadLevel={getPreload(i)}
+            onVideoReady={i === 0 ? handleHeroReady : undefined}
           />
         ))}
 

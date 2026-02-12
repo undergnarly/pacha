@@ -5,14 +5,21 @@ import { useRef, useEffect } from "react";
 interface VideoBackgroundProps {
   video?: string;
   poster: string;
+  /** "auto" = load immediately, "none" = don't load until told, "metadata" = default */
+  preloadLevel?: "auto" | "metadata" | "none";
+  /** Called when video can play through */
+  onReady?: () => void;
 }
 
 export default function VideoBackground({
   video,
   poster,
+  preloadLevel = "metadata",
+  onReady,
 }: VideoBackgroundProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // Play/pause based on visibility
   useEffect(() => {
     const el = videoRef.current;
     if (!el) return;
@@ -21,7 +28,7 @@ export default function VideoBackground({
       ([entry]) => {
         if (entry.isIntersecting) {
           el.play().catch(() => {
-            // Autoplay blocked (iOS Low Power Mode, etc.) — poster shows instead
+            // Autoplay blocked — poster shows instead
           });
         } else {
           el.pause();
@@ -34,6 +41,21 @@ export default function VideoBackground({
     return () => observer.disconnect();
   }, []);
 
+  // Fire onReady when video can play
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el || !onReady) return;
+
+    if (el.readyState >= 3) {
+      onReady();
+      return;
+    }
+
+    const handler = () => onReady();
+    el.addEventListener("canplay", handler);
+    return () => el.removeEventListener("canplay", handler);
+  }, [onReady]);
+
   return (
     <div className="absolute inset-0">
       {video ? (
@@ -44,10 +66,9 @@ export default function VideoBackground({
           loop
           playsInline
           poster={poster}
-          preload="metadata"
+          preload={preloadLevel}
           className="h-full w-full object-cover"
         >
-          <source src={video.replace(".mp4", ".webm")} type="video/webm" />
           <source src={video} type="video/mp4" />
         </video>
       ) : (
