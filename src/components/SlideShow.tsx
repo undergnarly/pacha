@@ -89,7 +89,7 @@ export default function SlideShow({
 
   return (
     <>
-      <Header />
+      <Header dark={activeIndex === slides.length} />
       <DotNav
         count={totalSlides}
         activeIndex={activeIndex}

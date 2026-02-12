@@ -4,7 +4,7 @@ export const homeSlides: SlideData[] = [
   {
     id: "hero",
     variant: "hero",
-    headline: "Immersive alpaca park in the heart of Bali",
+    headline: "Immersive alpaca park in the heart of Nuanu, Bali",
     subtitle:
       "Discover five ways to meet our friendly alpacas — from a simple visit to a private candle-lit dinner & overnight stay.",
     media: {
