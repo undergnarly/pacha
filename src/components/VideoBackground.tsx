@@ -1,13 +1,11 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useCallback } from "react";
 
 interface VideoBackgroundProps {
   video?: string;
   poster: string;
-  /** "auto" = load immediately, "none" = don't load until told, "metadata" = default */
   preloadLevel?: "auto" | "metadata" | "none";
-  /** Called when video can play through */
   onReady?: () => void;
 }
 
@@ -18,6 +16,13 @@ export default function VideoBackground({
   onReady,
 }: VideoBackgroundProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const readyFired = useRef(false);
+
+  const fireReady = useCallback(() => {
+    if (readyFired.current || !onReady) return;
+    readyFired.current = true;
+    onReady();
+  }, [onReady]);
 
   // Play/pause based on visibility
   useEffect(() => {
@@ -27,9 +32,7 @@ export default function VideoBackground({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          el.play().catch(() => {
-            // Autoplay blocked — poster shows instead
-          });
+          el.play().catch(() => {});
         } else {
           el.pause();
         }
@@ -41,20 +44,48 @@ export default function VideoBackground({
     return () => observer.disconnect();
   }, []);
 
-  // Fire onReady when video can play
+  // Fire onReady when video has data + fallback timeout
   useEffect(() => {
     const el = videoRef.current;
-    if (!el || !onReady) return;
+    if (!onReady) return;
 
-    if (el.readyState >= 3) {
-      onReady();
+    // If no video src, fire immediately
+    if (!video) {
+      fireReady();
       return;
     }
 
-    const handler = () => onReady();
-    el.addEventListener("canplay", handler);
-    return () => el.removeEventListener("canplay", handler);
-  }, [onReady]);
+    if (el && el.readyState >= 2) {
+      fireReady();
+      return;
+    }
+
+    const onLoadedData = () => fireReady();
+    const onCanPlay = () => fireReady();
+    const onPlaying = () => fireReady();
+
+    el?.addEventListener("loadeddata", onLoadedData);
+    el?.addEventListener("canplay", onCanPlay);
+    el?.addEventListener("playing", onPlaying);
+
+    // Fallback: don't hang forever if video fails to load
+    const timeout = setTimeout(() => fireReady(), 5000);
+
+    return () => {
+      el?.removeEventListener("loadeddata", onLoadedData);
+      el?.removeEventListener("canplay", onCanPlay);
+      el?.removeEventListener("playing", onPlaying);
+      clearTimeout(timeout);
+    };
+  }, [video, onReady, fireReady]);
+
+  // When preloadLevel changes to "auto", force load
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el || preloadLevel !== "auto") return;
+    el.load();
+    el.play().catch(() => {});
+  }, [preloadLevel]);
 
   return (
     <div className="absolute inset-0">
