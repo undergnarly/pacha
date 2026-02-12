@@ -47,7 +47,6 @@ body {
 }
 .slide-frame--flush .slide {
   border-radius: 0;
-  overflow-y: auto;
 }
 
 /* Individual slide — fills frame with rounded corners */

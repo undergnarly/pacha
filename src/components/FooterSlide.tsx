@@ -20,18 +20,17 @@ export default function FooterSlide({
   showContacts = true,
 }: FooterSlideProps) {
   return (
-    <section className="slide relative overflow-y-auto bg-black">
-      <div className="pointer-events-none sticky top-0 z-0 h-0">
-        <div className="h-dvh">
-          <VideoBackground
-            video="/videos/footer.mp4"
-            poster="/images/footer.webp"
-            isActive={isActive}
-          />
-          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
-        </div>
+    <section className="slide relative bg-black">
+      <div className="absolute inset-0 z-0">
+        <VideoBackground
+          video="/videos/footer.mp4"
+          poster="/images/footer.webp"
+          isActive={isActive}
+        />
+        <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
       </div>
-      <div className="relative z-10 mx-auto flex min-h-full max-w-3xl flex-col px-6 py-16 sm:px-12">
+      <div className="relative z-10 mx-auto h-full max-w-3xl overflow-y-auto px-6 py-16 sm:px-12">
+        <div className="flex min-h-full flex-col">
         {/* FAQ */}
         {faqItems.length > 0 && (
           <div className="mb-12">
@@ -121,6 +120,7 @@ export default function FooterSlide({
         {/* Copyright */}
         <div className="mt-auto pt-8 text-center text-xs text-white/30">
           &copy; {new Date().getFullYear()} Pacha Alpaca. All rights reserved.
+        </div>
         </div>
       </div>
     </section>
