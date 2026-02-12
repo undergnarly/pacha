@@ -36,7 +36,7 @@ export const homeSlides: SlideData[] = [
     stats: [
       { value: "5", label: "Experiences" },
       { value: "12", label: "Alpacas" },
-      { value: "4.6", label: "Google Rating" },
+      { value: "100K", label: "From IDR" },
     ],
   },
   {

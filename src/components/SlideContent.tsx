@@ -28,7 +28,7 @@ export default function SlideContent({
 
   if (variant === "hook") {
     return (
-      <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-16 sm:px-12">
+      <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-16 sm:px-12" style={{ textShadow: "0 1px 8px rgba(0,0,0,0.5)" }}>
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -37,8 +37,8 @@ export default function SlideContent({
         >
           {rating && (
             <motion.div custom={0} variants={fadeUp} className="mb-4 flex items-center gap-2">
-              <span className="text-yellow-400">★</span>
               <span className="text-2xl font-bold">{rating.score}</span>
+              <span className="text-3xl text-yellow-400">★</span>
               <span className="text-sm text-white/70">({rating.count} reviews on Google)</span>
             </motion.div>
           )}
@@ -88,7 +88,7 @@ export default function SlideContent({
   }
 
   return (
-    <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-16 sm:px-12">
+    <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-16 sm:px-12" style={{ textShadow: "0 1px 8px rgba(0,0,0,0.5)" }}>
       <motion.div
         initial="hidden"
         whileInView="visible"
