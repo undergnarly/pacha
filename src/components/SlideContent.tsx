@@ -107,7 +107,7 @@ export default function SlideContent({
             <motion.blockquote
               custom={1}
               variants={fadeUp}
-              className="mb-6 border-l-2 border-white/40 pl-4 text-lg font-medium italic text-white/90 sm:text-xl"
+              className="mb-6 rounded-2xl bg-white/10 px-5 py-4 text-lg font-medium italic text-white/90 backdrop-blur-md sm:text-xl"
             >
               &ldquo;{quote.text}&rdquo;
               <span className="mt-1 block text-sm not-italic text-white/60">
