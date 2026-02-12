@@ -183,7 +183,7 @@ export default function SlideShow({
           }}
         >
           {allSlides.map((s) => (
-            <div key={s.key}>{s.content}</div>
+            <div key={s.key} className="h-dvh">{s.content}</div>
           ))}
         </motion.div>
       </div>

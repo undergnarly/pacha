@@ -24,9 +24,13 @@ body {
   overscroll-behavior: contain;
 }
 
-/* Individual slide */
+/* Individual slide — inset frame with rounded corners */
 .slide {
-  height: 100dvh;
+  height: calc(100dvh - 20px);
+  margin: 10px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
 }
 
 /* Hide scrollbar for a cleaner look */
