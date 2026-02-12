@@ -69,8 +69,7 @@ export default function FooterSlide({
             </h3>
             <ul className="space-y-1 text-sm text-white/70">
               <li>Monday: 2 pm — 9 pm</li>
-              <li>Tuesday — Saturday: 10 am — 9 pm</li>
-              <li>Sunday: 10 am — 9 pm</li>
+              <li>Tuesday — Sunday: 10 am — 9 pm</li>
               <li className="mt-2 text-white/50 italic">Last Alpaca Connection at 6 pm</li>
             </ul>
           </div>

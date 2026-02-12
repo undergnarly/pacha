@@ -24,11 +24,29 @@ body {
   overscroll-behavior: contain;
 }
 
-/* Slide wrapper — provides inset padding for the frame effect */
+/* Slide wrapper — positions the white frame overlay on top of content */
 .slide-frame {
   height: 100dvh;
-  padding: 10px;
-  box-sizing: border-box;
+  position: relative;
+}
+
+/* White frame overlay — drawn ON TOP of slide content & vignettes */
+.slide-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 10px solid #fff;
+  border-radius: 24px;
+  pointer-events: none;
+  z-index: 40;
+}
+
+/* No frame on footer slide */
+.slide-frame--flush::after {
+  display: none;
+}
+.slide-frame--flush .slide {
+  border-radius: 0;
 }
 
 /* Individual slide — fills frame with rounded corners */

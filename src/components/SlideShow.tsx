@@ -182,8 +182,8 @@ export default function SlideShow({
             ease: [0.22, 1, 0.36, 1],
           }}
         >
-          {allSlides.map((s) => (
-            <div key={s.key} className="slide-frame">{s.content}</div>
+          {allSlides.map((s, i) => (
+            <div key={s.key} className={`slide-frame${i === allSlides.length - 1 ? ' slide-frame--flush' : ''}`}>{s.content}</div>
           ))}
         </motion.div>
       </div>
