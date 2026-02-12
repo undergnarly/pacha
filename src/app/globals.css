@@ -10,7 +10,7 @@ html {
 
 body {
   background: #fff8ed;
-  color: #fff;
+  color: #fff8ed;
   font-family: var(--font-sans), system-ui, sans-serif;
   overscroll-behavior: none;
   -webkit-font-smoothing: antialiased;
