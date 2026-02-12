@@ -51,7 +51,7 @@ export const lodgesFaq: FAQItem[] = [
   {
     question: "Is there Wi-Fi and air conditioning?",
     answer:
-      "The lodges are designed as a nature retreat with fans and natural ventilation. Wi-Fi is available in common areas.",
+      "Yes, all lodges have air conditioning and Wi-Fi.",
   },
   {
     question: "How do I book?",

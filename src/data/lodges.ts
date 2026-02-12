@@ -29,8 +29,8 @@ export const lodgesSlides: SlideData[] = [
       "Alpaca Connection guided tour included",
       "Complimentary breakfast",
       "Check-in 2 PM / Check-out 11 AM",
-      "Natural ventilation with fans",
-      "Wi-Fi available in common areas",
+      "Air conditioning",
+      "Wi-Fi available",
       "Surrounded by nature — alpacas nearby",
     ],
     media: {
@@ -54,8 +54,8 @@ export const lodgesSlides: SlideData[] = [
       "Alpaca Connection guided tour included",
       "Complimentary breakfast",
       "Check-in 2 PM / Check-out 11 AM",
-      "Natural ventilation with fans",
-      "Wi-Fi available in common areas",
+      "Air conditioning",
+      "Wi-Fi available",
       "Perfect for couples seeking a unique stay",
     ],
     media: {
