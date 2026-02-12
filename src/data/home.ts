@@ -113,8 +113,8 @@ export const homeSlides: SlideData[] = [
       "Wake up with alpacas in a charming bamboo lodge. Includes Alpaca Connection experience and breakfast.",
     price: "From 1.5M IDR",
     media: {
-      video: "/videos/lodge.mp4",
-      poster: "/images/lodge.webp",
+      video: "/videos/bamboo-nest.mp4",
+      poster: "/images/bamboo-nest.webp",
     },
     cta: {
       label: "View Lodges",

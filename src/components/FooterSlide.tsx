@@ -1,6 +1,7 @@
 "use client";
 
 import FAQ from "./FAQ";
+import VideoBackground from "./VideoBackground";
 import type { FAQItem } from "@/data/types";
 
 interface FooterSlideProps {
@@ -17,8 +18,13 @@ export default function FooterSlide({
   showContacts = true,
 }: FooterSlideProps) {
   return (
-    <section className="slide relative overflow-y-auto bg-black">
-      <div className="mx-auto flex min-h-full max-w-3xl flex-col px-6 py-16 sm:px-12">
+    <section className="slide relative overflow-y-auto">
+      <VideoBackground
+        video="/videos/footer.mp4"
+        poster="/images/footer.webp"
+      />
+      <div className="absolute inset-0 bg-black/70" />
+      <div className="relative z-10 mx-auto flex min-h-full max-w-3xl flex-col px-6 py-16 sm:px-12">
         {/* FAQ */}
         {faqItems.length > 0 && (
           <div className="mb-12">
