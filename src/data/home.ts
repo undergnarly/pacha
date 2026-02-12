@@ -36,7 +36,7 @@ export const homeSlides: SlideData[] = [
     stats: [
       { value: "5", label: "Experiences" },
       { value: "12", label: "Alpacas" },
-      { value: "100K", label: "From IDR" },
+      { value: "150K", label: "From IDR" },
     ],
   },
   {
@@ -45,13 +45,12 @@ export const homeSlides: SlideData[] = [
     headline: "Meet the Alpacas",
     subtitle:
       "Nuanu access, alpaca park entry, alpaca caf\u00e9, and alpaca snacks included.",
-    price: "150K IDR",
+    price: "From 150K IDR",
     details: [
-      "Nuanu access included — save up to 150K at the gate",
-      "Alpaca snacks included — a cup of veggie treats for hand-feeding",
-      "Guided introduction to the alpacas with fun facts",
-      "Visit the AlpaCafe for drinks & light bites",
-      "Open Mon 2–6 PM, Tue–Sun 10 AM–6 PM",
+      "Includes Nuanu and Pacha Alpaca entrance",
+      "Alpaca snacks — veggie treats for hand-feeding",
+      "AlpaCafe access for drinks & light bites",
+      "Mon 2–6 PM, Tue–Sun 10 AM–6 PM",
     ],
     media: {
       video: "/videos/entrance.mp4",
@@ -69,14 +68,14 @@ export const homeSlides: SlideData[] = [
     headline: "Alpaca Connection",
     subtitle:
       "30-minute guided tour through the jungle park. Feed, walk, and connect with our alpacas.",
-    price: "300K IDR",
+    price: "From 200K IDR",
     details: [
-      "30-minute guided alpaca tour with educational insights",
-      "Feed and walk with alpacas in a jungle park setting",
-      "Photo opportunities against Bali\u2019s scenic backdrop",
-      "Access to AlpaCafe — crepes, drinks, and lounge music",
-      "Includes park entrance and Nuanu access",
-      "Open Mon 2–6 PM, Tue–Sun 10 AM–6 PM",
+      "Child (under 18) — 200K IDR",
+      "Adult — 300K IDR",
+      "Family 2+2 — 700K IDR (includes welcome drink)",
+      "30-min guided tour, feeding, and photo ops",
+      "Includes Nuanu and Pacha Alpaca entrance",
+      "Children under 14 must be with a guardian",
     ],
     media: {
       video: "/videos/connection.mp4",
