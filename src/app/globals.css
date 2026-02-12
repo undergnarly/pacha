@@ -41,12 +41,13 @@ body {
   z-index: 40;
 }
 
-/* No frame on footer slide */
+/* No frame on footer slide, allow scrolling */
 .slide-frame--flush::after {
   display: none;
 }
 .slide-frame--flush .slide {
   border-radius: 0;
+  overflow-y: auto;
 }
 
 /* Individual slide — fills frame with rounded corners */
