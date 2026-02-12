@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import type { SlideData } from "@/data/types";
 
 interface SlideContentProps {
@@ -25,6 +26,8 @@ export default function SlideContent({
 }: SlideContentProps) {
   const { variant, headline, subtitle, price, cta, stats, quote, rating, menuItems, menuNote } =
     slide;
+  const [expanded, setExpanded] = useState(false);
+  const hasDetails = slide.details && slide.details.length > 0;
 
   if (variant === "menu") {
     return (
@@ -149,11 +152,25 @@ export default function SlideContent({
 
   return (
     <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-16 sm:px-12" style={{ textShadow: "0 1px 8px rgba(0,0,0,0.5)" }}>
+      {/* Blur overlay when details expanded */}
+      <AnimatePresence>
+        {expanded && (
+          <motion.div
+            className="absolute inset-0 bg-black/50 backdrop-blur-[4px]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            style={{ textShadow: "none" }}
+          />
+        )}
+      </AnimatePresence>
+
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
-        className="max-w-xl"
+        className="relative max-w-xl"
       >
         <motion.h2
           custom={0}
@@ -177,15 +194,61 @@ export default function SlideContent({
           </motion.p>
         )}
 
-        {price && (
-          <motion.p
+        {/* Price row with Show More button */}
+        {(price || hasDetails) && (
+          <motion.div
             custom={2}
             variants={fadeUp}
-            className="mb-6 text-xl font-semibold sm:text-2xl"
+            className="mb-6 flex items-center justify-between gap-4"
           >
-            {price}
-          </motion.p>
+            {price && (
+              <span className="text-xl font-semibold sm:text-2xl">{price}</span>
+            )}
+            {hasDetails && (
+              <button
+                onClick={() => setExpanded(!expanded)}
+                className="flex items-center gap-1.5 text-sm text-white/60 transition-colors hover:text-white"
+              >
+                <motion.span
+                  animate={{ rotate: expanded ? 45 : 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="flex h-6 w-6 items-center justify-center rounded-full border border-white/40 text-base leading-none"
+                >
+                  +
+                </motion.span>
+                <span className="uppercase tracking-widest">
+                  {expanded ? "Less" : "More"}
+                </span>
+              </button>
+            )}
+          </motion.div>
         )}
+
+        {/* Expandable details */}
+        <AnimatePresence>
+          {expanded && slide.details && (
+            <motion.ul
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="mb-6 space-y-2 overflow-hidden"
+            >
+              {slide.details.map((item) => (
+                <motion.li
+                  key={item}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="flex items-start gap-2 text-sm text-white/80"
+                >
+                  <span className="mt-1 block h-1.5 w-1.5 shrink-0 rounded-full bg-white/50" />
+                  {item}
+                </motion.li>
+              ))}
+            </motion.ul>
+          )}
+        </AnimatePresence>
 
         {cta && (
           <motion.div custom={3} variants={fadeUp}>

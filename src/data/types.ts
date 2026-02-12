@@ -24,6 +24,8 @@ export interface SlideData {
   rating?: { score: number; count: string };
   /** Menu items for menu variant slides */
   menuItems?: { name: string; description?: string; price: string }[];
+  /** Expandable details for experience slides */
+  details?: string[];
   /** Menu section subtitle */
   menuNote?: string;
   /** Footer slide data */
