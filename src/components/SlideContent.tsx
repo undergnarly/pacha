@@ -88,15 +88,15 @@ export default function SlideContent({
 
   if (variant === "hook") {
     return (
-      <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-16 sm:px-12" style={{ textShadow: "0 1px 8px rgba(0,0,0,0.5)" }}>
+      <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 sm:px-12" style={{ textShadow: "0 1px 8px rgba(0,0,0,0.5)" }}>
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
-          className="max-w-xl"
+          className="max-w-xl text-center"
         >
           {rating && (
-            <motion.div custom={0} variants={fadeUp} className="mb-4 flex items-center gap-2">
+            <motion.div custom={0} variants={fadeUp} className="mb-4 flex items-center justify-center gap-2">
               <span className="text-2xl font-bold">{rating.score}</span>
               <span className="text-2xl text-yellow-400">★</span>
               <span className="text-sm font-semibold text-white/70">({rating.count} reviews on Google)</span>
@@ -128,7 +128,7 @@ export default function SlideContent({
             <motion.div
               custom={3}
               variants={fadeUp}
-              className="flex flex-wrap gap-6"
+              className="flex flex-wrap justify-center gap-6"
             >
               {stats.map((stat) => (
                 <div key={stat.label} className="text-center">
