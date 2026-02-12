@@ -13,7 +13,6 @@ import type { SlideData, FAQItem } from "@/data/types";
 interface SlideShowProps {
   slides: SlideData[];
   faqItems: FAQItem[];
-  heroFlush?: boolean;
   footerConfig?: {
     showMap?: boolean;
     showHours?: boolean;
@@ -26,7 +25,6 @@ const TRANSITION_MS = 1000;
 export default function SlideShow({
   slides,
   faqItems,
-  heroFlush = false,
   footerConfig = {},
 }: SlideShowProps) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -142,10 +140,14 @@ export default function SlideShow({
     return "none";
   };
 
+  // Variants that get the decorative frame
+  const framedVariants = new Set(["experience", "menu"]);
+
   // Build all slides array (content slides + footer)
   const allSlides = [
     ...slides.map((slide, i) => ({
       key: slide.id,
+      framed: framedVariants.has(slide.variant),
       content: (
         <Slide
           slide={slide}
@@ -159,6 +161,7 @@ export default function SlideShow({
     })),
     {
       key: "footer",
+      framed: false,
       content: <FooterSlide faqItems={faqItems} isActive={activeIndex === slides.length} {...footerConfig} />,
     },
   ];
@@ -184,14 +187,9 @@ export default function SlideShow({
             ease: [0.22, 1, 0.36, 1],
           }}
         >
-          {allSlides.map((s, i) => {
-            const isLast = i === allSlides.length - 1;
-            const isFirst = i === 0 && heroFlush;
-            const flush = isLast || isFirst;
-            return (
-              <div key={s.key} className={`slide-frame${flush ? ' slide-frame--flush' : ''}`}>{s.content}</div>
-            );
-          })}
+          {allSlides.map((s) => (
+            <div key={s.key} className={`slide-frame${!s.framed ? ' slide-frame--flush' : ''}`}>{s.content}</div>
+          ))}
         </motion.div>
       </div>
 

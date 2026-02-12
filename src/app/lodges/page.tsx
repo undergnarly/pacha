@@ -14,7 +14,6 @@ export default function LodgesPage() {
     <SlideShow
       slides={lodgesSlides}
       faqItems={lodgesFaq}
-      heroFlush
       footerConfig={{ showMap: true, showHours: false, showContacts: true }}
     />
   );

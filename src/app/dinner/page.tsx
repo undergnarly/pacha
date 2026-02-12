@@ -14,7 +14,6 @@ export default function DinnerPage() {
     <SlideShow
       slides={dinnerSlides}
       faqItems={dinnerFaq}
-      heroFlush
       footerConfig={{ showMap: false, showHours: false, showContacts: true }}
     />
   );
