@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { trackEvent } from "./Analytics";
 import type { SlideData } from "@/data/types";
 
 interface SlideContentProps {
@@ -276,7 +277,15 @@ export default function SlideContent({
               </button>
             ) : cta.booking ? (
               <button
-                onClick={() => onBooking?.(cta.href)}
+                onClick={() => {
+                  trackEvent("booking_click", {
+                    item_name: slide.headline,
+                    price: slide.price,
+                    booking_url: cta.href,
+                    slide_id: slide.id,
+                  });
+                  onBooking?.(cta.href);
+                }}
                 className="inline-block min-w-[160px] rounded-full border border-white px-8 py-3 text-center text-sm uppercase tracking-widest transition-colors hover:bg-white hover:text-black active:scale-95"
               >
                 {cta.label}

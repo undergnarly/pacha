@@ -8,6 +8,7 @@ import Header from "./Header";
 import DotNav from "./DotNav";
 import BookingModal from "./BookingModal";
 import LoadingScreen from "./LoadingScreen";
+import { trackEvent } from "./Analytics";
 import type { SlideData, FAQItem } from "@/data/types";
 
 interface SlideShowProps {
@@ -34,6 +35,8 @@ export default function SlideShow({
   const isAnimating = useRef(false);
   const touchStartY = useRef(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const slideStartTime = useRef<number>(Date.now());
+  const currentSlideId = useRef<string>("");
 
   const totalSlides = slides.length + 1; // +1 for footer
 
@@ -132,6 +135,54 @@ export default function SlideShow({
   }, []);
 
   const slideIds = [...slides.map((s) => s.id), "footer"];
+
+  // Analytics: track slide timing and views
+  useEffect(() => {
+    if (loading) return; // Don't track until site loads
+
+    const allSlideIds = [...slides.map((s) => s.id), "footer"];
+    const currentId = allSlideIds[activeIndex];
+    const currentSlide = slides[activeIndex];
+
+    // Track time spent on previous slide
+    if (currentSlideId.current && slideStartTime.current) {
+      const timeSpent = Math.round((Date.now() - slideStartTime.current) / 1000);
+      trackEvent("slide_timing", {
+        slide_id: currentSlideId.current,
+        time_seconds: timeSpent,
+        slide_index: activeIndex - 1,
+      });
+    }
+
+    // Track new slide view
+    trackEvent("slide_view", {
+      slide_id: currentId,
+      slide_index: activeIndex,
+      slide_type: currentSlide?.variant || "footer",
+      slide_title: currentSlide?.headline || "Footer",
+    });
+
+    // Reset timer
+    slideStartTime.current = Date.now();
+    currentSlideId.current = currentId;
+  }, [activeIndex, loading, slides]);
+
+  // Analytics: track session end
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      if (currentSlideId.current && slideStartTime.current) {
+        const timeSpent = Math.round((Date.now() - slideStartTime.current) / 1000);
+        trackEvent("session_end", {
+          last_slide: currentSlideId.current,
+          last_slide_time: timeSpent,
+          total_slides_viewed: activeIndex + 1,
+        });
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, [activeIndex]);
 
   const getPreload = (index: number): "auto" | "metadata" | "none" => {
     if (index === 0) return "auto";

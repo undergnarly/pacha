@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pacha-alpaca.com/sitemap.xml

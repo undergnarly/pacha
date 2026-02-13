@@ -40,7 +40,7 @@ export const dinnerSlides: SlideData[] = [
     },
     cta: {
       label: "Book Now",
-      href: "https://megatix.co.id/events/private-dinner-with-alpacas",
+      href: "https://megatix.co.id/events/private-dinner-with-alpacas?utm_source=pacha&utm_medium=website&utm_campaign=dinner",
       booking: true,
     },
   },

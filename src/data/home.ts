@@ -58,7 +58,7 @@ export const homeSlides: SlideData[] = [
     },
     cta: {
       label: "Book Now",
-      href: "https://megatix.co.id/events/entrance-to-pacha-alpaca",
+      href: "https://megatix.co.id/events/entrance-to-pacha-alpaca?utm_source=pacha&utm_medium=website&utm_campaign=entrance",
       booking: true,
     },
   },
@@ -83,7 +83,7 @@ export const homeSlides: SlideData[] = [
     },
     cta: {
       label: "Book Now",
-      href: "https://megatix.co.id/events/alpaca-connection-in-nuanu",
+      href: "https://megatix.co.id/events/alpaca-connection-in-nuanu?utm_source=pacha&utm_medium=website&utm_campaign=connection",
       booking: true,
     },
   },
@@ -108,7 +108,7 @@ export const homeSlides: SlideData[] = [
     },
     cta: {
       label: "Book Now",
-      href: "https://megatix.co.id/events/private-dinner-with-alpacas",
+      href: "https://megatix.co.id/events/private-dinner-with-alpacas?utm_source=pacha&utm_medium=website&utm_campaign=dinner",
       booking: true,
     },
   },

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Golos_Text } from "next/font/google";
+import JsonLd from "@/components/JsonLd";
+import Analytics from "@/components/Analytics";
 import "./globals.css";
 
 const golos = Golos_Text({
@@ -10,22 +12,35 @@ const golos = Golos_Text({
 });
 
 export const metadata: Metadata = {
-  title: "Pacha Alpaca — Immersive Alpaca Park in Bali",
+  title: {
+    default: "Pacha Alpaca — Immersive Alpaca Park in Bali",
+    template: "%s — Pacha Alpaca",
+  },
   description:
-    "Discover five ways to meet our friendly alpacas — from a simple entrance ticket to a private candle-lit dinner & overnight stay. Located in Nuanu City, Bali.",
+    "The only alpaca park in Bali. Feed, walk, and connect with alpacas. Private dinners, overnight bamboo lodges, cafe, and guided experiences in Nuanu City.",
   keywords: [
-    "alpaca park",
-    "Bali",
-    "Nuanu",
-    "alpaca experience",
+    "alpaca park Bali",
+    "alpaca experience Bali",
     "things to do in Bali",
+    "Nuanu Bali",
     "private dinner Bali",
-    "alpaca lodge",
+    "alpaca lodge Bali",
+    "alpaca cafe Bali",
+    "Bali activities",
+    "unique Bali experience",
+    "alpaca connection",
+    "Pacha Alpaca",
+    "bamboo lodge Bali",
+    "romantic dinner Bali",
+    "family activities Bali",
+    "Tabanan Bali",
   ],
+  authors: [{ name: "Pacha Alpaca" }],
+  creator: "muvs.dev",
   openGraph: {
     title: "Pacha Alpaca — Immersive Alpaca Park in Bali",
     description:
-      "Discover five ways to meet our friendly alpacas in the heart of Nuanu City, Bali.",
+      "The only alpaca park in Bali. Feed, walk, and connect with alpacas. Private dinners, overnight lodges, and guided experiences.",
     url: "https://pacha-alpaca.com",
     siteName: "Pacha Alpaca",
     locale: "en_US",
@@ -35,7 +50,7 @@ export const metadata: Metadata = {
         url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Pacha Alpaca Park in Bali",
+        alt: "Alpacas at Pacha Alpaca park in Nuanu, Bali",
       },
     ],
   },
@@ -43,10 +58,24 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Pacha Alpaca — Immersive Alpaca Park in Bali",
     description:
-      "Discover five ways to meet our friendly alpacas in the heart of Nuanu City, Bali.",
+      "The only alpaca park in Bali. Feed, walk, and connect with alpacas. Private dinners, overnight lodges, and guided experiences.",
     images: ["/images/og-image.jpg"],
   },
   metadataBase: new URL("https://pacha-alpaca.com"),
+  alternates: {
+    canonical: "https://pacha-alpaca.com",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -56,8 +85,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <JsonLd />
+      </head>
       <body className={`${golos.variable} antialiased`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );

@@ -4,9 +4,19 @@ import { dinnerSlides } from "@/data/dinner";
 import { dinnerFaq } from "@/data/faq";
 
 export const metadata: Metadata = {
-  title: "Private Dinner — Pacha Alpaca | Romantic Dinner with Alpacas in Bali",
+  title: "Private Dinner with Alpacas in Bali",
   description:
-    "A private candle-lit dinner surrounded by alpacas. Includes bouquet, special dish, and photography. The most romantic experience in Bali.",
+    "A private candle-lit dinner surrounded by alpacas under the Bali sky. Includes floral decorations, welcome drinks, and a gourmet platter. From 990K IDR.",
+  openGraph: {
+    title: "Private Dinner with Alpacas — Pacha Alpaca",
+    description:
+      "A private candle-lit dinner surrounded by alpacas under the Bali sky. The most romantic experience in Bali.",
+    url: "https://pacha-alpaca.com/dinner",
+    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630 }],
+  },
+  alternates: {
+    canonical: "https://pacha-alpaca.com/dinner",
+  },
 };
 
 export default function DinnerPage() {
