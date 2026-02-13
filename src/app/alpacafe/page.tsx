@@ -12,7 +12,16 @@ export const metadata: Metadata = {
     description:
       "Specialty coffee, fresh food, and the fluffiest company in Bali. Alpacas roam freely around the cafe.",
     url: "https://pacha-alpaca.com/alpacafe",
+    siteName: "Pacha Alpaca",
+    type: "website",
     images: [{ url: "/images/og-image.jpg", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AlpaCafe — Pacha Alpaca",
+    description:
+      "Specialty coffee, fresh food, and the fluffiest company in Bali. Alpacas roam freely around the cafe.",
+    images: ["/images/og-image.jpg"],
   },
   alternates: {
     canonical: "https://pacha-alpaca.com/alpacafe",

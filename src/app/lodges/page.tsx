@@ -12,7 +12,16 @@ export const metadata: Metadata = {
     description:
       "Wake up with alpacas in a charming bamboo lodge. Includes guided tour, breakfast, and all amenities.",
     url: "https://pacha-alpaca.com/lodges",
+    siteName: "Pacha Alpaca",
+    type: "website",
     images: [{ url: "/images/og-image.jpg", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bamboo Lodges — Pacha Alpaca",
+    description:
+      "Wake up with alpacas in a charming bamboo lodge. Includes guided tour, breakfast, and all amenities.",
+    images: ["/images/og-image.jpg"],
   },
   alternates: {
     canonical: "https://pacha-alpaca.com/lodges",

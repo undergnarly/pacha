@@ -12,7 +12,16 @@ export const metadata: Metadata = {
     description:
       "Monthly live music sessions in the alpaca field. DJ sets, golden hour vibes, and curious alpacas in Bali.",
     url: "https://pacha-alpaca.com/wooler-room",
+    siteName: "Pacha Alpaca",
+    type: "website",
     images: [{ url: "/images/og-image.jpg", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Wooler Room — Pacha Alpaca",
+    description:
+      "Monthly live music sessions in the alpaca field. DJ sets, golden hour vibes, and curious alpacas in Bali.",
+    images: ["/images/og-image.jpg"],
   },
   alternates: {
     canonical: "https://pacha-alpaca.com/wooler-room",
