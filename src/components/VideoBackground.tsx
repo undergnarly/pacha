@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useCallback } from "react";
+import { useRef, useEffect, useCallback, useState } from "react";
 
 interface VideoBackgroundProps {
   video?: string;
@@ -8,6 +8,8 @@ interface VideoBackgroundProps {
   preloadLevel?: "auto" | "metadata" | "none";
   isActive?: boolean;
   onReady?: () => void;
+  onProgress?: (percent: number) => void;
+  showVideoThreshold?: number; // 0-1, when to switch from poster to video
 }
 
 export default function VideoBackground({
@@ -16,15 +18,52 @@ export default function VideoBackground({
   preloadLevel = "metadata",
   isActive = false,
   onReady,
+  onProgress,
+  showVideoThreshold = 0.6,
 }: VideoBackgroundProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const readyFired = useRef(false);
+  const [loadProgress, setLoadProgress] = useState(0);
+  const [showVideo, setShowVideo] = useState(false);
 
   const fireReady = useCallback(() => {
     if (readyFired.current || !onReady) return;
     readyFired.current = true;
     onReady();
   }, [onReady]);
+
+  // Track video load progress
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el || !video) return;
+
+    const updateProgress = () => {
+      if (el.buffered.length > 0 && el.duration) {
+        const bufferedEnd = el.buffered.end(el.buffered.length - 1);
+        const percent = bufferedEnd / el.duration;
+        setLoadProgress(percent);
+        onProgress?.(percent);
+
+        // Show video when threshold reached
+        if (percent >= showVideoThreshold && !showVideo) {
+          setShowVideo(true);
+        }
+      }
+    };
+
+    el.addEventListener("progress", updateProgress);
+    el.addEventListener("loadeddata", updateProgress);
+    el.addEventListener("canplaythrough", () => {
+      setLoadProgress(1);
+      onProgress?.(1);
+      setShowVideo(true);
+    });
+
+    return () => {
+      el.removeEventListener("progress", updateProgress);
+      el.removeEventListener("loadeddata", updateProgress);
+    };
+  }, [video, onProgress, showVideoThreshold, showVideo]);
 
   // Play/pause based on active slide
   useEffect(() => {
@@ -82,28 +121,53 @@ export default function VideoBackground({
     el.play().catch(() => {});
   }, [preloadLevel]);
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
+  // Determine video source based on device
+  const getVideoSource = () => {
+    if (!video) return null;
+
+    // Use optimized hero videos
+    if (video.includes('hero.mp4')) {
+      return isMobile
+        ? '/videos/hero-mobile.webm'
+        : '/videos/hero-optimized.mp4';
+    }
+
+    return video;
+  };
+
+  const videoSrc = getVideoSource();
+
   return (
     <div className="absolute inset-0">
-      {video ? (
+      {/* Poster image - always show as base layer */}
+      <img
+        src={poster}
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover"
+        loading="eager"
+      />
+
+      {/* Video layer - only visible when loaded enough */}
+      {videoSrc && (
         <video
           ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
-          poster={poster}
           preload={preloadLevel}
-          className="h-full w-full object-cover"
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+            showVideo ? 'opacity-100' : 'opacity-0'
+          }`}
         >
-          <source src={video} type="video/mp4" />
+          {isMobile && videoSrc.includes('hero-mobile') ? (
+            <source src={videoSrc} type="video/webm" />
+          ) : (
+            <source src={videoSrc} type="video/mp4" />
+          )}
         </video>
-      ) : (
-        <img
-          src={poster}
-          alt=""
-          className="h-full w-full object-cover"
-          loading="lazy"
-        />
       )}
     </div>
   );

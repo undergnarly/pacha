@@ -40,21 +40,18 @@ export default function SlideShow({
 
   const totalSlides = slides.length + 1; // +1 for footer
 
-  // Simulate progress while hero video loads
-  useEffect(() => {
-    if (!loading) return;
-    let progress = 0;
-    const interval = setInterval(() => {
-      progress += 0.02 + Math.random() * 0.03;
-      if (progress > 0.9) progress = 0.9;
-      setLoadProgress(progress);
-    }, 100);
-    return () => clearInterval(interval);
+  // Handle hero video load progress
+  const handleHeroProgress = useCallback((percent: number) => {
+    setLoadProgress(percent);
+
+    // Hide loading screen when video reaches 60-70%
+    if (percent >= 0.6 && loading) {
+      setTimeout(() => setLoading(false), 300);
+    }
   }, [loading]);
 
   const handleHeroReady = useCallback(() => {
     setLoadProgress(1);
-    setTimeout(() => setLoading(false), 300);
   }, []);
 
   const goTo = useCallback(
@@ -207,6 +204,7 @@ export default function SlideShow({
           onScrollDown={goNext}
           preloadLevel={getPreload(i)}
           onVideoReady={i === 0 ? handleHeroReady : undefined}
+          onVideoProgress={i === 0 ? handleHeroProgress : undefined}
         />
       ),
     })),

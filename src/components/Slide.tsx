@@ -11,6 +11,7 @@ interface SlideProps {
   onScrollDown?: () => void;
   preloadLevel?: "auto" | "metadata" | "none";
   onVideoReady?: () => void;
+  onVideoProgress?: (percent: number) => void;
 }
 
 export default function Slide({
@@ -20,6 +21,7 @@ export default function Slide({
   onScrollDown,
   preloadLevel = "metadata",
   onVideoReady,
+  onVideoProgress,
 }: SlideProps) {
   return (
     <section id={slide.id} className="slide relative overflow-hidden">
@@ -29,6 +31,8 @@ export default function Slide({
         preloadLevel={preloadLevel}
         isActive={isActive}
         onReady={onVideoReady}
+        onProgress={onVideoProgress}
+        showVideoThreshold={0.6}
       />
 
       {slide.variant === "menu" ? (

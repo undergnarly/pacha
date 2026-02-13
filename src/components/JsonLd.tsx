@@ -1,13 +1,13 @@
 export default function JsonLd() {
   const localBusiness = {
     "@context": "https://schema.org",
-    "@type": "TouristAttraction",
+    "@type": ["LocalBusiness", "TouristAttraction"],
     name: "Pacha Alpaca",
     description:
       "The only alpaca park in Bali. Feed, walk, and connect with alpacas. Private dinners, overnight bamboo lodges, cafe, and guided experiences in Nuanu City.",
     url: "https://pacha-alpaca.com",
     image: "https://pacha-alpaca.com/images/og-image.jpg",
-    telephone: "+62-XXX-XXXX-XXXX",
+    telephone: "+62-877-987-9161",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Nuanu City",
