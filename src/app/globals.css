@@ -36,7 +36,7 @@ body {
   position: absolute;
   inset: 0;
   border: 10px solid #fff8ed;
-  border-radius: 24px;
+  border-radius: 36px;
   pointer-events: none;
   z-index: 40;
 }
@@ -52,7 +52,7 @@ body {
 /* Individual slide — fills frame with rounded corners */
 .slide {
   height: 100%;
-  border-radius: 24px;
+  border-radius: 36px;
   overflow: hidden;
   position: relative;
 }
