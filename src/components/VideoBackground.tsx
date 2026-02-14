@@ -159,7 +159,7 @@ export default function VideoBackground({
     if (video === '/videos/hero.mp4') {
       return isMobile
         ? '/videos/hero-mobile.webm'
-        : '/videos/hero-optimized.mp4';
+        : '/videos/hero-short.mp4';
     }
 
     return video;

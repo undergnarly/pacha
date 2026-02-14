@@ -9,7 +9,7 @@ export const homeSlides: SlideData[] = [
       "Discover five ways to meet our friendly alpacas — from a simple visit to a private candle-lit dinner & overnight stay.",
     media: {
       video: "/videos/hero.mp4",
-      poster: "/images/hero-poster.webp",
+      poster: "/images/hero-poster-hq.webp",
     },
     cta: {
       label: "Explore",

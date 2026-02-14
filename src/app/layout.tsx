@@ -67,9 +67,16 @@ export default function RootLayout({
         <link
           rel="preload"
           as="image"
-          href="/images/hero-poster.webp"
+          href="/images/hero-poster-hq.webp"
           type="image/webp"
           fetchPriority="high"
+        />
+        {/* Preload hero video with high priority for fastest loading */}
+        <link
+          rel="preload"
+          as="video"
+          href="/videos/hero-short.mp4"
+          type="video/mp4"
         />
       </head>
       <body className={`${golos.variable} antialiased`}>
