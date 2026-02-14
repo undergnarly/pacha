@@ -149,23 +149,8 @@ export default function VideoBackground({
     return () => observer.disconnect();
   }, [video, preloadLevel]);
 
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-
-  // Determine video source based on device
-  const getVideoSource = () => {
-    if (!video) return null;
-
-    // Use optimized hero videos ONLY for main hero (not dinner-hero, lodges-hero)
-    if (video === '/videos/hero.mp4') {
-      return isMobile
-        ? '/videos/hero-mobile.webm'
-        : '/videos/hero-short.mp4';
-    }
-
-    return video;
-  };
-
-  const videoSrc = getVideoSource();
+  // Use video path directly from props
+  const videoSrc = video;
 
   return (
     <div className="absolute inset-0">
@@ -191,11 +176,7 @@ export default function VideoBackground({
             showVideo ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          {isMobile && videoSrc.includes('hero-mobile') ? (
-            <source src={videoSrc} type="video/webm" />
-          ) : (
-            <source src={videoSrc} type="video/mp4" />
-          )}
+          <source src={videoSrc} type={videoSrc.endsWith('.webm') ? 'video/webm' : 'video/mp4'} />
         </video>
       )}
     </div>

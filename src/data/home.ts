@@ -8,7 +8,7 @@ export const homeSlides: SlideData[] = [
     subtitle:
       "Discover five ways to meet our friendly alpacas — from a simple visit to a private candle-lit dinner & overnight stay.",
     media: {
-      video: "/videos/hero.mp4",
+      video: "/videos/hero-short.mp4",
       poster: "/images/hero-poster-hq.webp",
     },
     cta: {
@@ -22,7 +22,7 @@ export const homeSlides: SlideData[] = [
     variant: "hook",
     headline: "The only alpaca park in Bali",
     media: {
-      video: "/videos/hook.mp4",
+      video: "/videos/hook-short.mp4",
       poster: "/images/hook.webp",
     },
     rating: {
@@ -53,7 +53,7 @@ export const homeSlides: SlideData[] = [
       "Mon 2–6 PM, Tue–Sun 10 AM–6 PM",
     ],
     media: {
-      video: "/videos/entrance.mp4",
+      video: "/videos/entrance-short.mp4",
       poster: "/images/entrance.webp",
     },
     cta: {
@@ -78,7 +78,7 @@ export const homeSlides: SlideData[] = [
       "Children under 14 must be with a guardian",
     ],
     media: {
-      video: "/videos/connection.mp4",
+      video: "/videos/connection-short.mp4",
       poster: "/images/connection.webp",
     },
     cta: {
@@ -103,7 +103,7 @@ export const homeSlides: SlideData[] = [
       "Dietary needs accommodated — message us via WhatsApp",
     ],
     media: {
-      video: "/videos/dinner.mp4",
+      video: "/videos/dinner-short.mp4",
       poster: "/images/dinner.webp",
     },
     cta: {
@@ -128,7 +128,7 @@ export const homeSlides: SlideData[] = [
       "Bamboo Alpaca Nest — up to 2 guests",
     ],
     media: {
-      video: "/videos/bamboo-nest.mp4",
+      video: "/videos/bamboo-nest-short.mp4",
       poster: "/images/bamboo-nest.webp",
     },
     cta: {
@@ -150,7 +150,7 @@ export const homeSlides: SlideData[] = [
       "Alpacas roam freely around the cafe",
     ],
     media: {
-      video: "/videos/alpacafe.mp4",
+      video: "/videos/alpacafe-short.mp4",
       poster: "/images/alpacafe.webp",
     },
     cta: {
