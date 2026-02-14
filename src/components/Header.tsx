@@ -17,7 +17,7 @@ export default function Header({ dark = false }: { dark?: boolean }) {
           href="/"
           className="flex items-end gap-2 font-[family-name:var(--font-golos)] text-xl font-semibold tracking-wide text-white"
         >
-          <img src="/images/logo.png" alt="" className="h-8 w-auto" />
+          <img src="/images/logo.webp" alt="" className="h-8 w-auto" />
           Pacha Alpaca
         </a>
 
