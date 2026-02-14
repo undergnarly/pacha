@@ -63,25 +63,13 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <JsonLd />
+        {/* Preload hero poster with high priority for LCP optimization */}
         <link
           rel="preload"
           as="image"
           href="/images/hero-poster.webp"
           type="image/webp"
-        />
-        <link
-          rel="preload"
-          as="video"
-          href="/videos/hero-optimized.mp4"
-          type="video/mp4"
-          media="(min-width: 768px)"
-        />
-        <link
-          rel="preload"
-          as="video"
-          href="/videos/hero-mobile.webm"
-          type="video/webm"
-          media="(max-width: 767px)"
+          fetchPriority="high"
         />
       </head>
       <body className={`${golos.variable} antialiased`}>

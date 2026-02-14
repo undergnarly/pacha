@@ -20,6 +20,12 @@ const fadeUp: Variants = {
   }),
 };
 
+// Instant variant for hero LCP optimization - no animation delay
+const instant: Variants = {
+  hidden: { opacity: 1, y: 0 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0 } },
+};
+
 export default function SlideContent({
   slide,
   onBooking,
@@ -169,13 +175,12 @@ export default function SlideContent({
 
       <motion.div
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
+        animate="visible"
         className="relative max-w-xl"
       >
         <motion.h2
           custom={0}
-          variants={fadeUp}
+          variants={variant === "hero" ? instant : fadeUp}
           className={`mb-3 font-[family-name:var(--font-golos)] font-semibold ${
             variant === "hero"
               ? "text-4xl sm:text-5xl lg:text-6xl"
@@ -188,7 +193,7 @@ export default function SlideContent({
         {subtitle && (
           <motion.p
             custom={1}
-            variants={fadeUp}
+            variants={variant === "hero" ? instant : fadeUp}
             className="mb-4 text-base text-white/80 sm:text-lg"
           >
             {subtitle}
@@ -286,7 +291,7 @@ export default function SlideContent({
                   });
                   onBooking?.(cta.href);
                 }}
-                className="inline-block min-w-[160px] rounded-full border border-white px-8 py-3 text-center text-sm uppercase tracking-widest transition-colors hover:bg-white hover:text-black active:scale-95"
+                className="inline-block min-w-[180px] rounded-full bg-white px-10 py-4 text-center text-base font-semibold uppercase tracking-widest text-black shadow-lg shadow-black/50 transition-all hover:scale-105 hover:shadow-xl active:scale-95 sm:min-w-[200px]"
               >
                 {cta.label}
               </button>
@@ -299,7 +304,7 @@ export default function SlideContent({
                     ? "noopener noreferrer"
                     : undefined
                 }
-                className="inline-block min-w-[160px] rounded-full border border-white px-8 py-3 text-center text-sm uppercase tracking-widest transition-colors hover:bg-white hover:text-black active:scale-95"
+                className="inline-block min-w-[180px] rounded-full bg-white px-10 py-4 text-center text-base font-semibold uppercase tracking-widest text-black shadow-lg shadow-black/50 transition-all hover:scale-105 hover:shadow-xl active:scale-95 sm:min-w-[200px]"
               >
                 {cta.label}
               </a>

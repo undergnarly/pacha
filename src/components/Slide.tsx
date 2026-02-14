@@ -23,6 +23,8 @@ export default function Slide({
   onVideoReady,
   onVideoProgress,
 }: SlideProps) {
+  const isHero = slide.variant === "hero";
+
   return (
     <section id={slide.id} className="slide relative overflow-hidden">
       <VideoBackground
@@ -33,6 +35,7 @@ export default function Slide({
         onReady={onVideoReady}
         onProgress={onVideoProgress}
         showVideoThreshold={0.6}
+        isHero={isHero}
       />
 
       {slide.variant === "menu" ? (

@@ -10,6 +10,7 @@ interface VideoBackgroundProps {
   onReady?: () => void;
   onProgress?: (percent: number) => void;
   showVideoThreshold?: number; // 0-1, when to switch from poster to video
+  isHero?: boolean; // For LCP optimization - preload hero poster with high priority
 }
 
 export default function VideoBackground({
@@ -20,6 +21,7 @@ export default function VideoBackground({
   onReady,
   onProgress,
   showVideoThreshold = 0.6,
+  isHero = false,
 }: VideoBackgroundProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const readyFired = useRef(false);
@@ -121,6 +123,32 @@ export default function VideoBackground({
     el.play().catch(() => {});
   }, [preloadLevel]);
 
+  // Lazy load video when it approaches viewport (for preload="none" videos)
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el || preloadLevel === "auto" || !video) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting || entry.intersectionRatio > 0) {
+            // Video is approaching viewport - start loading
+            el.load();
+            observer.disconnect();
+          }
+        });
+      },
+      {
+        // Load when video is 200px away from viewport
+        rootMargin: "200px",
+      }
+    );
+
+    observer.observe(el);
+
+    return () => observer.disconnect();
+  }, [video, preloadLevel]);
+
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   // Determine video source based on device
@@ -147,6 +175,7 @@ export default function VideoBackground({
         alt=""
         className="absolute inset-0 h-full w-full object-cover"
         loading="eager"
+        fetchPriority={isHero ? "high" : "auto"}
       />
 
       {/* Video layer - only visible when loaded enough */}
