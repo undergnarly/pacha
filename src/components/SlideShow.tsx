@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { motion } from "framer-motion";
 import Slide from "./Slide";
 import FooterSlide from "./FooterSlide";
@@ -44,16 +44,15 @@ export default function SlideShow({
   // Handle hero video load progress
   const handleHeroProgress = useCallback((percent: number) => {
     setLoadProgress(percent);
-
-    // Hide loading screen when video reaches 60-70%
-    if (percent >= 0.6 && loading) {
-      setTimeout(() => setLoading(false), 300);
-    }
-  }, [loading]);
+  }, []);
 
   const handleHeroReady = useCallback(() => {
     setLoadProgress(1);
-  }, []);
+    // Hide loading screen only when hero video is fully ready to play
+    if (loading) {
+      setTimeout(() => setLoading(false), 200);
+    }
+  }, [loading]);
 
   // Preload posters for first 3 slides, then allow videos to load
   useEffect(() => {
@@ -227,13 +226,13 @@ export default function SlideShow({
   }, [activeIndex]);
 
   const getPreload = (index: number): "auto" | "metadata" | "none" => {
-    // Don't load videos until posters are ready
-    if (!postersReady) return "none";
-
-    // Hero video loads after posters
+    // Hero video ALWAYS loads immediately (highest priority)
     if (index === 0) return "auto";
 
-    // Current slide and next 2 slides should be loading
+    // Don't load other videos until site is shown (loading screen hidden)
+    if (loading) return "none";
+
+    // After site is shown, load current slide and next 2 slides sequentially
     if (index === activeIndex || index === activeIndex + 1 || index === activeIndex + 2) return "auto";
 
     // Previous slide (for back navigation)
@@ -247,7 +246,8 @@ export default function SlideShow({
   const framedVariants = new Set(["experience", "menu"]);
 
   // Build all slides array (content slides + footer)
-  const allSlides = [
+  // useMemo ensures slides re-render when loading/activeIndex changes for proper preload updates
+  const allSlides = useMemo(() => [
     ...slides.map((slide, i) => ({
       key: slide.id,
       framed: framedVariants.has(slide.variant),
@@ -268,7 +268,7 @@ export default function SlideShow({
       framed: false,
       content: <FooterSlide faqItems={faqItems} isActive={activeIndex === slides.length} {...footerConfig} />,
     },
-  ];
+  ], [slides, activeIndex, loading, handleBooking, goNext, handleHeroReady, handleHeroProgress, faqItems, footerConfig]);
 
   return (
     <>
