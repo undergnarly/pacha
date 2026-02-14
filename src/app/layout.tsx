@@ -118,11 +118,43 @@ export default function RootLayout({
               animation: 'loading-bar 1.5s ease-in-out infinite',
             }} />
           </div>
+          {/* Fun alpaca loading messages */}
+          <div style={{
+            marginTop: '24px',
+            fontSize: '14px',
+            color: 'rgba(255,255,255,0.5)',
+            fontFamily: 'var(--font-golos), system-ui, sans-serif',
+          }}>
+            <span className="loading-text" />
+            <span className="loading-dots" />
+          </div>
           <style dangerouslySetInnerHTML={{ __html: `
             @keyframes loading-bar {
               0% { transform: translateX(-100%); }
               50% { transform: translateX(200%); }
               100% { transform: translateX(-100%); }
+            }
+            @keyframes dots {
+              0%, 20% { content: ''; }
+              40% { content: '.'; }
+              60% { content: '..'; }
+              80%, 100% { content: '...'; }
+            }
+            @keyframes messages {
+              0%, 16.66% { content: 'Waking up the alpacas'; }
+              16.67%, 33.32% { content: 'Fluffing the fur'; }
+              33.33%, 49.98% { content: 'Preparing veggie snacks'; }
+              49.99%, 66.64% { content: 'Checking the vibes'; }
+              66.65%, 83.3% { content: 'Almost ready to spit'; }
+              83.31%, 100% { content: 'Loading cuteness'; }
+            }
+            .loading-text::after {
+              content: 'Waking up the alpacas';
+              animation: messages 24s infinite;
+            }
+            .loading-dots::after {
+              content: '';
+              animation: dots 1.5s infinite;
             }
           `}} />
         </div>
