@@ -212,12 +212,12 @@ export default function SlideContent({
             {hasDetails && (
               <button
                 onClick={() => setExpanded(!expanded)}
-                className="flex items-center gap-1.5 text-sm text-white/60 transition-colors hover:text-white"
+                className="flex items-center gap-2 text-base font-medium text-white/80 transition-colors hover:text-white"
               >
                 <motion.span
                   animate={{ rotate: expanded ? 45 : 0 }}
                   transition={{ duration: 0.3 }}
-                  className="flex h-6 w-6 items-center justify-center rounded-full border border-white/40 text-base leading-none"
+                  className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-white/60 text-lg font-bold leading-none"
                 >
                   +
                 </motion.span>
@@ -280,12 +280,24 @@ export default function SlideContent({
                 </motion.svg>
               </button>
             ) : cta.booking ? (
-              <button
+              <motion.button
                 onClick={() => onBooking?.(cta.href)}
-                className="inline-block min-w-[180px] rounded-full bg-white px-10 py-4 text-center text-base font-semibold uppercase tracking-widest text-black shadow-lg shadow-black/50 transition-all hover:scale-105 hover:shadow-xl active:scale-95 sm:min-w-[200px]"
+                className="inline-block min-w-[180px] rounded-full bg-white px-10 py-4 text-center text-base font-semibold uppercase tracking-widest text-black transition-all hover:scale-105 active:scale-95 sm:min-w-[200px]"
+                animate={{
+                  boxShadow: [
+                    "0 0 20px 0 rgba(255,255,255,0.3), 0 10px 30px -10px rgba(0,0,0,0.5)",
+                    "0 0 30px 5px rgba(255,255,255,0.5), 0 10px 30px -10px rgba(0,0,0,0.5)",
+                    "0 0 20px 0 rgba(255,255,255,0.3), 0 10px 30px -10px rgba(0,0,0,0.5)",
+                  ],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
               >
                 {cta.label}
-              </button>
+              </motion.button>
             ) : (
               <a
                 href={cta.href}
