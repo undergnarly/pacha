@@ -32,6 +32,7 @@ export default function SlideShow({
   const [bookingUrl, setBookingUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [loadProgress, setLoadProgress] = useState(0);
+  const [postersReady, setPostersReady] = useState(false);
   const isAnimating = useRef(false);
   const touchStartY = useRef(0);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -53,6 +54,50 @@ export default function SlideShow({
   const handleHeroReady = useCallback(() => {
     setLoadProgress(1);
   }, []);
+
+  // Preload posters for first 3 slides, then allow videos to load
+  useEffect(() => {
+    const postersToPreload = slides.slice(0, 3).map(s => s.media.poster);
+
+    // Add preload link hints to <head> for faster loading
+    const preloadLinks = postersToPreload.map((src, index) => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = src;
+      link.type = 'image/webp';
+      // Hero already has fetchPriority="high" in layout
+      if (index > 0) {
+        link.setAttribute('fetchpriority', 'high');
+      }
+      return link;
+    });
+
+    preloadLinks.forEach(link => document.head.appendChild(link));
+
+    // Track actual image loading
+    const preloadPoster = (src: string) => {
+      return new Promise<void>((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve();
+        img.onerror = () => resolve(); // Even on error, continue
+        img.src = src;
+      });
+    };
+
+    Promise.all(postersToPreload.map(preloadPoster)).then(() => {
+      setPostersReady(true);
+    });
+
+    // Cleanup preload links on unmount
+    return () => {
+      preloadLinks.forEach(link => {
+        if (link.parentNode) {
+          document.head.removeChild(link);
+        }
+      });
+    };
+  }, [slides]);
 
   const goTo = useCallback(
     (index: number) => {
@@ -182,13 +227,16 @@ export default function SlideShow({
   }, [activeIndex]);
 
   const getPreload = (index: number): "auto" | "metadata" | "none" => {
-    // Hero video loads immediately
+    // Don't load videos until posters are ready
+    if (!postersReady) return "none";
+
+    // Hero video loads after posters
     if (index === 0) return "auto";
 
     // Current slide and next 2 slides should be loading
     if (index === activeIndex || index === activeIndex + 1 || index === activeIndex + 2) return "auto";
 
-    // Previous slide and one before (for back navigation)
+    // Previous slide (for back navigation)
     if (index === activeIndex - 1) return "auto";
 
     // Everything else lazy loads
