@@ -32,6 +32,8 @@ export default function LoadingScreen({ visible, progress }: LoadingScreenProps)
         <motion.div
           className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden"
           style={{ background: "#0a0a0a" }}
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 1 }}
           exit={{
             opacity: 0,
             scale: 1.05,
@@ -46,7 +48,7 @@ export default function LoadingScreen({ visible, progress }: LoadingScreenProps)
             className="absolute"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.15 }}
-            transition={{ duration: 2, delay: 0.3 }}
+            transition={{ duration: 1.5, delay: 0 }}
             style={{
               width: 400,
               height: 400,
@@ -71,7 +73,8 @@ export default function LoadingScreen({ visible, progress }: LoadingScreenProps)
               filter: "blur(0px)",
             }}
             transition={{
-              duration: 1.2,
+              duration: 0.9,
+              delay: 0,
               ease: [0.22, 1, 0.36, 1],
             }}
           />
@@ -117,7 +120,7 @@ export default function LoadingScreen({ visible, progress }: LoadingScreenProps)
               }}
               transition={{
                 duration: 2 + i * 0.3,
-                delay: 0.8 + i * 0.2,
+                delay: 0.3 + i * 0.15,
                 repeat: Infinity,
                 repeatDelay: 1,
                 ease: "easeOut",
