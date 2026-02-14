@@ -130,18 +130,11 @@ export default function SlideShow({
   const slideIds = [...slides.map((s) => s.id), "footer"];
 
   const getPreload = (index: number): "auto" | "metadata" | "none" => {
-    // 1. Hero video loads FIRST (highest priority)
+    // Hero video loads first (has preload hint in layout.tsx)
     if (index === 0) return "auto";
-
-    // 2. Don't load other videos until hero is ready (loading screen hidden)
+    // All other videos load together after hero is ready
     if (loading) return "none";
-
-    // 3. After site shows, sequentially load: current + next 2 + previous
-    if (index === activeIndex || index === activeIndex + 1 || index === activeIndex + 2) return "auto";
-    if (index === activeIndex - 1) return "auto";
-
-    // Everything else waits
-    return "none";
+    return "auto";
   };
 
   // Variants that get the decorative frame
