@@ -59,7 +59,7 @@ export default function LoadingScreen({ visible, progress }: LoadingScreenProps)
 
           {/* Logo: emerges from blur and transparency */}
           <motion.img
-            src="/images/logo.png"
+            src="/images/logo.webp"
             alt="Pacha Alpaca"
             className="relative h-28 w-auto sm:h-36"
             initial={{

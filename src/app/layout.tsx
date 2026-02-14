@@ -62,15 +62,22 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <JsonLd />
-        {/* Preload hero poster with high priority for LCP optimization */}
+        {/* Preload logo FIRST - it shows on loading screen */}
+        <link
+          rel="preload"
+          as="image"
+          href="/images/logo.webp"
+          type="image/webp"
+          fetchPriority="high"
+        />
+        {/* Preload hero poster */}
         <link
           rel="preload"
           as="image"
           href="/images/hero-poster-hq.webp"
           type="image/webp"
-          fetchPriority="high"
         />
-        {/* Preload hero video with high priority for fastest loading */}
+        {/* Preload hero video */}
         <link
           rel="preload"
           as="video"
