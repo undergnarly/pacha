@@ -155,8 +155,8 @@ export default function VideoBackground({
   const getVideoSource = () => {
     if (!video) return null;
 
-    // Use optimized hero videos
-    if (video.includes('hero.mp4')) {
+    // Use optimized hero videos ONLY for main hero (not dinner-hero, lodges-hero)
+    if (video === '/videos/hero.mp4') {
       return isMobile
         ? '/videos/hero-mobile.webm'
         : '/videos/hero-optimized.mp4';

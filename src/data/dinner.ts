@@ -9,7 +9,7 @@ export const dinnerSlides: SlideData[] = [
       "A private candle-lit dinner surrounded by alpacas under the Bali sky.",
     media: {
       video: "/videos/dinner-hero.mp4",
-      poster: "/images/dinner-hero.webp",
+      poster: "/images/dinner-hero-poster.webp",
     },
     cta: {
       label: "Explore",

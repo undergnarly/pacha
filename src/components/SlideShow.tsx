@@ -185,11 +185,11 @@ export default function SlideShow({
     // Hero video loads immediately
     if (index === 0) return "auto";
 
-    // Current slide and next slide should be loading
-    if (index === activeIndex || index === activeIndex + 1) return "auto";
+    // Current slide and next 2 slides should be loading
+    if (index === activeIndex || index === activeIndex + 1 || index === activeIndex + 2) return "auto";
 
-    // Previous slide metadata (for back navigation)
-    if (index === activeIndex - 1) return "metadata";
+    // Previous slide and one before (for back navigation)
+    if (index === activeIndex - 1) return "auto";
 
     // Everything else lazy loads
     return "none";
