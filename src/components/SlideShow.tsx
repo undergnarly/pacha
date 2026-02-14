@@ -182,9 +182,16 @@ export default function SlideShow({
   }, [activeIndex]);
 
   const getPreload = (index: number): "auto" | "metadata" | "none" => {
-    // Only preload hero video automatically
-    // All other videos will lazy load via Intersection Observer
+    // Hero video loads immediately
     if (index === 0) return "auto";
+
+    // Current slide and next slide should be loading
+    if (index === activeIndex || index === activeIndex + 1) return "auto";
+
+    // Previous slide metadata (for back navigation)
+    if (index === activeIndex - 1) return "metadata";
+
+    // Everything else lazy loads
     return "none";
   };
 
