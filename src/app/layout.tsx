@@ -86,6 +86,46 @@ export default function RootLayout({
         />
       </head>
       <body className={`${golos.variable} antialiased`}>
+        {/* Static loading screen - shows BEFORE JavaScript loads */}
+        <div id="static-loader" style={{
+          position: 'fixed',
+          inset: 0,
+          zIndex: 9999,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: '#0a0a0a',
+        }}>
+          <img
+            src="/images/logo.webp"
+            alt=""
+            style={{ height: '112px', width: 'auto' }}
+          />
+          <div style={{
+            marginTop: '40px',
+            width: '160px',
+            height: '2px',
+            background: 'rgba(255,255,255,0.1)',
+            borderRadius: '1px',
+            overflow: 'hidden',
+          }}>
+            <div style={{
+              height: '100%',
+              width: '30%',
+              background: 'rgba(255,255,255,0.8)',
+              borderRadius: '1px',
+              animation: 'loading-bar 1.5s ease-in-out infinite',
+            }} />
+          </div>
+          <style dangerouslySetInnerHTML={{ __html: `
+            @keyframes loading-bar {
+              0% { transform: translateX(-100%); }
+              50% { transform: translateX(200%); }
+              100% { transform: translateX(-100%); }
+            }
+          `}} />
+        </div>
         {children}
       </body>
     </html>

@@ -50,6 +50,14 @@ export default function SlideShow({
     }
   }, [loading]);
 
+  // Hide static loader when React loads
+  useEffect(() => {
+    const staticLoader = document.getElementById('static-loader');
+    if (staticLoader) {
+      staticLoader.style.display = 'none';
+    }
+  }, []);
+
   const goTo = useCallback(
     (index: number) => {
       if (isAnimating.current) return;
