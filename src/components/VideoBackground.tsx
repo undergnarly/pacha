@@ -11,6 +11,7 @@ interface VideoBackgroundProps {
   onProgress?: (percent: number) => void;
   showVideoThreshold?: number; // 0-1, when to switch from poster to video
   isHero?: boolean; // For LCP optimization - preload hero poster with high priority
+  loadingComplete?: boolean; // Signal when loading screen is gone
 }
 
 export default function VideoBackground({
@@ -22,22 +23,29 @@ export default function VideoBackground({
   onProgress,
   showVideoThreshold = 0.6,
   isHero = false,
+  loadingComplete = true,
 }: VideoBackgroundProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const readyFired = useRef(false);
   const [loadProgress, setLoadProgress] = useState(0);
-  const [showVideo, setShowVideo] = useState(false);
+  // Hero video shows immediately (preloaded), others wait for buffer
+  const [showVideo, setShowVideo] = useState(isHero);
 
   const fireReady = useCallback(() => {
     if (readyFired.current || !onReady) return;
     readyFired.current = true;
+    const debugId = video?.split('/').pop() || 'no-video';
+    console.log(`[Video ${debugId}] fireReady() - video is ready`);
     onReady();
-  }, [onReady]);
+  }, [onReady, video]);
 
   // Track video load progress
   useEffect(() => {
     const el = videoRef.current;
     if (!el || !video) return;
+
+    const debugId = video?.split('/').pop() || 'no-video';
+    console.log(`[Video ${debugId}] Mount: src=${el.src}, readyState=${el.readyState}, networkState=${el.networkState}`);
 
     const updateProgress = () => {
       if (el.buffered.length > 0 && el.duration) {
@@ -67,34 +75,68 @@ export default function VideoBackground({
     };
   }, [video, onProgress, showVideoThreshold, showVideo]);
 
-  // Play/pause based on active slide
+  // Play/pause based on active slide and loading state
   useEffect(() => {
     const el = videoRef.current;
     if (!el) return;
 
-    if (isActive) {
-      // Try to play, and if video isn't ready yet, play when it loads
+    // Debug logging
+    const debugId = video?.split('/').pop() || 'no-video';
+    console.log(`[Video ${debugId}] isActive=${isActive}, loadingComplete=${loadingComplete}, readyState=${el.readyState}, paused=${el.paused}`);
+
+    // Only play when loading is complete AND slide is active
+    if (isActive && loadingComplete) {
+      // Reset to start on initial activation
+      el.currentTime = 0;
+
       const tryPlay = () => {
-        el.currentTime = 0;
-        el.play().catch(() => {});
+        console.log(`[Video ${debugId}] tryPlay: readyState=${el.readyState}, paused=${el.paused}`);
+        if (el.paused && el.readyState >= 2) {
+          // Make sure video is visible when playing
+          setShowVideo(true);
+          el.play()
+            .then(() => console.log(`[Video ${debugId}] play() SUCCESS`))
+            .catch((e) => console.log(`[Video ${debugId}] play() FAILED:`, e.message));
+        }
       };
 
-      if (el.readyState >= 3) {
-        // Video is ready - play now
-        tryPlay();
-      } else {
-        // Video not ready - wait for canplay event
-        const onCanPlay = () => {
-          tryPlay();
-          el.removeEventListener('canplay', onCanPlay);
-        };
-        el.addEventListener('canplay', onCanPlay);
-        return () => el.removeEventListener('canplay', onCanPlay);
-      }
-    } else {
+      // Try immediately if ready
+      tryPlay();
+
+      // Listen for ready events
+      const onCanPlay = () => tryPlay();
+      const onLoadedData = () => tryPlay();
+      const onCanPlayThrough = () => tryPlay();
+      const onPlaying = () => setShowVideo(true);
+
+      el.addEventListener('canplay', onCanPlay);
+      el.addEventListener('loadeddata', onLoadedData);
+      el.addEventListener('canplaythrough', onCanPlayThrough);
+      el.addEventListener('playing', onPlaying);
+
+      // Continuous watchdog: check every 200ms if video should be playing
+      const watchdog = setInterval(() => {
+        if (el.paused && el.readyState >= 2) {
+          console.log(`[Video ${debugId}] WATCHDOG: forcing play, readyState=${el.readyState}`);
+          el.play().catch((e) => console.log(`[Video ${debugId}] WATCHDOG play failed:`, e.message));
+        }
+        // Also ensure video is visible if playing
+        if (!el.paused) {
+          setShowVideo(true);
+        }
+      }, 200);
+
+      return () => {
+        el.removeEventListener('canplay', onCanPlay);
+        el.removeEventListener('loadeddata', onLoadedData);
+        el.removeEventListener('canplaythrough', onCanPlayThrough);
+        el.removeEventListener('playing', onPlaying);
+        clearInterval(watchdog);
+      };
+    } else if (!isActive) {
       el.pause();
     }
-  }, [isActive]);
+  }, [isActive, loadingComplete]);
 
   // Fire onReady when video has data + fallback timeout
   useEffect(() => {

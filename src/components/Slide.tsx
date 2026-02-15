@@ -12,6 +12,7 @@ interface SlideProps {
   preloadLevel?: "auto" | "metadata" | "none";
   onVideoReady?: () => void;
   onVideoProgress?: (percent: number) => void;
+  loadingComplete?: boolean;
 }
 
 export default function Slide({
@@ -22,6 +23,7 @@ export default function Slide({
   preloadLevel = "metadata",
   onVideoReady,
   onVideoProgress,
+  loadingComplete = true,
 }: SlideProps) {
   const isHero = slide.variant === "hero";
 
@@ -36,6 +38,7 @@ export default function Slide({
         onProgress={onVideoProgress}
         showVideoThreshold={0.6}
         isHero={isHero}
+        loadingComplete={loadingComplete}
       />
 
       {slide.variant === "menu" ? (

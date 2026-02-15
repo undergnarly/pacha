@@ -307,7 +307,7 @@ export default function SlideContent({
                     ? "noopener noreferrer"
                     : undefined
                 }
-                className="inline-block min-w-[180px] rounded-full bg-white px-10 py-4 text-center text-base font-semibold uppercase tracking-widest text-black shadow-lg shadow-black/50 transition-all hover:scale-105 hover:shadow-xl active:scale-95 sm:min-w-[200px]"
+                className="inline-block min-w-[180px] rounded-full border-2 border-white/80 bg-transparent px-10 py-4 text-center text-base font-semibold uppercase tracking-widest text-white transition-all hover:bg-white/10 active:scale-95 sm:min-w-[200px]"
               >
                 {cta.label}
               </a>

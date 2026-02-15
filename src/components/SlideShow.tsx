@@ -37,21 +37,16 @@ export default function SlideShow({
 
   const totalSlides = slides.length + 1; // +1 for footer
 
-  // Track first 3 videos loading
-  const videosReady = useRef<Set<number>>(new Set());
-  const REQUIRED_VIDEOS = 3; // Wait for first 3 videos before showing site
+  // Track hero video loading - only wait for hero before showing site
+  const heroReady = useRef(false);
 
-  const handleVideoReady = useCallback((index: number) => {
-    videosReady.current.add(index);
-    // Update progress based on how many of first 3 videos are ready
-    const readyCount = Math.min(videosReady.current.size, REQUIRED_VIDEOS);
-    setLoadProgress(readyCount / REQUIRED_VIDEOS);
-
-    // Hide loading screen when first 3 videos are ready
-    if (videosReady.current.size >= REQUIRED_VIDEOS && loading) {
-      setTimeout(() => setLoading(false), 150);
-    }
-  }, [loading]);
+  const handleHeroReady = useCallback(() => {
+    if (heroReady.current) return;
+    heroReady.current = true;
+    setLoadProgress(1);
+    // Small delay to ensure video element is fully ready
+    setTimeout(() => setLoading(false), 100);
+  }, []);
 
   // Hide static loader when React loads
   useEffect(() => {
@@ -146,8 +141,8 @@ export default function SlideShow({
   const slideIds = [...slides.map((s) => s.id), "footer"];
 
   const getPreload = (index: number): "auto" | "metadata" | "none" => {
-    // First 3 videos load immediately (preloaded in layout.tsx)
-    if (index < 3) return "auto";
+    // Hero loads immediately (preloaded in layout.tsx)
+    if (index === 0) return "auto";
     // Rest load after site is shown
     if (loading) return "none";
     return "auto";
@@ -169,7 +164,8 @@ export default function SlideShow({
           onBooking={handleBooking}
           onScrollDown={goNext}
           preloadLevel={getPreload(i)}
-          onVideoReady={i < REQUIRED_VIDEOS ? () => handleVideoReady(i) : undefined}
+          onVideoReady={i === 0 ? handleHeroReady : undefined}
+          loadingComplete={!loading}
         />
       ),
     })),
@@ -178,7 +174,7 @@ export default function SlideShow({
       framed: false,
       content: <FooterSlide faqItems={faqItems} isActive={activeIndex === slides.length} {...footerConfig} />,
     },
-  ], [slides, activeIndex, loading, handleBooking, goNext, handleVideoReady, faqItems, footerConfig]);
+  ], [slides, activeIndex, loading, handleBooking, goNext, handleHeroReady, faqItems, footerConfig]);
 
   return (
     <>
