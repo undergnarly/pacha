@@ -73,8 +73,24 @@ export default function VideoBackground({
     if (!el) return;
 
     if (isActive) {
-      el.currentTime = 0;
-      el.play().catch(() => {});
+      // Try to play, and if video isn't ready yet, play when it loads
+      const tryPlay = () => {
+        el.currentTime = 0;
+        el.play().catch(() => {});
+      };
+
+      if (el.readyState >= 3) {
+        // Video is ready - play now
+        tryPlay();
+      } else {
+        // Video not ready - wait for canplay event
+        const onCanPlay = () => {
+          tryPlay();
+          el.removeEventListener('canplay', onCanPlay);
+        };
+        el.addEventListener('canplay', onCanPlay);
+        return () => el.removeEventListener('canplay', onCanPlay);
+      }
     } else {
       el.pause();
     }
