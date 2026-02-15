@@ -76,7 +76,10 @@ export default function VideoBackground({
   }, [video, onProgress, showVideoThreshold, showVideo]);
 
   // Play/pause based on active slide and loading state
+  // Skip for hero - it's controlled by SlideShow using the global video element
   useEffect(() => {
+    if (isHero) return;
+
     const el = videoRef.current;
     if (!el) return;
 
@@ -136,11 +139,10 @@ export default function VideoBackground({
     } else if (!isActive) {
       el.pause();
     }
-  }, [isActive, loadingComplete]);
+  }, [isActive, loadingComplete, isHero, video]);
 
   // Fire onReady when video has data + fallback timeout
   useEffect(() => {
-    const el = videoRef.current;
     if (!onReady) return;
 
     // If no video src, fire immediately
@@ -148,6 +150,11 @@ export default function VideoBackground({
       fireReady();
       return;
     }
+
+    // For hero, use the global video element from layout.tsx
+    const el = isHero
+      ? (document.getElementById('hero-video') as HTMLVideoElement | null)
+      : videoRef.current;
 
     if (el && el.readyState >= 2) {
       fireReady();
@@ -171,7 +178,7 @@ export default function VideoBackground({
       el?.removeEventListener("playing", onPlaying);
       clearTimeout(timeout);
     };
-  }, [video, onReady, fireReady]);
+  }, [video, onReady, fireReady, isHero]);
 
   // When preloadLevel changes to "auto", force load
   useEffect(() => {
@@ -222,7 +229,8 @@ export default function VideoBackground({
       />
 
       {/* Video layer - only visible when loaded enough */}
-      {videoSrc && (
+      {/* Hero video is rendered in layout.tsx and controlled by SlideShow */}
+      {videoSrc && !isHero && (
         <video
           ref={videoRef}
           autoPlay
