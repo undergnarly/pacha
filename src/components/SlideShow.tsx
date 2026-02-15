@@ -54,39 +54,12 @@ export default function SlideShow({
     if (staticLoader) {
       staticLoader.style.display = 'none';
     }
-  }, []);
-
-  // Control hero video from HTML - show/hide and play/pause
-  useEffect(() => {
-    const container = document.getElementById('hero-video-container');
-    const video = document.getElementById('hero-video') as HTMLVideoElement | null;
-
-    if (!container || !video) return;
-
-    // Show video when loading complete and on first slide
-    if (!loading && activeIndex === 0) {
-      container.style.opacity = '1';
-      container.style.zIndex = '0';
-      video.currentTime = 0;
-      video.play().catch(() => {});
-
-      // Watchdog - ensure video keeps playing
-      const watchdog = setInterval(() => {
-        if (video.paused && video.readyState >= 2) {
-          video.play().catch(() => {});
-        }
-      }, 200);
-
-      return () => clearInterval(watchdog);
-    } else {
-      // Hide and pause when not on first slide or still loading
-      container.style.opacity = '0';
-      container.style.zIndex = '-1';
-      if (!loading) {
-        video.pause();
-      }
+    // Remove preload videos container (they're cached now)
+    const preloadVideos = document.getElementById('preload-videos');
+    if (preloadVideos) {
+      preloadVideos.remove();
     }
-  }, [loading, activeIndex]);
+  }, []);
 
   const goTo = useCallback(
     (index: number) => {

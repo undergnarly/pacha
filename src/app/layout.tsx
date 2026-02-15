@@ -87,31 +87,9 @@ export default function RootLayout({
         />
       </head>
       <body className={`${golos.variable} antialiased`}>
-        {/* Hero video - rendered in HTML, controlled by React */}
-        <div id="hero-video-container" style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100dvh',
-          zIndex: -1,
-          opacity: 0,
-          transition: 'opacity 0.5s ease-out',
-        }}>
-          <video
-            id="hero-video"
-            src="/videos/hero-short.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-            }}
-          />
+        {/* Preload ONLY hero video in HTML - highest priority */}
+        <div id="preload-videos" style={{ position: 'absolute', width: 0, height: 0, opacity: 0, pointerEvents: 'none' }}>
+          <video id="preload-hero" src="/videos/hero-short.mp4" preload="auto" muted playsInline />
         </div>
         {/* Static loading screen - shows BEFORE JavaScript loads */}
         <div id="static-loader" style={{
