@@ -77,15 +77,25 @@ export default function RootLayout({
           href="/images/hero-poster-hq.webp"
           type="image/webp"
         />
-        {/* Preload hero video */}
+        {/* Preload hero video with high priority */}
         <link
           rel="preload"
           as="video"
           href="/videos/hero-short.mp4"
           type="video/mp4"
+          fetchPriority="high"
         />
       </head>
       <body className={`${golos.variable} antialiased`}>
+        {/* Hidden video element - starts loading immediately with HTML, parallel to JS */}
+        <video
+          id="preload-hero"
+          src="/videos/hero-short.mp4"
+          preload="auto"
+          muted
+          playsInline
+          style={{ position: 'absolute', width: 0, height: 0, opacity: 0, pointerEvents: 'none' }}
+        />
         {/* Static loading screen - shows BEFORE JavaScript loads */}
         <div id="static-loader" style={{
           position: 'fixed',
