@@ -87,15 +87,12 @@ export default function RootLayout({
         />
       </head>
       <body className={`${golos.variable} antialiased`}>
-        {/* Hidden video element - starts loading immediately with HTML, parallel to JS */}
-        <video
-          id="preload-hero"
-          src="/videos/hero-short.mp4"
-          preload="auto"
-          muted
-          playsInline
-          style={{ position: 'absolute', width: 0, height: 0, opacity: 0, pointerEvents: 'none' }}
-        />
+        {/* Hidden video elements - start loading first 3 videos immediately with HTML, parallel to JS */}
+        <div id="preload-videos" style={{ position: 'absolute', width: 0, height: 0, opacity: 0, pointerEvents: 'none' }}>
+          <video id="preload-v1" src="/videos/hero-short.mp4" preload="auto" muted playsInline />
+          <video id="preload-v2" src="/videos/hook-short.mp4" preload="auto" muted playsInline />
+          <video id="preload-v3" src="/videos/entrance-short.mp4" preload="auto" muted playsInline />
+        </div>
         {/* Static loading screen - shows BEFORE JavaScript loads */}
         <div id="static-loader" style={{
           position: 'fixed',

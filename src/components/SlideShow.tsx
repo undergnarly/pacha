@@ -37,15 +37,18 @@ export default function SlideShow({
 
   const totalSlides = slides.length + 1; // +1 for footer
 
-  // Handle hero video load progress
-  const handleHeroProgress = useCallback((percent: number) => {
-    setLoadProgress(percent);
-  }, []);
+  // Track first 3 videos loading
+  const videosReady = useRef<Set<number>>(new Set());
+  const REQUIRED_VIDEOS = 3; // Wait for first 3 videos before showing site
 
-  const handleHeroReady = useCallback(() => {
-    setLoadProgress(1);
-    // Hide loading screen when hero video is ready - site is ready to show
-    if (loading) {
+  const handleVideoReady = useCallback((index: number) => {
+    videosReady.current.add(index);
+    // Update progress based on how many of first 3 videos are ready
+    const readyCount = Math.min(videosReady.current.size, REQUIRED_VIDEOS);
+    setLoadProgress(readyCount / REQUIRED_VIDEOS);
+
+    // Hide loading screen when first 3 videos are ready
+    if (videosReady.current.size >= REQUIRED_VIDEOS && loading) {
       setTimeout(() => setLoading(false), 150);
     }
   }, [loading]);
@@ -55,6 +58,11 @@ export default function SlideShow({
     const staticLoader = document.getElementById('static-loader');
     if (staticLoader) {
       staticLoader.style.display = 'none';
+    }
+    // Remove preload videos container (they're cached now)
+    const preloadVideos = document.getElementById('preload-videos');
+    if (preloadVideos) {
+      preloadVideos.remove();
     }
   }, []);
 
@@ -138,9 +146,9 @@ export default function SlideShow({
   const slideIds = [...slides.map((s) => s.id), "footer"];
 
   const getPreload = (index: number): "auto" | "metadata" | "none" => {
-    // Hero video loads first (has preload hint in layout.tsx)
-    if (index === 0) return "auto";
-    // All other videos load together after hero is ready
+    // First 3 videos load immediately (preloaded in layout.tsx)
+    if (index < 3) return "auto";
+    // Rest load after site is shown
     if (loading) return "none";
     return "auto";
   };
@@ -161,8 +169,7 @@ export default function SlideShow({
           onBooking={handleBooking}
           onScrollDown={goNext}
           preloadLevel={getPreload(i)}
-          onVideoReady={i === 0 ? handleHeroReady : undefined}
-          onVideoProgress={i === 0 ? handleHeroProgress : undefined}
+          onVideoReady={i < REQUIRED_VIDEOS ? () => handleVideoReady(i) : undefined}
         />
       ),
     })),
@@ -171,7 +178,7 @@ export default function SlideShow({
       framed: false,
       content: <FooterSlide faqItems={faqItems} isActive={activeIndex === slides.length} {...footerConfig} />,
     },
-  ], [slides, activeIndex, loading, handleBooking, goNext, handleHeroReady, handleHeroProgress, faqItems, footerConfig]);
+  ], [slides, activeIndex, loading, handleBooking, goNext, handleVideoReady, faqItems, footerConfig]);
 
   return (
     <>
