@@ -6,7 +6,7 @@ export const dinnerSlides: SlideData[] = [
     variant: "hero",
     headline: "A Date You\u2019ll Never Forget",
     subtitle:
-      "A private candle-lit dinner surrounded by alpacas under the Bali sky.",
+      "An intimate private dining setup inside the alpaca enclosure under the Bali sky.",
     media: {
       video: "/videos/dinner-hero.mp4",
       poster: "/images/dinner-hero-poster.webp",
@@ -20,18 +20,19 @@ export const dinnerSlides: SlideData[] = [
   {
     id: "dinner-experience",
     variant: "experience",
-    headline: "Private Dinner with Alpacas",
+    headline: "Private Alpaca Dinner",
     subtitle:
-      "One-hour dinner for up to 4 guests. Includes a bouquet of flowers and a special alpaca-themed dish.",
-    price: "2.5M IDR per table",
+      "An intimate private dining setup inside the alpaca enclosure for up to 4 guests.",
+    price: "1M IDR",
     details: [
-      "Private table inside the alpaca enclosure",
-      "Floral decorations and welcome drinks",
-      "Mixed meat & cheese platter (customizable)",
-      "Alpaca snacks for feeding included",
-      "Table reservation option — 990K IDR (food ordered separately)",
+      "Table setup inside the alpaca enclosure",
+      "2 main courses included",
+      "2 non-alcoholic beverages included",
+      "Alpaca snack for feeding included",
+      "Up to 4 guests per table",
+      "Deposit 500K IDR required to secure booking",
+      "Reserve at least 1 day in advance",
       "Perfect for proposals, celebrations, or special occasions",
-      "Golden hour timing for the best ambiance",
       "Dietary needs accommodated — message us via WhatsApp",
     ],
     media: {

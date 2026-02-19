@@ -44,7 +44,8 @@ export default function SlideShow({
     if (heroReady.current) return;
     heroReady.current = true;
     setLoadProgress(1);
-    // Small delay to ensure video element is fully ready
+    // DEBUG: Simulate slow network - remove this line for production
+    // setTimeout(() => setLoading(false), 3000);
     setTimeout(() => setLoading(false), 100);
   }, []);
 
@@ -165,7 +166,6 @@ export default function SlideShow({
           onScrollDown={goNext}
           preloadLevel={getPreload(i)}
           onVideoReady={i === 0 ? handleHeroReady : undefined}
-          loadingComplete={!loading}
         />
       ),
     })),
@@ -174,7 +174,7 @@ export default function SlideShow({
       framed: false,
       content: <FooterSlide faqItems={faqItems} isActive={activeIndex === slides.length} {...footerConfig} />,
     },
-  ], [slides, activeIndex, loading, handleBooking, goNext, handleHeroReady, faqItems, footerConfig]);
+  ], [slides, activeIndex, handleBooking, goNext, handleHeroReady, faqItems, footerConfig, loading]);
 
   return (
     <>

@@ -8,10 +8,7 @@ interface VideoBackgroundProps {
   preloadLevel?: "auto" | "metadata" | "none";
   isActive?: boolean;
   onReady?: () => void;
-  onProgress?: (percent: number) => void;
-  showVideoThreshold?: number; // 0-1, when to switch from poster to video
-  isHero?: boolean; // For LCP optimization - preload hero poster with high priority
-  loadingComplete?: boolean; // Signal when loading screen is gone
+  isHero?: boolean;
 }
 
 export default function VideoBackground({
@@ -20,199 +17,71 @@ export default function VideoBackground({
   preloadLevel = "metadata",
   isActive = false,
   onReady,
-  onProgress,
-  showVideoThreshold = 0.6,
   isHero = false,
-  loadingComplete = true,
 }: VideoBackgroundProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const readyFired = useRef(false);
-  const [loadProgress, setLoadProgress] = useState(0);
-  // Hero video shows immediately (preloaded), others wait for buffer
-  const [showVideo, setShowVideo] = useState(isHero);
 
+  // Fire onReady when video can play
   const fireReady = useCallback(() => {
     if (readyFired.current || !onReady) return;
     readyFired.current = true;
-    const debugId = video?.split('/').pop() || 'no-video';
-    console.log(`[Video ${debugId}] fireReady() - video is ready`);
     onReady();
-  }, [onReady, video]);
+  }, [onReady]);
 
-  // Track video load progress
+  // Setup video ready detection
   useEffect(() => {
     const el = videoRef.current;
-    if (!el || !video) return;
-
-    const debugId = video?.split('/').pop() || 'no-video';
-    console.log(`[Video ${debugId}] Mount: src=${el.src}, readyState=${el.readyState}, networkState=${el.networkState}`);
-
-    const updateProgress = () => {
-      if (el.buffered.length > 0 && el.duration) {
-        const bufferedEnd = el.buffered.end(el.buffered.length - 1);
-        const percent = bufferedEnd / el.duration;
-        setLoadProgress(percent);
-        onProgress?.(percent);
-
-        // Show video when threshold reached
-        if (percent >= showVideoThreshold && !showVideo) {
-          setShowVideo(true);
-        }
-      }
-    };
-
-    el.addEventListener("progress", updateProgress);
-    el.addEventListener("loadeddata", updateProgress);
-    el.addEventListener("canplaythrough", () => {
-      setLoadProgress(1);
-      onProgress?.(1);
-      setShowVideo(true);
-    });
-
-    return () => {
-      el.removeEventListener("progress", updateProgress);
-      el.removeEventListener("loadeddata", updateProgress);
-    };
-  }, [video, onProgress, showVideoThreshold, showVideo]);
-
-  // Play/pause based on active slide and loading state
-  useEffect(() => {
-    const el = videoRef.current;
+    if (!onReady || !video) {
+      fireReady();
+      return;
+    }
     if (!el) return;
 
-    // Debug logging
-    const debugId = video?.split('/').pop() || 'no-video';
-    console.log(`[Video ${debugId}] isActive=${isActive}, loadingComplete=${loadingComplete}, readyState=${el.readyState}, paused=${el.paused}`);
-
-    // Only play when loading is complete AND slide is active
-    if (isActive && loadingComplete) {
-      // Reset to start on initial activation
-      el.currentTime = 0;
-
-      const tryPlay = () => {
-        console.log(`[Video ${debugId}] tryPlay: readyState=${el.readyState}, paused=${el.paused}`);
-        if (el.paused && el.readyState >= 2) {
-          // Make sure video is visible when playing
-          setShowVideo(true);
-          el.play()
-            .then(() => console.log(`[Video ${debugId}] play() SUCCESS`))
-            .catch((e) => console.log(`[Video ${debugId}] play() FAILED:`, e.message));
-        }
-      };
-
-      // Try immediately if ready
-      tryPlay();
-
-      // Listen for ready events
-      const onCanPlay = () => tryPlay();
-      const onLoadedData = () => tryPlay();
-      const onCanPlayThrough = () => tryPlay();
-      const onPlaying = () => setShowVideo(true);
-
-      el.addEventListener('canplay', onCanPlay);
-      el.addEventListener('loadeddata', onLoadedData);
-      el.addEventListener('canplaythrough', onCanPlayThrough);
-      el.addEventListener('playing', onPlaying);
-
-      // Continuous watchdog: check every 200ms if video should be playing
-      const watchdog = setInterval(() => {
-        if (el.paused && el.readyState >= 2) {
-          console.log(`[Video ${debugId}] WATCHDOG: forcing play, readyState=${el.readyState}`);
-          el.play().catch((e) => console.log(`[Video ${debugId}] WATCHDOG play failed:`, e.message));
-        }
-        // Also ensure video is visible if playing
-        if (!el.paused) {
-          setShowVideo(true);
-        }
-      }, 200);
-
-      return () => {
-        el.removeEventListener('canplay', onCanPlay);
-        el.removeEventListener('loadeddata', onLoadedData);
-        el.removeEventListener('canplaythrough', onCanPlayThrough);
-        el.removeEventListener('playing', onPlaying);
-        clearInterval(watchdog);
-      };
-    } else if (!isActive) {
-      el.pause();
-    }
-  }, [isActive, loadingComplete]);
-
-  // Fire onReady when video has data + fallback timeout
-  useEffect(() => {
-    const el = videoRef.current;
-    if (!onReady) return;
-
-    // If no video src, fire immediately
-    if (!video) {
+    if (el.readyState >= 2) {
       fireReady();
       return;
     }
 
-    if (el && el.readyState >= 2) {
-      fireReady();
-      return;
-    }
+    const handleReady = () => fireReady();
+    el.addEventListener("canplay", handleReady);
+    el.addEventListener("loadeddata", handleReady);
 
-    const onLoadedData = () => fireReady();
-    const onCanPlay = () => fireReady();
-    const onPlaying = () => fireReady();
-
-    el?.addEventListener("loadeddata", onLoadedData);
-    el?.addEventListener("canplay", onCanPlay);
-    el?.addEventListener("playing", onPlaying);
-
-    // Fallback: don't hang forever if video fails to load
-    const timeout = setTimeout(() => fireReady(), 5000);
+    // Fallback timeout
+    const timeout = setTimeout(fireReady, 5000);
 
     return () => {
-      el?.removeEventListener("loadeddata", onLoadedData);
-      el?.removeEventListener("canplay", onCanPlay);
-      el?.removeEventListener("playing", onPlaying);
+      el.removeEventListener("canplay", handleReady);
+      el.removeEventListener("loadeddata", handleReady);
       clearTimeout(timeout);
     };
   }, [video, onReady, fireReady]);
 
-  // When preloadLevel changes to "auto", force load
+  // Simple play/pause control
   useEffect(() => {
     const el = videoRef.current;
-    if (!el || preloadLevel !== "auto") return;
-    el.load();
-    el.play().catch(() => {});
-  }, [preloadLevel]);
+    if (!el || !video) return;
 
-  // Lazy load video when it approaches viewport (for preload="none" videos)
-  useEffect(() => {
-    const el = videoRef.current;
-    if (!el || preloadLevel === "auto" || !video) return;
+    if (isActive) {
+      el.currentTime = 0;
+      el.play().catch(() => {});
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting || entry.intersectionRatio > 0) {
-            // Video is approaching viewport - start loading
-            el.load();
-            observer.disconnect();
-          }
-        });
-      },
-      {
-        // Load when video is 200px away from viewport
-        rootMargin: "200px",
-      }
-    );
+      // Simple watchdog - just keep trying to play
+      const watchdog = setInterval(() => {
+        if (el.paused) {
+          el.play().catch(() => {});
+        }
+      }, 300);
 
-    observer.observe(el);
-
-    return () => observer.disconnect();
-  }, [video, preloadLevel]);
-
-  // Use video path directly from props
-  const videoSrc = video;
+      return () => clearInterval(watchdog);
+    } else {
+      el.pause();
+    }
+  }, [isActive, video]);
 
   return (
     <div className="absolute inset-0">
-      {/* Poster image - always show as base layer */}
+      {/* Poster image */}
       <img
         src={poster}
         alt=""
@@ -221,8 +90,8 @@ export default function VideoBackground({
         fetchPriority={isHero ? "high" : "auto"}
       />
 
-      {/* Video layer - only visible when loaded enough */}
-      {videoSrc && (
+      {/* Video layer */}
+      {video && (
         <video
           ref={videoRef}
           autoPlay
@@ -230,11 +99,9 @@ export default function VideoBackground({
           loop
           playsInline
           preload={preloadLevel}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
-            showVideo ? 'opacity-100' : 'opacity-0'
-          }`}
+          className="absolute inset-0 h-full w-full object-cover"
         >
-          <source src={videoSrc} type={videoSrc.endsWith('.webm') ? 'video/webm' : 'video/mp4'} />
+          <source src={video} type={video.endsWith('.webm') ? 'video/webm' : 'video/mp4'} />
         </video>
       )}
     </div>

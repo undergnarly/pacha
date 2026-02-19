@@ -64,22 +64,27 @@ export const dinnerFaq: FAQItem[] = [
   {
     question: "How many people can attend the dinner?",
     answer:
-      "The Private Dinner with Alpacas is for up to 4 guests per table. It is a truly intimate experience.",
+      "The Private Alpaca Dinner is for up to 4 guests per table.",
   },
   {
     question: "What is included in the dinner?",
     answer:
-      "The full experience (2.5M IDR) includes a private table in the alpaca enclosure, floral decorations, welcome drinks, a meat & cheese platter, and alpaca snacks. A table reservation option (990K IDR) is also available — food ordered separately from the menu.",
+      "The dinner (1M IDR) includes a table setup inside the alpaca enclosure, 2 main courses, 2 non-alcoholic beverages, and an alpaca snack for feeding.",
+  },
+  {
+    question: "Is there a deposit?",
+    answer:
+      "Yes, a deposit of 500K IDR is required to secure your booking.",
+  },
+  {
+    question: "How far in advance should I book?",
+    answer:
+      "Please reserve at least 1 day in advance.",
   },
   {
     question: "Can I request special dietary options?",
     answer:
       "Yes! Please let us know about dietary requirements via WhatsApp at least 48 hours before your booking.",
-  },
-  {
-    question: "What time does the dinner start?",
-    answer:
-      "Dinner sessions are held during golden hour for the best ambiance. Exact timing varies by season — you will receive confirmation after booking.",
   },
 ];
 

@@ -90,17 +90,18 @@ export const homeSlides: SlideData[] = [
   {
     id: "dinner",
     variant: "experience",
-    headline: "Dinner with Alpacas",
+    headline: "Private Alpaca Dinner",
     subtitle:
-      "A private candle-lit dinner surrounded by alpacas. Bouquet and special dish included.",
-    price: "2.5M IDR",
+      "An intimate private dining setup inside the alpaca enclosure for up to 4 guests.",
+    price: "1M IDR",
     details: [
-      "Private table inside the alpaca enclosure",
-      "1-hour dinner for up to 4 guests at golden hour",
-      "Floral decorations and welcome drinks",
-      "Mixed meat & cheese platter (customizable)",
-      "Table reservation option — 990K IDR (food ordered separately)",
-      "Dietary needs accommodated — message us via WhatsApp",
+      "Table setup inside the alpaca enclosure",
+      "2 main courses included",
+      "2 non-alcoholic beverages included",
+      "Alpaca snack for feeding included",
+      "Up to 4 guests per table",
+      "Deposit 500K IDR required to secure booking",
+      "Reserve at least 1 day in advance",
     ],
     media: {
       video: "/videos/dinner-short.mp4",
