@@ -69,7 +69,7 @@ export const dinnerFaq: FAQItem[] = [
   {
     question: "What is included in the dinner?",
     answer:
-      "The dinner (1M IDR) includes a table setup inside the alpaca enclosure, 2 main courses, 2 non-alcoholic beverages, and an alpaca snack for feeding.",
+      "The dinner (990K IDR) includes a table setup inside the alpaca enclosure, 2 main courses, 2 non-alcoholic beverages, and an alpaca snack for feeding.",
   },
   {
     question: "Is there a deposit?",

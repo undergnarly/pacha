@@ -23,7 +23,7 @@ export const dinnerSlides: SlideData[] = [
     headline: "Private Alpaca Dinner",
     subtitle:
       "An intimate private dining setup inside the alpaca enclosure for up to 4 guests.",
-    price: "1M IDR",
+    price: "990K IDR",
     details: [
       "Table setup inside the alpaca enclosure",
       "2 main courses included",
