@@ -9,7 +9,6 @@ interface SlideProps {
   isActive?: boolean;
   onBooking?: (href: string) => void;
   onScrollDown?: () => void;
-  preloadLevel?: "auto" | "metadata" | "none";
   onVideoReady?: () => void;
 }
 
@@ -18,7 +17,6 @@ export default function Slide({
   isActive = false,
   onBooking,
   onScrollDown,
-  preloadLevel = "metadata",
   onVideoReady,
 }: SlideProps) {
   const isHero = slide.variant === "hero";
@@ -27,8 +25,8 @@ export default function Slide({
     <section id={slide.id} className="slide relative overflow-hidden">
       <VideoBackground
         video={slide.media.video}
+        desktopVideo={slide.media.desktopVideo}
         poster={slide.media.poster}
-        preloadLevel={preloadLevel}
         isActive={isActive}
         onReady={onVideoReady}
         isHero={isHero}

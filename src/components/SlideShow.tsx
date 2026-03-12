@@ -141,14 +141,6 @@ export default function SlideShow({
 
   const slideIds = [...slides.map((s) => s.id), "footer"];
 
-  const getPreload = (index: number): "auto" | "metadata" | "none" => {
-    // Hero loads immediately (preloaded in layout.tsx)
-    if (index === 0) return "auto";
-    // Rest load after site is shown
-    if (loading) return "none";
-    return "auto";
-  };
-
   // Variants that get the decorative frame
   const framedVariants = new Set(["experience", "menu"]);
 
@@ -164,7 +156,6 @@ export default function SlideShow({
           isActive={i === activeIndex}
           onBooking={handleBooking}
           onScrollDown={goNext}
-          preloadLevel={getPreload(i)}
           onVideoReady={i === 0 ? handleHeroReady : undefined}
         />
       ),
@@ -174,7 +165,7 @@ export default function SlideShow({
       framed: false,
       content: <FooterSlide faqItems={faqItems} isActive={activeIndex === slides.length} {...footerConfig} />,
     },
-  ], [slides, activeIndex, handleBooking, goNext, handleHeroReady, faqItems, footerConfig, loading]);
+  ], [slides, activeIndex, handleBooking, goNext, handleHeroReady, faqItems, footerConfig]);
 
   return (
     <>

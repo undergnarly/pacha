@@ -9,6 +9,7 @@ export const homeSlides: SlideData[] = [
       "Discover five ways to meet our friendly alpacas — from a simple visit to a private candle-lit dinner & overnight stay.",
     media: {
       video: "/videos/hero-short.mp4",
+      desktopVideo: "/videos/hero-desktop.mp4",
       poster: "/images/hero-poster-hq.webp",
     },
     cta: {
@@ -23,6 +24,7 @@ export const homeSlides: SlideData[] = [
     headline: "The only alpaca park in Bali",
     media: {
       video: "/videos/hook-short.mp4",
+      desktopVideo: "/videos/hook-desktop.mp4",
       poster: "/images/hook.webp",
     },
     rating: {
@@ -54,6 +56,7 @@ export const homeSlides: SlideData[] = [
     ],
     media: {
       video: "/videos/entrance-short.mp4",
+      desktopVideo: "/videos/entrance-desktop.mp4",
       poster: "/images/entrance.webp",
     },
     cta: {
@@ -79,6 +82,7 @@ export const homeSlides: SlideData[] = [
     ],
     media: {
       video: "/videos/connection-short.mp4",
+      desktopVideo: "/videos/connection-desktop.mp4",
       poster: "/images/connection.webp",
     },
     cta: {
@@ -105,6 +109,7 @@ export const homeSlides: SlideData[] = [
     ],
     media: {
       video: "/videos/dinner-short.mp4",
+      desktopVideo: "/videos/dinner-desktop.mp4",
       poster: "/images/dinner.webp",
     },
     cta: {
@@ -130,6 +135,7 @@ export const homeSlides: SlideData[] = [
     ],
     media: {
       video: "/videos/bamboo-nest-short.mp4",
+      desktopVideo: "/videos/bamboo-nest-desktop.mp4",
       poster: "/images/bamboo-nest.webp",
     },
     cta: {
@@ -152,6 +158,7 @@ export const homeSlides: SlideData[] = [
     ],
     media: {
       video: "/videos/alpacafe-short.mp4",
+      desktopVideo: "/videos/alpacafe-desktop.mp4",
       poster: "/images/alpacafe.webp",
     },
     cta: {

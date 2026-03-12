@@ -9,6 +9,7 @@ export const dinnerSlides: SlideData[] = [
       "An intimate private dining setup inside the alpaca enclosure under the Bali sky.",
     media: {
       video: "/videos/dinner-hero.mp4",
+      desktopVideo: "/videos/dinner-hero-desktop.mp4",
       poster: "/images/dinner-hero-poster.webp",
     },
     cta: {
@@ -37,6 +38,7 @@ export const dinnerSlides: SlideData[] = [
     ],
     media: {
       video: "/videos/dinner-exp.mp4",
+      desktopVideo: "/videos/dinner-exp-desktop.mp4",
       poster: "/images/dinner-exp.webp",
     },
     cta: {

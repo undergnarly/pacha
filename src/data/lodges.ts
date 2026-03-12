@@ -9,6 +9,7 @@ export const lodgesSlides: SlideData[] = [
       "Spend the night in a bamboo lodge on the alpaca farm. Fall asleep to nature and wake up to friendly faces.",
     media: {
       video: "/videos/lodges-hero-short.mp4",
+      desktopVideo: "/videos/lodges-hero-desktop.mp4",
       poster: "/images/lodges-hero-poster.webp",
     },
     cta: {
@@ -35,6 +36,7 @@ export const lodgesSlides: SlideData[] = [
     ],
     media: {
       video: "/videos/alpaca-lodge-short.mp4",
+      desktopVideo: "/videos/alpaca-lodge-desktop.mp4",
       poster: "/images/alpaca-lodge.webp",
     },
     cta: {
@@ -60,6 +62,7 @@ export const lodgesSlides: SlideData[] = [
     ],
     media: {
       video: "/videos/bamboo-nest-short.mp4",
+      desktopVideo: "/videos/bamboo-nest-desktop.mp4",
       poster: "/images/bamboo-nest.webp",
     },
     cta: {

@@ -14,6 +14,7 @@ export interface SlideData {
   };
   media: {
     video?: string;
+    desktopVideo?: string;
     poster: string;
   };
   /** Additional stats/badges for hook slides */
