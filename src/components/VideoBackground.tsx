@@ -86,7 +86,7 @@ export default function VideoBackground({
     };
   }, [videoSrc, shouldMount, fireReady]);
 
-  // Play/pause control
+  // Play/pause control — re-runs when shouldMount changes so newly mounted videos start playing
   useEffect(() => {
     const el = videoRef.current;
     if (!el || !videoSrc) return;
@@ -105,7 +105,7 @@ export default function VideoBackground({
     } else {
       el.pause();
     }
-  }, [isActive, videoSrc]);
+  }, [isActive, videoSrc, shouldMount]);
 
   return (
     <div className="absolute inset-0">

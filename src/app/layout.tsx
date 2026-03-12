@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Golos_Text } from "next/font/google";
 import JsonLd from "@/components/JsonLd";
+import Analytics from "@/components/Analytics";
 import "./globals.css";
 
 const golos = Golos_Text({
@@ -164,6 +165,7 @@ export default function RootLayout({
           `}} />
         </div>
         {children}
+        <Analytics />
       </body>
     </html>
   );
