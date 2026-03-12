@@ -2,6 +2,10 @@
   command = "npm run build"
   publish = "out"
 
+[build.environment]
+  NEXT_PUBLIC_META_PIXEL_ID = "473654225590030"
+  NEXT_PUBLIC_CLARITY_ID = "vgwtlg2i2t"
+
 [[headers]]
   for = "/videos/*"
   [headers.values]
