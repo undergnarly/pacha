@@ -182,7 +182,7 @@ export default function SlideContent({
           variants={variant === "hero" ? instant : fadeUp}
           className={`mb-3 font-[family-name:var(--font-golos)] font-semibold ${
             variant === "hero"
-              ? "text-4xl sm:text-5xl lg:text-6xl"
+              ? "text-3xl sm:text-4xl"
               : "text-3xl sm:text-4xl"
           }`}
         >
