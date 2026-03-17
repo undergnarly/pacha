@@ -66,6 +66,29 @@ body {
   scrollbar-width: none;
 }
 
+/* Desktop: mobile-like proportions with side bars */
+@media (min-width: 1024px) {
+  .app-frame {
+    max-width: calc(100dvh * 9 / 16);
+    margin: 0 auto;
+    position: relative;
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  /* Header & DotNav: absolute within frame instead of viewport-fixed */
+  .app-frame .app-header {
+    position: absolute;
+  }
+  .app-frame .app-dotnav {
+    position: absolute;
+  }
+
+  body {
+    transition: background-color 0.8s ease;
+  }
+}
+
 /* Reduced motion: disable animations and use posters */
 @media (prefers-reduced-motion: reduce) {
   .slide-container {

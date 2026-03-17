@@ -144,6 +144,13 @@ export default function SlideShow({
   // Variants that get the decorative frame
   const framedVariants = new Set(["experience", "menu"]);
 
+  // Desktop sidebar color based on active slide
+  useEffect(() => {
+    const isFramed =
+      activeIndex < slides.length && framedVariants.has(slides[activeIndex].variant);
+    document.body.style.backgroundColor = isFramed ? "#fff8ed" : "#000";
+  }, [activeIndex, slides]);
+
   // Build all slides array (content slides + footer)
   // useMemo ensures slides re-render when loading/activeIndex changes for proper preload updates
   const allSlides = useMemo(() => [
@@ -171,27 +178,29 @@ export default function SlideShow({
     <>
       <LoadingScreen visible={loading} progress={loadProgress} />
 
-      <Header dark={activeIndex === slides.length} />
-      <DotNav
-        count={totalSlides}
-        activeIndex={activeIndex}
-        slideIds={slideIds}
-        containerRef={containerRef}
-        onDotClick={goTo}
-      />
+      <div className="app-frame">
+        <Header dark={activeIndex === slides.length} />
+        <DotNav
+          count={totalSlides}
+          activeIndex={activeIndex}
+          slideIds={slideIds}
+          containerRef={containerRef}
+          onDotClick={goTo}
+        />
 
-      <div ref={containerRef} className="slide-container relative">
-        <motion.div
-          animate={{ y: `-${activeIndex * 100}dvh` }}
-          transition={{
-            duration: TRANSITION_MS / 1000,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-        >
-          {allSlides.map((s) => (
-            <div key={s.key} className={`slide-frame${!s.framed ? ' slide-frame--flush' : ''}`}>{s.content}</div>
-          ))}
-        </motion.div>
+        <div ref={containerRef} className="slide-container relative">
+          <motion.div
+            animate={{ y: `-${activeIndex * 100}dvh` }}
+            transition={{
+              duration: TRANSITION_MS / 1000,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
+            {allSlides.map((s) => (
+              <div key={s.key} className={`slide-frame${!s.framed ? ' slide-frame--flush' : ''}`}>{s.content}</div>
+            ))}
+          </motion.div>
+        </div>
       </div>
 
       <BookingModal

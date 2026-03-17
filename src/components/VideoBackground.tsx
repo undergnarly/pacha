@@ -27,17 +27,8 @@ export default function VideoBackground({
   // Whether the video has loaded enough to play — controls fade-in
   const [videoLoaded, setVideoLoaded] = useState(false);
 
-  // Pick desktop (16:9) or mobile (9:16) video based on viewport
-  const [isDesktop, setIsDesktop] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
-    setIsDesktop(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
-
-  const videoSrc = isDesktop && desktopVideo ? desktopVideo : video;
+  // Always use mobile (9:16) video — desktop shows mobile proportions with side bars
+  const videoSrc = video;
 
   // Mount video element when slide becomes active (keep mounted after)
   useEffect(() => {

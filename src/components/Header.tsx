@@ -9,7 +9,7 @@ export default function Header({ dark = false }: { dark?: boolean }) {
   return (
     <>
       <header
-        className={`fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-5 py-4 transition-colors duration-300 sm:px-8 ${
+        className={`app-header fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-5 py-4 transition-colors duration-300 sm:px-8 ${
           dark ? "bg-black/90 backdrop-blur-sm" : ""
         }`}
       >

@@ -16,7 +16,7 @@ export default function DotNav({
 }: DotNavProps) {
   return (
     <nav
-      className="fixed right-3 top-1/2 z-40 -translate-y-1/2 sm:right-5"
+      className="app-dotnav fixed right-3 top-1/2 z-40 -translate-y-1/2 sm:right-5"
       aria-label="Slide navigation"
     >
       <ul className="flex flex-col gap-3">
