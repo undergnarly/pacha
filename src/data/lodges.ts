@@ -23,12 +23,10 @@ export const lodgesSlides: SlideData[] = [
     variant: "experience",
     headline: "Alpaca Lodge",
     subtitle:
-      "Charming bamboo haven on the alpaca farm. Up to 3 guests. Includes overnight stay, Alpaca Connection experience, and complimentary breakfast.",
+      "Charming bamboo haven on the alpaca farm. Up to 3 guests.",
     price: "From 1.5M IDR / night",
     details: [
       "Spacious bamboo lodge — up to 3 guests",
-      "Alpaca Connection guided tour included",
-      "Complimentary breakfast",
       "Check-in 2 PM / Check-out 11 AM",
       "Air conditioning",
       "Wi-Fi available",
@@ -49,12 +47,10 @@ export const lodgesSlides: SlideData[] = [
     variant: "experience",
     headline: "Bamboo Alpaca Nest",
     subtitle:
-      "A cozy bamboo retreat for two. Includes overnight stay, Alpaca Connection experience, and complimentary breakfast.",
+      "A cozy bamboo retreat for two.",
     price: "From 1M IDR / night",
     details: [
       "Intimate bamboo nest — up to 2 guests",
-      "Alpaca Connection guided tour included",
-      "Complimentary breakfast",
       "Check-in 2 PM / Check-out 11 AM",
       "Air conditioning",
       "Wi-Fi available",

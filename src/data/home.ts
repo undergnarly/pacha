@@ -73,12 +73,12 @@ export const homeSlides: SlideData[] = [
       "30-minute guided tour through the jungle park. Feed, walk, and connect with our alpacas.",
     price: "From 200K IDR",
     details: [
-      "Child (under 18) — 200K IDR",
+      "Child (under 12) — 200K IDR",
       "Adult — 300K IDR",
-      "Family 2+2 — 700K IDR (includes welcome drink)",
+      "Family 2+2 — 700K IDR",
       "30-min guided tour, feeding, and photo ops",
       "Includes Nuanu and Pacha Alpaca entrance",
-      "Children under 14 must be with a guardian",
+      "Children under 12 must be with a guardian",
     ],
     media: {
       video: "/videos/connection-short.mp4",
@@ -104,7 +104,7 @@ export const homeSlides: SlideData[] = [
       "2 non-alcoholic beverages included",
       "Alpaca snack for feeding included",
       "Up to 4 guests per table",
-      "Deposit 500K IDR required to secure booking",
+      "Deposit 500K IDR included",
       "Reserve at least 1 day in advance",
     ],
     media: {
@@ -123,12 +123,10 @@ export const homeSlides: SlideData[] = [
     variant: "experience",
     headline: "Stay Overnight",
     subtitle:
-      "Wake up with alpacas in a charming bamboo lodge. Includes Alpaca Connection experience and breakfast.",
+      "Wake up with alpacas in a charming bamboo lodge nestled on the alpaca farm.",
     price: "From 1.5M IDR",
     details: [
       "Overnight stay in a bamboo lodge on the alpaca farm",
-      "Alpaca Connection guided tour included",
-      "Complimentary breakfast",
       "Check-in 2 PM, check-out 11 AM",
       "Alpaca Lodge — up to 3 guests",
       "Bamboo Alpaca Nest — up to 2 guests",

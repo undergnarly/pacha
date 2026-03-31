@@ -41,7 +41,7 @@ export const lodgesFaq: FAQItem[] = [
   {
     question: "What is included in the stay?",
     answer:
-      "Each lodge booking includes an overnight stay, the Alpaca Connection guided tour experience, and a complimentary breakfast.",
+      "Each lodge booking includes an overnight stay in a bamboo lodge on the alpaca farm.",
   },
   {
     question: "How many guests can stay?",

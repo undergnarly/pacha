@@ -31,7 +31,7 @@ export const dinnerSlides: SlideData[] = [
       "2 non-alcoholic beverages included",
       "Alpaca snack for feeding included",
       "Up to 4 guests per table",
-      "Deposit 500K IDR required to secure booking",
+      "Deposit 500K IDR included",
       "Reserve at least 1 day in advance",
       "Perfect for proposals, celebrations, or special occasions",
       "Dietary needs accommodated — message us via WhatsApp",
