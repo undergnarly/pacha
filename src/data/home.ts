@@ -96,15 +96,16 @@ export const homeSlides: SlideData[] = [
     variant: "experience",
     headline: "Private Alpaca Dinner",
     subtitle:
-      "An intimate private dining setup inside the alpaca enclosure for up to 4 guests.",
-    price: "990K IDR",
+      "Private sunset dining with full setup included. Up to 4 guests. Please reserve at least one day in advance.",
+    price: "1.9M IDR",
     details: [
       "Table setup inside the alpaca enclosure",
-      "2 main courses included",
-      "2 non-alcoholic beverages included",
-      "Alpaca snack for feeding included",
+      "Nuanu entry + Alpaca entry included",
+      "Fresh flower bouquet",
+      "Meat platter, cheese platter, fruit platter",
+      "2 glasses of wine",
+      "Alpaca snack for feeding",
       "Up to 4 guests per table",
-      "Deposit 500K IDR included",
       "Reserve at least 1 day in advance",
     ],
     media: {

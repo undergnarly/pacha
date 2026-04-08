@@ -6,7 +6,7 @@ import { dinnerFaq } from "@/data/faq";
 export const metadata: Metadata = {
   title: "Private Dinner with Alpacas in Bali",
   description:
-    "A private candle-lit dinner surrounded by alpacas under the Bali sky. Includes floral decorations, welcome drinks, and a gourmet platter. From 990K IDR.",
+    "A private sunset dinner surrounded by alpacas under the Bali sky. Includes floral decorations, wine, and gourmet platters. 1.9M IDR for up to 4 guests.",
   openGraph: {
     title: "Private Dinner with Alpacas — Pacha Alpaca",
     description:
