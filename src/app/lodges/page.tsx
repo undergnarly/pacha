@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
-import SlideShow from "@/components/SlideShow";
-import { lodgesSlides } from "@/data/lodges";
-import { lodgesFaq } from "@/data/faq";
+import LodgesContent from "@/components/LodgesContent";
 
 export const metadata: Metadata = {
   title: "Bamboo Lodges — Stay Overnight with Alpacas",
   description:
-    "Spend the night in a bamboo lodge on the alpaca farm in Nuanu, Bali. Includes Alpaca Connection tour, breakfast, AC & Wi-Fi. From 1M IDR per night.",
+    "Spend the night in a bamboo lodge on the alpaca farm in Nuanu, Bali. AC & Wi-Fi included. From 1M IDR per night.",
   openGraph: {
     title: "Bamboo Lodges — Pacha Alpaca",
     description:
-      "Wake up with alpacas in a charming bamboo lodge. Includes guided tour, breakfast, and all amenities.",
+      "Wake up with alpacas in a charming bamboo lodge. AC, Wi-Fi, and all amenities included.",
     url: "https://pacha-alpaca.com/lodges",
     siteName: "Pacha Alpaca",
     type: "website",
@@ -20,7 +18,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Bamboo Lodges — Pacha Alpaca",
     description:
-      "Wake up with alpacas in a charming bamboo lodge. Includes guided tour, breakfast, and all amenities.",
+      "Wake up with alpacas in a charming bamboo lodge. AC, Wi-Fi, and all amenities included.",
     images: ["/images/og-image.jpg"],
   },
   alternates: {
@@ -29,11 +27,5 @@ export const metadata: Metadata = {
 };
 
 export default function LodgesPage() {
-  return (
-    <SlideShow
-      slides={lodgesSlides}
-      faqItems={lodgesFaq}
-      footerConfig={{ showMap: true, showHours: false, showContacts: true }}
-    />
-  );
+  return <LodgesContent />;
 }

@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import SlideShow from "@/components/SlideShow";
-import { dinnerSlides } from "@/data/dinner";
-import { dinnerFaq } from "@/data/faq";
+import DinnerContent from "@/components/DinnerContent";
 
 export const metadata: Metadata = {
   title: "Private Dinner with Alpacas in Bali",
@@ -29,11 +27,5 @@ export const metadata: Metadata = {
 };
 
 export default function DinnerPage() {
-  return (
-    <SlideShow
-      slides={dinnerSlides}
-      faqItems={dinnerFaq}
-      footerConfig={{ showMap: false, showHours: false, showContacts: true }}
-    />
-  );
+  return <DinnerContent />;
 }

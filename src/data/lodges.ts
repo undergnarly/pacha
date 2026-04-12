@@ -1,69 +1,57 @@
 import type { SlideData } from "./types";
+import type { Translations } from "@/i18n/translations";
 
-export const lodgesSlides: SlideData[] = [
-  {
-    id: "lodges-hero",
-    variant: "hero",
-    headline: "Wake Up with Alpacas",
-    subtitle:
-      "Spend the night in a bamboo lodge on the alpaca farm. Fall asleep to nature and wake up to friendly faces.",
-    media: {
-      video: "/videos/lodges-hero-short.mp4",
-      desktopVideo: "/videos/lodges-hero-desktop.mp4",
-      poster: "/images/lodges-hero-poster.webp",
+export function getLodgesSlides(t: Translations): SlideData[] {
+  return [
+    {
+      id: "lodges-hero",
+      variant: "hero",
+      headline: t.lodges.hero.headline,
+      subtitle: t.lodges.hero.subtitle,
+      media: {
+        video: "/videos/lodges-hero-short.mp4",
+        desktopVideo: "/videos/lodges-hero-desktop.mp4",
+        poster: "/images/lodges-hero-poster.webp",
+      },
+      cta: {
+        label: t.ui.explore,
+        href: "#alpaca-lodge",
+        scrollDown: true,
+      },
     },
-    cta: {
-      label: "Explore",
-      href: "#alpaca-lodge",
-      scrollDown: true,
+    {
+      id: "alpaca-lodge",
+      variant: "experience",
+      headline: t.lodges.alpacaLodge.headline,
+      subtitle: t.lodges.alpacaLodge.subtitle,
+      price: "From 1.5M IDR / night",
+      details: t.lodges.alpacaLodge.details,
+      media: {
+        video: "/videos/alpaca-lodge-short.mp4",
+        desktopVideo: "/videos/alpaca-lodge-desktop.mp4",
+        poster: "/images/alpaca-lodge.webp",
+      },
+      cta: {
+        label: t.ui.bookOnAirbnb,
+        href: "https://www.airbnb.com/rooms/1263411619445698751",
+      },
     },
-  },
-  {
-    id: "alpaca-lodge",
-    variant: "experience",
-    headline: "Alpaca Lodge",
-    subtitle:
-      "Charming bamboo haven on the alpaca farm. Up to 3 guests.",
-    price: "From 1.5M IDR / night",
-    details: [
-      "Spacious bamboo lodge — up to 3 guests",
-      "Check-in 2 PM / Check-out 11 AM",
-      "Air conditioning",
-      "Wi-Fi available",
-      "Surrounded by nature — alpacas nearby",
-    ],
-    media: {
-      video: "/videos/alpaca-lodge-short.mp4",
-      desktopVideo: "/videos/alpaca-lodge-desktop.mp4",
-      poster: "/images/alpaca-lodge.webp",
+    {
+      id: "bamboo-nest",
+      variant: "experience",
+      headline: t.lodges.bambooNest.headline,
+      subtitle: t.lodges.bambooNest.subtitle,
+      price: "From 1M IDR / night",
+      details: t.lodges.bambooNest.details,
+      media: {
+        video: "/videos/bamboo-nest-short.mp4",
+        desktopVideo: "/videos/bamboo-nest-desktop.mp4",
+        poster: "/images/bamboo-nest.webp",
+      },
+      cta: {
+        label: t.ui.bookOnAirbnb,
+        href: "https://www.airbnb.com/rooms/1436662283551329575",
+      },
     },
-    cta: {
-      label: "Book on Airbnb",
-      href: "https://www.airbnb.com/rooms/1263411619445698751",
-    },
-  },
-  {
-    id: "bamboo-nest",
-    variant: "experience",
-    headline: "Bamboo Alpaca Nest",
-    subtitle:
-      "A cozy bamboo retreat for two.",
-    price: "From 1M IDR / night",
-    details: [
-      "Intimate bamboo nest — up to 2 guests",
-      "Check-in 2 PM / Check-out 11 AM",
-      "Air conditioning",
-      "Wi-Fi available",
-      "Perfect for couples seeking a unique stay",
-    ],
-    media: {
-      video: "/videos/bamboo-nest-short.mp4",
-      desktopVideo: "/videos/bamboo-nest-desktop.mp4",
-      poster: "/images/bamboo-nest.webp",
-    },
-    cta: {
-      label: "Book on Airbnb",
-      href: "https://www.airbnb.com/rooms/1436662283551329575",
-    },
-  },
-];
+  ];
+}

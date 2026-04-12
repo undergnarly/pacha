@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import type { SlideData } from "@/data/types";
+import { useLanguage } from "@/i18n/context";
 
 interface SlideContentProps {
   slide: SlideData;
@@ -34,6 +35,7 @@ export default function SlideContent({
     slide;
   const [expanded, setExpanded] = useState(false);
   const hasDetails = slide.details && slide.details.length > 0;
+  const { t } = useLanguage();
 
   if (variant === "menu") {
     return (
@@ -87,7 +89,7 @@ export default function SlideContent({
                   <span className="shrink-0 text-sm font-semibold text-white/80">{item.price}</span>
                 </div>
               ))}
-              <p className="mt-3 text-center text-xs text-white/40">All prices subject to 10% tax & 5% service</p>
+              <p className="mt-3 text-center text-xs text-white/40">{t.ui.allPricesNote}</p>
             </motion.div>
           )}
         </motion.div>
@@ -108,7 +110,7 @@ export default function SlideContent({
             <motion.div custom={0} variants={fadeUp} className="mb-4 flex items-center justify-center gap-2">
               <span className="text-2xl font-bold">{rating.score}</span>
               <span className="text-2xl text-yellow-400">★</span>
-              <span className="text-sm font-semibold text-white/70">({rating.count} reviews on Google)</span>
+              <span className="text-sm font-semibold text-white/70">({rating.count} {t.ui.reviewsOnGoogle})</span>
             </motion.div>
           )}
 
@@ -222,7 +224,7 @@ export default function SlideContent({
                   +
                 </motion.span>
                 <span className="uppercase tracking-widest">
-                  {expanded ? "Less" : "More"}
+                  {expanded ? t.ui.less : t.ui.more}
                 </span>
               </button>
             )}

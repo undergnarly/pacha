@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import SlideShow from "@/components/SlideShow";
-import { alpacafeSlides } from "@/data/alpacafe";
-import { alpacafeFaq } from "@/data/faq";
+import AlpacafeContent from "@/components/AlpacafeContent";
 
 export const metadata: Metadata = {
   title: "AlpaCafe — Coffee & Food with Alpacas",
@@ -29,11 +27,5 @@ export const metadata: Metadata = {
 };
 
 export default function AlpaCafePage() {
-  return (
-    <SlideShow
-      slides={alpacafeSlides}
-      faqItems={alpacafeFaq}
-      footerConfig={{ showMap: false, showHours: true, showContacts: true }}
-    />
-  );
+  return <AlpacafeContent />;
 }

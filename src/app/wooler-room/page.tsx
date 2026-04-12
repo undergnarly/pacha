@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import SlideShow from "@/components/SlideShow";
-import { woolerSlides } from "@/data/wooler";
-import { woolerFaq } from "@/data/faq";
+import WoolerContent from "@/components/WoolerContent";
 
 export const metadata: Metadata = {
   title: "Wooler Room — Live Music with Alpacas",
@@ -29,11 +27,5 @@ export const metadata: Metadata = {
 };
 
 export default function WoolerRoomPage() {
-  return (
-    <SlideShow
-      slides={woolerSlides}
-      faqItems={woolerFaq}
-      footerConfig={{ showMap: false, showHours: false, showContacts: true }}
-    />
-  );
+  return <WoolerContent />;
 }

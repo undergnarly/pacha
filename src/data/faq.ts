@@ -1,120 +1,22 @@
 import type { FAQItem } from "./types";
+import type { Translations } from "@/i18n/translations";
 
-export const homeFaq: FAQItem[] = [
-  {
-    question: "Where is Pacha Alpaca located?",
-    answer:
-      "We are located inside Nuanu City, Bali, Indonesia — about 20 minutes from Canggu. Take the free bus at Nuanu Gate to bus station #4.",
-  },
-  {
-    question: "Do I need to book in advance?",
-    answer:
-      "We highly recommend booking online to secure your preferred time slot. Walk-ins are welcome but subject to availability.",
-  },
-  {
-    question: "What are the opening hours?",
-    answer:
-      "Monday: 2 pm — 9 pm. Tuesday — Sunday: 10 am — 9 pm. Last Alpaca Connection at 6 pm.",
-  },
-  {
-    question: "Is Pacha Alpaca suitable for children?",
-    answer:
-      "Absolutely! Children love meeting our friendly alpacas. The park entrance and Alpaca Connection experiences are great for families.",
-  },
-  {
-    question: "What should I wear?",
-    answer:
-      "Comfortable clothes and closed-toe shoes are recommended. The park is outdoors, so bring sunscreen and a hat during the day.",
-  },
-  {
-    question: "Can I bring my own food?",
-    answer:
-      "Outside food is not allowed in the alpaca areas, but our Alpaca Caf\u00e9 offers drinks and snacks. Special dietary needs for the Private Dinner can be arranged in advance.",
-  },
-];
+export function getHomeFaq(t: Translations): FAQItem[] {
+  return t.faq.home;
+}
 
-export const lodgesFaq: FAQItem[] = [
-  {
-    question: "What time is check-in and check-out?",
-    answer: "Check-in is at 2:00 PM, and check-out is at 11:00 AM.",
-  },
-  {
-    question: "What is included in the stay?",
-    answer:
-      "Each lodge booking includes an overnight stay in a bamboo lodge on the alpaca farm.",
-  },
-  {
-    question: "How many guests can stay?",
-    answer:
-      "The Alpaca Lodge accommodates up to 3 persons. The Bamboo Alpaca Nest accommodates up to 2 persons.",
-  },
-  {
-    question: "Is there Wi-Fi and air conditioning?",
-    answer:
-      "Yes, all lodges have air conditioning and Wi-Fi.",
-  },
-  {
-    question: "How do I book?",
-    answer:
-      "Lodges are booked through Airbnb. Click the Book button on the lodge you prefer to go directly to the listing.",
-  },
-];
+export function getLodgesFaq(t: Translations): FAQItem[] {
+  return t.faq.lodges;
+}
 
-export const dinnerFaq: FAQItem[] = [
-  {
-    question: "How many people can attend the dinner?",
-    answer:
-      "The Private Alpaca Dinner is for up to 4 guests per table.",
-  },
-  {
-    question: "What is included in the dinner?",
-    answer:
-      "The dinner (1.9M IDR) includes a table setup inside the alpaca enclosure, Nuanu and Alpaca park entry, a fresh flower bouquet, meat/cheese/fruit platters, 2 glasses of wine, and an alpaca snack for feeding.",
-  },
-  {
-    question: "How far in advance should I book?",
-    answer:
-      "Please reserve at least 1 day in advance.",
-  },
-  {
-    question: "Can I request special dietary options?",
-    answer:
-      "Yes! Please let us know about dietary requirements via WhatsApp at least 48 hours before your booking.",
-  },
-];
+export function getDinnerFaq(t: Translations): FAQItem[] {
+  return t.faq.dinner;
+}
 
-export const alpacafeFaq: FAQItem[] = [
-  {
-    question: "Is the cafe included with entrance?",
-    answer:
-      "Yes! The AlpaCafe is accessible to all park visitors with an entrance ticket.",
-  },
-  {
-    question: "What do you serve?",
-    answer:
-      "Vietnamese coffee, fresh juices, all-day breakfast, mains, home-crafted crepes, sharing platters, desserts, craft beer, wine, and prosecco.",
-  },
-  {
-    question: "Can alpacas come to my table?",
-    answer:
-      "Our friendly alpacas roam freely around the cafe area, so yes — expect fluffy visitors!",
-  },
-];
+export function getAlpacafeFaq(t: Translations): FAQItem[] {
+  return t.faq.alpacafe;
+}
 
-export const woolerFaq: FAQItem[] = [
-  {
-    question: "What is the Wooler Room?",
-    answer:
-      "The Wooler Room is our once-a-month live music event held in the alpaca field — featuring DJ sets, golden hour vibes, and curious alpacas.",
-  },
-  {
-    question: "How often does it happen?",
-    answer:
-      "Events are held once a month. Follow us on Instagram @pacha_alpaca for upcoming dates and themes.",
-  },
-  {
-    question: "Do I need a ticket?",
-    answer:
-      "Yes, entry requires an RSVP or ticket. Details are announced on Instagram before each event.",
-  },
-];
+export function getWoolerFaq(t: Translations): FAQItem[] {
+  return t.faq.wooler;
+}

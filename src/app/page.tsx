@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import SlideShow from "@/components/SlideShow";
-import { homeSlides } from "@/data/home";
-import { homeFaq } from "@/data/faq";
+import HomeContent from "@/components/HomeContent";
 
 export const metadata: Metadata = {
   openGraph: {
@@ -31,11 +29,5 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return (
-    <SlideShow
-      slides={homeSlides}
-      faqItems={homeFaq}
-      footerConfig={{ showMap: true, showHours: true, showContacts: true }}
-    />
-  );
+  return <HomeContent />;
 }

@@ -1,168 +1,133 @@
 import type { SlideData } from "./types";
+import type { Translations } from "@/i18n/translations";
 
-export const homeSlides: SlideData[] = [
-  {
-    id: "hero",
-    variant: "hero",
-    headline: "Immersive alpaca park in the heart of Nuanu, Bali",
-    subtitle:
-      "Discover five ways to meet our friendly alpacas — from a simple visit to a private candle-lit dinner & overnight stay.",
-    media: {
-      video: "/videos/hero-short.mp4",
-      desktopVideo: "/videos/hero-desktop.mp4",
-      poster: "/images/hero-poster-hq.webp",
+export function getHomeSlides(t: Translations): SlideData[] {
+  return [
+    {
+      id: "hero",
+      variant: "hero",
+      headline: t.home.hero.headline,
+      subtitle: t.home.hero.subtitle,
+      media: {
+        video: "/videos/hero-short.mp4",
+        desktopVideo: "/videos/hero-desktop.mp4",
+        poster: "/images/hero-poster-hq.webp",
+      },
+      cta: {
+        label: t.ui.explore,
+        href: "#hook",
+        scrollDown: true,
+      },
     },
-    cta: {
-      label: "Explore",
-      href: "#hook",
-      scrollDown: true,
+    {
+      id: "hook",
+      variant: "hook",
+      headline: t.home.hook.headline,
+      media: {
+        video: "/videos/hook-short.mp4",
+        desktopVideo: "/videos/hook-desktop.mp4",
+        poster: "/images/hook.webp",
+      },
+      rating: {
+        score: 4.6,
+        count: "170+",
+      },
+      quote: {
+        text: t.home.hook.quote,
+        author: "Jessica A.",
+      },
+      stats: [
+        { value: "5", label: t.home.hook.stats.experiences },
+        { value: "12", label: t.home.hook.stats.alpacas },
+        { value: "150K", label: t.home.hook.stats.fromIdr },
+      ],
     },
-  },
-  {
-    id: "hook",
-    variant: "hook",
-    headline: "The only alpaca park in Bali",
-    media: {
-      video: "/videos/hook-short.mp4",
-      desktopVideo: "/videos/hook-desktop.mp4",
-      poster: "/images/hook.webp",
+    {
+      id: "entrance",
+      variant: "experience",
+      headline: t.home.entrance.headline,
+      subtitle: t.home.entrance.subtitle,
+      price: "From 150K IDR",
+      details: t.home.entrance.details,
+      media: {
+        video: "/videos/entrance-short.mp4",
+        desktopVideo: "/videos/entrance-desktop.mp4",
+        poster: "/images/entrance.webp",
+      },
+      cta: {
+        label: t.ui.bookNow,
+        href: "https://megatix.co.id/events/entrance-to-pacha-alpaca?utm_source=pacha&utm_medium=website&utm_campaign=entrance",
+        booking: true,
+      },
     },
-    rating: {
-      score: 4.6,
-      count: "170+",
+    {
+      id: "connection",
+      variant: "experience",
+      headline: t.home.connection.headline,
+      subtitle: t.home.connection.subtitle,
+      price: "From 200K IDR",
+      details: t.home.connection.details,
+      media: {
+        video: "/videos/connection-short.mp4",
+        desktopVideo: "/videos/connection-desktop.mp4",
+        poster: "/images/connection.webp",
+      },
+      cta: {
+        label: t.ui.bookNow,
+        href: "https://megatix.co.id/events/alpaca-connection-in-nuanu?utm_source=pacha&utm_medium=website&utm_campaign=connection",
+        booking: true,
+      },
     },
-    quote: {
-      text: "One of the most unique experiences in Bali. The alpacas are so friendly and the setting is magical!",
-      author: "Jessica A.",
+    {
+      id: "dinner",
+      variant: "experience",
+      headline: t.home.dinner.headline,
+      subtitle: t.home.dinner.subtitle,
+      price: "1.9M IDR",
+      details: t.home.dinner.details,
+      media: {
+        video: "/videos/dinner-short.mp4",
+        desktopVideo: "/videos/dinner-desktop.mp4",
+        poster: "/images/dinner.webp",
+      },
+      cta: {
+        label: t.ui.bookNow,
+        href: "https://megatix.co.id/events/private-dinner-with-alpacas?utm_source=pacha&utm_medium=website&utm_campaign=dinner",
+        booking: true,
+      },
     },
-    stats: [
-      { value: "5", label: "Experiences" },
-      { value: "12", label: "Alpacas" },
-      { value: "150K", label: "From IDR" },
-    ],
-  },
-  {
-    id: "entrance",
-    variant: "experience",
-    headline: "Meet the Alpacas",
-    subtitle:
-      "Nuanu access, alpaca park entry, alpaca caf\u00e9, and alpaca snacks included.",
-    price: "From 150K IDR",
-    details: [
-      "Includes Nuanu and Pacha Alpaca entrance",
-      "Alpaca snacks — veggie treats for hand-feeding",
-      "AlpaCafe access for drinks & light bites",
-      "Mon 2–6 PM, Tue–Sun 10 AM–6 PM",
-    ],
-    media: {
-      video: "/videos/entrance-short.mp4",
-      desktopVideo: "/videos/entrance-desktop.mp4",
-      poster: "/images/entrance.webp",
+    {
+      id: "lodge",
+      variant: "experience",
+      headline: t.home.lodge.headline,
+      subtitle: t.home.lodge.subtitle,
+      price: "From 1.5M IDR",
+      details: t.home.lodge.details,
+      media: {
+        video: "/videos/bamboo-nest-short.mp4",
+        desktopVideo: "/videos/bamboo-nest-desktop.mp4",
+        poster: "/images/bamboo-nest.webp",
+      },
+      cta: {
+        label: t.ui.viewLodges,
+        href: "/lodges",
+      },
     },
-    cta: {
-      label: "Book Now",
-      href: "https://megatix.co.id/events/entrance-to-pacha-alpaca?utm_source=pacha&utm_medium=website&utm_campaign=entrance",
-      booking: true,
+    {
+      id: "alpacafe",
+      variant: "experience",
+      headline: t.home.alpacafe.headline,
+      subtitle: t.home.alpacafe.subtitle,
+      details: t.home.alpacafe.details,
+      media: {
+        video: "/videos/alpacafe-short.mp4",
+        desktopVideo: "/videos/alpacafe-desktop.mp4",
+        poster: "/images/alpacafe.webp",
+      },
+      cta: {
+        label: t.ui.discover,
+        href: "/alpacafe",
+      },
     },
-  },
-  {
-    id: "connection",
-    variant: "experience",
-    headline: "Alpaca Connection",
-    subtitle:
-      "30-minute guided tour through the jungle park. Feed, walk, and connect with our alpacas.",
-    price: "From 200K IDR",
-    details: [
-      "Child (under 12) — 200K IDR",
-      "Adult — 300K IDR",
-      "Family 2+2 — 700K IDR",
-      "30-min guided tour, feeding, and photo ops",
-      "Includes Nuanu and Pacha Alpaca entrance",
-      "Children under 12 must be with a guardian",
-    ],
-    media: {
-      video: "/videos/connection-short.mp4",
-      desktopVideo: "/videos/connection-desktop.mp4",
-      poster: "/images/connection.webp",
-    },
-    cta: {
-      label: "Book Now",
-      href: "https://megatix.co.id/events/alpaca-connection-in-nuanu?utm_source=pacha&utm_medium=website&utm_campaign=connection",
-      booking: true,
-    },
-  },
-  {
-    id: "dinner",
-    variant: "experience",
-    headline: "Private Alpaca Dinner",
-    subtitle:
-      "Private sunset dining with full setup included. Up to 4 guests. Please reserve at least one day in advance.",
-    price: "1.9M IDR",
-    details: [
-      "Table setup inside the alpaca enclosure",
-      "Nuanu entry + Alpaca entry included",
-      "Fresh flower bouquet",
-      "Meat platter, cheese platter, fruit platter",
-      "2 glasses of wine",
-      "Alpaca snack for feeding",
-      "Up to 4 guests per table",
-      "Reserve at least 1 day in advance",
-    ],
-    media: {
-      video: "/videos/dinner-short.mp4",
-      desktopVideo: "/videos/dinner-desktop.mp4",
-      poster: "/images/dinner.webp",
-    },
-    cta: {
-      label: "Book Now",
-      href: "https://megatix.co.id/events/private-dinner-with-alpacas?utm_source=pacha&utm_medium=website&utm_campaign=dinner",
-      booking: true,
-    },
-  },
-  {
-    id: "lodge",
-    variant: "experience",
-    headline: "Stay Overnight",
-    subtitle:
-      "Wake up with alpacas in a charming bamboo lodge nestled on the alpaca farm.",
-    price: "From 1.5M IDR",
-    details: [
-      "Overnight stay in a bamboo lodge on the alpaca farm",
-      "Check-in 2 PM, check-out 11 AM",
-      "Alpaca Lodge — up to 3 guests",
-      "Bamboo Alpaca Nest — up to 2 guests",
-    ],
-    media: {
-      video: "/videos/bamboo-nest-short.mp4",
-      desktopVideo: "/videos/bamboo-nest-desktop.mp4",
-      poster: "/images/bamboo-nest.webp",
-    },
-    cta: {
-      label: "View Lodges",
-      href: "/lodges",
-    },
-  },
-  {
-    id: "alpacafe",
-    variant: "experience",
-    headline: "AlpaCafe",
-    subtitle:
-      "Specialty coffee, fresh juices, and alpaca-themed treats — with the fluffiest company in Bali.",
-    details: [
-      "Vietnamese coffee, fresh juices, and smoothies",
-      "All-day breakfast, mains, and crepes",
-      "Sharing platters and desserts",
-      "Craft beer, wine, and prosecco",
-      "Alpacas roam freely around the cafe",
-    ],
-    media: {
-      video: "/videos/alpacafe-short.mp4",
-      desktopVideo: "/videos/alpacafe-desktop.mp4",
-      poster: "/images/alpacafe.webp",
-    },
-    cta: {
-      label: "Discover",
-      href: "/alpacafe",
-    },
-  },
-];
+  ];
+}
