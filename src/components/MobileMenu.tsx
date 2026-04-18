@@ -118,7 +118,7 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
             {/* Social links */}
             <div className="flex justify-center gap-8">
               <a
-                href="https://wa.me/628779879161"
+                href="https://wa.me/6287798791616"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"

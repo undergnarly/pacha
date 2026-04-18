@@ -7,7 +7,7 @@ export default function JsonLd() {
       "The only alpaca park in Bali. Feed, walk, and connect with alpacas. Private dinners, overnight bamboo lodges, cafe, and guided experiences in Nuanu City.",
     url: "https://pacha-alpaca.com",
     image: "https://pacha-alpaca.com/images/og-image.jpg",
-    telephone: "+62-877-987-9161",
+    telephone: "+62-877-9879-1616",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Nuanu City",

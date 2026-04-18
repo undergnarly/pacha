@@ -92,7 +92,7 @@ export default function FooterSlide({
             </h3>
             <div className="flex flex-col items-center gap-3">
               <a
-                href="https://wa.me/628779879161"
+                href="https://wa.me/6287798791616"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex w-56 items-center justify-center gap-2 rounded-full border border-white/30 px-5 py-2 text-xs uppercase tracking-widest text-white transition-colors hover:border-white hover:bg-white hover:text-black"

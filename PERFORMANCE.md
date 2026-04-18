@@ -60,7 +60,7 @@
 {
   "@type": ["LocalBusiness", "TouristAttraction"],
   "aggregateRating": { "ratingValue": "4.6", "reviewCount": "170" },
-  "telephone": "+62-877-987-9161"
+  "telephone": "+62-877-9879-1616"
 }
 ```
 
