@@ -47,7 +47,7 @@ export function getHomeSlides(t: Translations): SlideData[] {
       },
       stats: [
         { value: "5", label: t.home.hook.stats.experiences },
-        { value: "12", label: t.home.hook.stats.alpacas },
+        { value: "9", label: t.home.hook.stats.alpacas },
         { value: "150K", label: t.home.hook.stats.fromIdr },
       ],
     },

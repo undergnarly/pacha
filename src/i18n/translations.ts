@@ -105,9 +105,9 @@ export const translations: Record<Locale, Translations> = {
       freeBus: "Take the free bus at Nuanu Gate to bus station #4",
       openInMaps: "Open in Maps",
       openingHours: "Opening Hours",
-      monday: "Monday: 2 pm — 9 pm",
-      tueSun: "Tuesday — Sunday: 10 am — 9 pm",
-      lastConnection: "Last Alpaca Connection at 6 pm",
+      monday: "Monday: 2 pm — 6 pm",
+      tueSun: "Tuesday — Sunday: 10 am — 6 pm",
+      lastConnection: "Last Alpaca Connection at 5 pm",
       getInTouch: "Get in Touch",
       whatsapp: "WhatsApp",
       instagram: "Instagram",
@@ -318,7 +318,7 @@ export const translations: Record<Locale, Translations> = {
         {
           question: "What are the opening hours?",
           answer:
-            "Monday: 2 pm — 9 pm. Tuesday — Sunday: 10 am — 9 pm. Last Alpaca Connection at 6 pm.",
+            "Monday: 2 pm — 6 pm. Tuesday — Sunday: 10 am — 6 pm. Last Alpaca Connection at 5 pm.",
         },
         {
           question: "Is Pacha Alpaca suitable for children?",
@@ -440,9 +440,9 @@ export const translations: Record<Locale, Translations> = {
       freeBus: "Сядьте на бесплатный автобус у ворот Nuanu до остановки #4",
       openInMaps: "Открыть на карте",
       openingHours: "Часы работы",
-      monday: "Понедельник: 14:00 — 21:00",
-      tueSun: "Вторник — воскресенье: 10:00 — 21:00",
-      lastConnection: "Последний Alpaca Connection в 18:00",
+      monday: "Понедельник: 14:00 — 18:00",
+      tueSun: "Вторник — воскресенье: 10:00 — 18:00",
+      lastConnection: "Последний Alpaca Connection в 17:00",
       getInTouch: "Связаться с нами",
       whatsapp: "WhatsApp",
       instagram: "Instagram",
@@ -653,7 +653,7 @@ export const translations: Record<Locale, Translations> = {
         {
           question: "Какие часы работы?",
           answer:
-            "Понедельник: 14:00 — 21:00. Вторник — воскресенье: 10:00 — 21:00. Последний Alpaca Connection в 18:00.",
+            "Понедельник: 14:00 — 18:00. Вторник — воскресенье: 10:00 — 18:00. Последний Alpaca Connection в 17:00.",
         },
         {
           question: "Подходит ли Pacha Alpaca для детей?",
@@ -775,9 +775,9 @@ export const translations: Record<Locale, Translations> = {
       freeBus: "Naik bus gratis di Nuanu Gate menuju halte bus #4",
       openInMaps: "Buka di Maps",
       openingHours: "Jam Operasional",
-      monday: "Senin: 14.00 — 21.00",
-      tueSun: "Selasa — Minggu: 10.00 — 21.00",
-      lastConnection: "Alpaca Connection terakhir pukul 18.00",
+      monday: "Senin: 14.00 — 18.00",
+      tueSun: "Selasa — Minggu: 10.00 — 18.00",
+      lastConnection: "Alpaca Connection terakhir pukul 17.00",
       getInTouch: "Hubungi Kami",
       whatsapp: "WhatsApp",
       instagram: "Instagram",
@@ -989,7 +989,7 @@ export const translations: Record<Locale, Translations> = {
         {
           question: "Berapa jam operasionalnya?",
           answer:
-            "Senin: 14.00 — 21.00. Selasa — Minggu: 10.00 — 21.00. Alpaca Connection terakhir pukul 18.00.",
+            "Senin: 14.00 — 18.00. Selasa — Minggu: 10.00 — 18.00. Alpaca Connection terakhir pukul 17.00.",
         },
         {
           question: "Apakah Pacha Alpaca cocok untuk anak-anak?",
