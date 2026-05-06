@@ -107,7 +107,7 @@ export const translations: Record<Locale, Translations> = {
       openingHours: "Opening Hours",
       monday: "Monday: 2 pm — 6 pm",
       tueSun: "Tuesday — Sunday: 10 am — 6 pm",
-      lastConnection: "Last Alpaca Connection at 5 pm",
+      lastConnection: "Last Alpaca Connection at 5:30 pm",
       getInTouch: "Get in Touch",
       whatsapp: "WhatsApp",
       instagram: "Instagram",
@@ -318,7 +318,7 @@ export const translations: Record<Locale, Translations> = {
         {
           question: "What are the opening hours?",
           answer:
-            "Monday: 2 pm — 6 pm. Tuesday — Sunday: 10 am — 6 pm. Last Alpaca Connection at 5 pm.",
+            "Monday: 2 pm — 6 pm. Tuesday — Sunday: 10 am — 6 pm. Last Alpaca Connection at 5:30 pm.",
         },
         {
           question: "Is Pacha Alpaca suitable for children?",
@@ -442,7 +442,7 @@ export const translations: Record<Locale, Translations> = {
       openingHours: "Часы работы",
       monday: "Понедельник: 14:00 — 18:00",
       tueSun: "Вторник — воскресенье: 10:00 — 18:00",
-      lastConnection: "Последний Alpaca Connection в 17:00",
+      lastConnection: "Последний Alpaca Connection в 17:30",
       getInTouch: "Связаться с нами",
       whatsapp: "WhatsApp",
       instagram: "Instagram",
@@ -653,7 +653,7 @@ export const translations: Record<Locale, Translations> = {
         {
           question: "Какие часы работы?",
           answer:
-            "Понедельник: 14:00 — 18:00. Вторник — воскресенье: 10:00 — 18:00. Последний Alpaca Connection в 17:00.",
+            "Понедельник: 14:00 — 18:00. Вторник — воскресенье: 10:00 — 18:00. Последний Alpaca Connection в 17:30.",
         },
         {
           question: "Подходит ли Pacha Alpaca для детей?",
@@ -777,7 +777,7 @@ export const translations: Record<Locale, Translations> = {
       openingHours: "Jam Operasional",
       monday: "Senin: 14.00 — 18.00",
       tueSun: "Selasa — Minggu: 10.00 — 18.00",
-      lastConnection: "Alpaca Connection terakhir pukul 17.00",
+      lastConnection: "Alpaca Connection terakhir pukul 17.30",
       getInTouch: "Hubungi Kami",
       whatsapp: "WhatsApp",
       instagram: "Instagram",
@@ -989,7 +989,7 @@ export const translations: Record<Locale, Translations> = {
         {
           question: "Berapa jam operasionalnya?",
           answer:
-            "Senin: 14.00 — 18.00. Selasa — Minggu: 10.00 — 18.00. Alpaca Connection terakhir pukul 17.00.",
+            "Senin: 14.00 — 18.00. Selasa — Minggu: 10.00 — 18.00. Alpaca Connection terakhir pukul 17.30.",
         },
         {
           question: "Apakah Pacha Alpaca cocok untuk anak-anak?",
