@@ -1,6 +1,10 @@
 import type { SlideData } from "./types";
 import type { Translations } from "@/i18n/translations";
 
+const PHONE = "6287798791616";
+const wa = (msg: string) =>
+  `https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`;
+
 export function getHomeSlides(t: Translations): SlideData[] {
   return [
     {
@@ -14,6 +18,11 @@ export function getHomeSlides(t: Translations): SlideData[] {
         poster: "/images/hero-poster-hq.webp",
       },
       cta: {
+        label: t.ui.chooseExperience,
+        href: "#",
+        openModal: true,
+      },
+      secondaryCta: {
         label: t.ui.explore,
         href: "#hook",
         scrollDown: true,
@@ -95,6 +104,10 @@ export function getHomeSlides(t: Translations): SlideData[] {
         href: "https://megatix.co.id/events/private-dinner-with-alpacas?utm_source=pacha&utm_medium=website&utm_campaign=dinner",
         booking: true,
       },
+      secondaryCta: {
+        label: t.ui.whatsapp,
+        href: wa(t.home.bookingMessages.dinner),
+      },
     },
     {
       id: "lodge",
@@ -111,6 +124,10 @@ export function getHomeSlides(t: Translations): SlideData[] {
       cta: {
         label: t.ui.viewLodges,
         href: "/lodges",
+      },
+      secondaryCta: {
+        label: t.ui.whatsapp,
+        href: wa(t.home.bookingMessages.lodge),
       },
     },
     {

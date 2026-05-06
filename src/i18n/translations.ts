@@ -34,6 +34,10 @@ export type Translations = {
     reviewsOnGoogle: string;
     allPricesNote: string;
     language: string;
+    chooseExperience: string;
+    bookYourExperience: string;
+    buyTicket: string;
+    close: string;
   };
   home: {
     hero: { headline: string; subtitle: string };
@@ -47,6 +51,7 @@ export type Translations = {
     dinner: { headline: string; subtitle: string; details: string[] };
     lodge: { headline: string; subtitle: string; details: string[] };
     alpacafe: { headline: string; subtitle: string; details: string[] };
+    bookingMessages: { dinner: string; lodge: string };
   };
   dinner: {
     hero: { headline: string; subtitle: string };
@@ -116,6 +121,10 @@ export const translations: Record<Locale, Translations> = {
       reviewsOnGoogle: "reviews on Google",
       allPricesNote: "All prices subject to 10% tax & 5% service",
       language: "Language",
+      chooseExperience: "Choose Experience",
+      bookYourExperience: "Book Your Experience",
+      buyTicket: "Buy Ticket",
+      close: "Close",
     },
 
     home: {
@@ -195,6 +204,12 @@ export const translations: Record<Locale, Translations> = {
           "Craft beer, wine, and prosecco",
           "Alpacas roam freely around the cafe",
         ],
+      },
+      bookingMessages: {
+        dinner:
+          "Hi! I'd like to book the Private Alpaca Dinner. Could you help me with date and number of guests?",
+        lodge:
+          "Hi! I'd like to book an overnight stay at Pacha Alpaca. Could you help me with available dates?",
       },
     },
 
@@ -441,6 +456,10 @@ export const translations: Record<Locale, Translations> = {
       reviewsOnGoogle: "отзывов в Google",
       allPricesNote: "Ко всем ценам добавляется налог 10% и сервис 5%",
       language: "Язык",
+      chooseExperience: "Выбрать впечатление",
+      bookYourExperience: "Забронируйте впечатление",
+      buyTicket: "Купить билет",
+      close: "Закрыть",
     },
 
     home: {
@@ -520,6 +539,12 @@ export const translations: Record<Locale, Translations> = {
           "Крафтовое пиво, вино и просекко",
           "Альпаки свободно гуляют вокруг кафе",
         ],
+      },
+      bookingMessages: {
+        dinner:
+          "Здравствуйте! Хочу забронировать Private Alpaca Dinner. Подскажите, пожалуйста, по датам и количеству гостей?",
+        lodge:
+          "Здравствуйте! Хочу забронировать ночёвку в домике Pacha Alpaca. Подскажите по свободным датам?",
       },
     },
 
@@ -766,6 +791,10 @@ export const translations: Record<Locale, Translations> = {
       reviewsOnGoogle: "ulasan di Google",
       allPricesNote: "Semua harga belum termasuk pajak 10% & layanan 5%",
       language: "Bahasa",
+      chooseExperience: "Pilih Pengalaman",
+      bookYourExperience: "Pesan Pengalaman Anda",
+      buyTicket: "Beli Tiket",
+      close: "Tutup",
     },
 
     home: {
@@ -845,6 +874,12 @@ export const translations: Record<Locale, Translations> = {
           "Bir craft, wine, dan prosecco",
           "Alpaka berkeliaran bebas di sekitar kafe",
         ],
+      },
+      bookingMessages: {
+        dinner:
+          "Halo! Saya ingin memesan Private Alpaca Dinner. Bisa bantu cek tanggal dan jumlah tamu?",
+        lodge:
+          "Halo! Saya ingin menginap di lodge Pacha Alpaca. Bisa bantu cek tanggal yang tersedia?",
       },
     },
 

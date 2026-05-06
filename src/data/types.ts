@@ -1,17 +1,22 @@
+export interface CTA {
+  label: string;
+  href: string;
+  /** Opens Megatix in new tab (with white-label transform) */
+  booking?: boolean;
+  /** Scrolls to next slide */
+  scrollDown?: boolean;
+  /** Opens BookExperienceModal */
+  openModal?: boolean;
+}
+
 export interface SlideData {
   id: string;
   variant: "hero" | "experience" | "hook" | "footer" | "menu";
   headline: string;
   subtitle?: string;
   price?: string;
-  cta?: {
-    label: string;
-    href: string;
-    /** If true, opens booking modal instead of navigating */
-    booking?: boolean;
-    /** If true, scrolls down to next slide */
-    scrollDown?: boolean;
-  };
+  cta?: CTA;
+  secondaryCta?: CTA;
   media: {
     video?: string;
     desktopVideo?: string;

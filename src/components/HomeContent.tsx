@@ -12,6 +12,7 @@ export default function HomeContent() {
       slides={getHomeSlides(t)}
       faqItems={getHomeFaq(t)}
       footerConfig={{ showMap: true, showHours: true, showContacts: true }}
+      showBookingModal
     />
   );
 }

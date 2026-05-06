@@ -7,6 +7,7 @@ import FooterSlide from "./FooterSlide";
 import Header from "./Header";
 import DotNav from "./DotNav";
 import BookingModal from "./BookingModal";
+import BookExperienceModal from "./BookExperienceModal";
 import LoadingScreen from "./LoadingScreen";
 import type { SlideData, FAQItem } from "@/data/types";
 
@@ -18,6 +19,7 @@ interface SlideShowProps {
     showHours?: boolean;
     showContacts?: boolean;
   };
+  showBookingModal?: boolean;
 }
 
 const TRANSITION_MS = 1000;
@@ -26,9 +28,11 @@ export default function SlideShow({
   slides,
   faqItems,
   footerConfig = {},
+  showBookingModal = false,
 }: SlideShowProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [bookingUrl, setBookingUrl] = useState<string | null>(null);
+  const [chooseModalOpen, setChooseModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [loadProgress, setLoadProgress] = useState(0);
   const isAnimating = useRef(false);
@@ -139,6 +143,10 @@ export default function SlideShow({
     setBookingUrl(whiteLabel);
   }, []);
 
+  const handleOpenModal = useCallback(() => {
+    setChooseModalOpen(true);
+  }, []);
+
   const slideIds = [...slides.map((s) => s.id), "footer"];
 
   // Variants that get the decorative frame
@@ -163,6 +171,7 @@ export default function SlideShow({
           isActive={i === activeIndex}
           onBooking={handleBooking}
           onScrollDown={goNext}
+          onOpenModal={handleOpenModal}
           onVideoReady={i === 0 ? handleHeroReady : undefined}
         />
       ),
@@ -172,7 +181,7 @@ export default function SlideShow({
       framed: false,
       content: <FooterSlide faqItems={faqItems} isActive={activeIndex === slides.length} {...footerConfig} />,
     },
-  ], [slides, activeIndex, handleBooking, goNext, handleHeroReady, faqItems, footerConfig]);
+  ], [slides, activeIndex, handleBooking, handleOpenModal, goNext, handleHeroReady, faqItems, footerConfig]);
 
   return (
     <>
@@ -208,6 +217,13 @@ export default function SlideShow({
         url={bookingUrl ?? ""}
         onClose={() => setBookingUrl(null)}
       />
+
+      {showBookingModal && (
+        <BookExperienceModal
+          open={chooseModalOpen}
+          onClose={() => setChooseModalOpen(false)}
+        />
+      )}
     </>
   );
 }

@@ -9,6 +9,7 @@ interface SlideProps {
   isActive?: boolean;
   onBooking?: (href: string) => void;
   onScrollDown?: () => void;
+  onOpenModal?: () => void;
   onVideoReady?: () => void;
 }
 
@@ -17,6 +18,7 @@ export default function Slide({
   isActive = false,
   onBooking,
   onScrollDown,
+  onOpenModal,
   onVideoReady,
 }: SlideProps) {
   const isHero = slide.variant === "hero";
@@ -47,6 +49,7 @@ export default function Slide({
         slide={slide}
         onBooking={onBooking}
         onScrollDown={onScrollDown}
+        onOpenModal={onOpenModal}
       />
     </section>
   );
